@@ -1,0 +1,19 @@
+nav {
+    background-color: #268bc6;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+  }
+  
+  nav a:hover {
+    color: #2da2db;
+  }
+  
+  nav a.active {
+    padding-bottom: 8px;
+    border-bottom: 2px solid #fff;
+  }
