@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Nav from "./components/nav";
 import Home from "./pages/home";
-import Profile from "./pages/profile";
+import ShowProfile from "./pages/profile";
 import "./styles.css";
 
 export default function App() {
@@ -19,7 +19,7 @@ export default function App() {
             <Home />
           </Route>
           <Route exact path="/profile">
-            <Profile />
+            <ShowProfile />
           </Route>
         </Switch>
       </div>
