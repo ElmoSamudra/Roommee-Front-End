@@ -11,15 +11,15 @@ export default function ShowProfile() {
   if (error) {
     return <p>Something went wrong: {error.message}</p>;
   }
-
+  console.log("called");
   // use this to make sure you are getting the right data
-  console.log(userProfile.data);
+  console.log(userProfile);
 
   // Display a list of the authors
   return (
     <div>
       <h1>My Profile</h1>
-      <Profile key={userProfile.data.accountId} {...userProfile.data} />
+      <Profile key={userProfile.accountId} {...userProfile} />
     </div>
   );
 }
@@ -55,9 +55,9 @@ function Profile(profile) {
       age: ageInput,
       gender: genderInput,
       nationality: nationalityInput,
-      hobby: hobbyInput.split(","),
-      language: languageInput.split(","),
-      preferStay: preferStayInput.split(","),
+      hobby: hobbyInput.toString(),
+      language: languageInput.toString(),
+      preferStay: preferStayInput.toString(),
     });
   }
 

@@ -1,24 +1,43 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 const BASE_URL = "http://localhost:3000";
 
-export function getProfile() {
+function getProfile() {
   const endpoint = BASE_URL + `/user-profile`;
-  return axios
-    .get(endpoint)
-    .then((response) => {
-      console.log(response);
-      return response;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  return fetch(endpoint).then((res) => {
+    return res.json();
+  });
 }
 
 export function updateProfile(profile) {
+  const {
+    firstName,
+    surName,
+    age,
+    gender,
+    nationality,
+    hobby,
+    language,
+    preferStay,
+  } = profile;
   const endpoint = BASE_URL + "/user-profile/update";
-  return axios.post(endpoint, { profile }).then();
+  // return fetch query to update an author
+  return fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      firstName,
+      surName,
+      age,
+      gender,
+      nationality,
+      hobby,
+      language,
+      preferStay,
+    }),
+  }).then((res) => window.location.reload(window.location.reload));
 }
 
 export function useProfile() {

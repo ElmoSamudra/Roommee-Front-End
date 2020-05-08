@@ -3,17 +3,30 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:3000";
 
-export function runMatch() {
-  console.log("in api");
+function runMatch() {
   const endpoint = BASE_URL + `/user-match`;
-  return axios
-    .get(endpoint)
-    .then((response) => {
-      return response;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  return fetch(endpoint).then((res) => {
+    console.log(res);
+    return res.json();
+  });
+}
+
+export function likeUser(user) {
+  const { id, ans } = user;
+  const endpoint = BASE_URL + "/user-match/fill-status";
+
+  return fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id,
+      ans,
+    }),
+  }).then((res) => {
+    console.log(res);
+  });
 }
 
 export function useMatch() {
@@ -22,7 +35,6 @@ export function useMatch() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("in");
     runMatch()
       .then((matches) => {
         setUserMatch(matches);
@@ -36,8 +48,8 @@ export function useMatch() {
   }, []);
 
   return {
-    loading,
+    loadingMatch: loading,
     userMatch,
-    error,
+    errorMatch: error,
   };
 }

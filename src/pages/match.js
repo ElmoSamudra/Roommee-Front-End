@@ -1,69 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { useMatch, runMatch } from "../api/matchApi";
-import { useProfile, getProfile } from "../api/profileApi";
+import { useMatch, likeUser } from "../api/matchApi";
+import { useProfile } from "../api/profileApi";
 
 export default function ShowMatch() {
-  const [loadingMatch, setLoading] = useState(true);
-  const [userMatch, setUserMatch] = useState([]);
-  const [errorMatch, setError] = useState(null);
-  const [loadingProfile, setLoadingProfile] = useState(true);
-  const [userProfile, setUserProfile] = useState([]);
-  const [errorProfile, setErrorProfile] = useState(null);
+  const { loadingMatch, userMatch, errorMatch } = useMatch();
+  const { loading, userProfile, error } = useProfile();
 
-  useEffect(() => {
-    getProfile()
-      .then((profile) => {
-        setUserProfile(profile);
-        setLoadingProfile(false);
-      })
-      .catch((e) => {
-        console.log(e);
-        setErrorProfile(e);
-        setLoadingProfile(false);
-      });
-    runMatch()
-      .then((matches) => {
-        setUserMatch(matches);
-        setLoading(false);
-      })
-      .catch((e) => {
-        console.log(e);
-        setError(e);
-        setLoading(false);
-      });
-  }, []);
-
-  //   const { loadingMatch, userMatch, errorMatch } = useMatch();
-  //   const { loadingProfile, userProfile, errorProfile } = useProfile();
-
-  if (loadingMatch || loadingProfile) {
+  if (loadingMatch || loading) {
     return <p>Loading...</p>;
   }
-  if (errorMatch || errorProfile) {
+  if (errorMatch || error) {
     return <p>Something went wrong: {errorMatch.message}</p>;
   }
 
   // use this to make sure you are getting the right data
-  console.log(userProfile);
-  console.log(userMatch.data);
+  console.log(userMatch);
 
   // Display a list of the authors
   return (
     <div>
       <h1>Match Roommee</h1>
-      <Match key={userProfile.data.accountId} {...userMatch.data} />
+      <Match key={userProfile.accountId} {...userMatch} />
     </div>
   );
 }
 
 // matches here is an array of match users
 function Match(matches) {
-  console.log("check");
-  console.log(matches);
   const allMatches = matches;
-
+  const lenMatches = Object.keys(allMatches).length;
   //const [showUpdate, setShowUpdate] = useState(false);
 
+  const [choice, setChoice] = useState([]);
+  const [matchId, setMatchId] = useState([]);
   const [index, setIndex] = useState(0);
 
   // increment or decrement the match by 1
@@ -74,26 +43,79 @@ function Match(matches) {
     setIndex(index - 1);
   }
 
+  function likedProfile() {
+    // e.preventDefault();
+    likeUser({
+      id: matchId,
+      ans: choice,
+    });
+  }
+
   return (
     <div className={`profile match user`} key={allMatches[index].accountId}>
       <form>
         <label>First name: {allMatches[index].firstName}</label>
         <br></br>
         <label>Surname: {allMatches[index].surName}</label>
-        {index >= 0 && (
+        <br></br>
+        <label>Age: {allMatches[index].age}</label>
+        <br></br>
+        <label>Gender: {allMatches[index].gender}</label>
+        <br></br>
+        <label>Nationality: {allMatches[index].nationality}</label>
+        <br></br>
+        <label>Hobby: {allMatches[index].hobby}</label>
+        <br></br>
+        <label>Language: {allMatches[index].language}</label>
+        <br></br>
+        <label>
+          Looking for a place to stay in: {allMatches[index].preferStay}
+        </label>
+        <br></br>
+        <input
+          type="text"
+          onChange={(event) => {
+            setChoice(event.target.value);
+            setMatchId(allMatches[index].accountId.toString());
+          }}
+        />
+        <button type="button" onClick={likedProfile}>
+          Submit
+        </button>
+        {/* <input
+          type="text"
+          name="firstName"
+          placeholder="yes or no"
+          onChange={(event) => {
+            setChoice(event.target.value);
+            setMatchId(allMatches[index].accountId.toString());
+          }}
+        /> */}
+
+        {/* <button
+          id="add-to-favorites"
+          className="mdc-icon-button"
+          aria-label="Add to favorites"
+          aria-pressed="false"
+        >
+          <i className="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">
+            pan_tool
+          </i>
+          <i className="material-icons mdc-icon-button__icon">pan_tool</i>
+
+        </button> */}
+
+        {index > 0 && (
           <button className="btn-next" onClick={prevMatch}>
             Previous
           </button>
         )}
-        {index <= allMatches.length && (
+        {index < lenMatches - 1 && (
           <button className="btn-next" onClick={nextMatch}>
             Next
           </button>
         )}
       </form>
-      {/* <Button className={"btn-update"} onClick={onSubmit}>
-                  Update
-              </Button> */}
     </div>
   );
 }
