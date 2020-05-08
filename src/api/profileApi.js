@@ -1,21 +1,24 @@
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 const BASE_URL = "http://localhost:3000";
 
-function getProfile() {
-    const endpoint = BASE_URL + `/user-profile`;
-    return axios.get(endpoint).then((response)=>{
-        console.log(response);
-        return response;
-    }).catch(function(error){
-        console.log(error);
+export function getProfile() {
+  const endpoint = BASE_URL + `/user-profile`;
+  return axios
+    .get(endpoint)
+    .then((response) => {
+      console.log(response);
+      return response;
     })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
-export function updateProfile(profile){
-    const endpoint = BASE_URL + '/user-profile/update'
-    return axios.post(endpoint, {profile}).then()
+export function updateProfile(profile) {
+  const endpoint = BASE_URL + "/user-profile/update";
+  return axios.post(endpoint, { profile }).then();
 }
 
 export function useProfile() {
@@ -25,11 +28,11 @@ export function useProfile() {
 
   useEffect(() => {
     getProfile()
-      .then(profile => {
+      .then((profile) => {
         setUserProfile(profile);
         setLoading(false);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
         setError(e);
         setLoading(false);
@@ -39,6 +42,6 @@ export function useProfile() {
   return {
     loading,
     userProfile,
-    error
+    error,
   };
 }

@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Nav from "./components/nav";
 import Home from "./pages/home";
 import ShowProfile from "./pages/profile";
+import ShowMatch from "./pages/match";
 import "./styles.css";
 
 export default function App() {
@@ -21,10 +22,11 @@ export default function App() {
           <Route exact path="/profile">
             <ShowProfile />
           </Route>
+          <Route exact path="/matching">
+            <ShowMatch />
+          </Route>
         </Switch>
       </div>
     </Router>
   );
 }
-
-

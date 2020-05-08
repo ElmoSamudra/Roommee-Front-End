@@ -8,6 +8,7 @@ export default function Nav() {
         Home
       </NavLink>
       <NavLink to="/profile">Profile</NavLink>
+      <NavLink to="/matching">Matching</NavLink>
     </nav>
   );
 }
