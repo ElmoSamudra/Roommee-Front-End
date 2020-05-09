@@ -5,6 +5,8 @@ import Nav from "./components/nav";
 import Home from "./pages/home";
 import ShowProfile from "./pages/profile";
 import ShowMatch from "./pages/match";
+import ShowQuestionaire from "./pages/questionaire";
+
 import "./styles.css";
 
 export default function App() {
@@ -16,15 +18,23 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Nav />
         <Switch>
+
           <Route exact path="/">
             <Home />
           </Route>
+
           <Route exact path="/profile">
             <ShowProfile />
           </Route>
+
           <Route exact path="/matching">
             <ShowMatch />
           </Route>
+
+          <Route exact path="/questionaire">
+            <ShowQuestionaire />
+          </Route>
+
         </Switch>
       </div>
     </Router>
