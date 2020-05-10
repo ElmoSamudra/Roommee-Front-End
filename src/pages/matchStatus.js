@@ -20,27 +20,32 @@ export default function ShowStatusMatch() {
       <div className="container-match-status">
         <h1>Match Status</h1>
         {statusMatch.pendingStatus.map((userPending) => (
-          <DivStatus key={userPending.accountId} {...userPending} />
+          <DivStatus
+            key={userPending.accountId}
+            matchData={statusMatch.userMatchData}
+            user={userPending}
+          />
         ))}
       </div>
     </>
   );
 }
 
-function DivStatus(user) {
+function DivStatus({ matchData, user }) {
   const [choice, setChoice] = useState("yes");
+  const userStatusMatch = matchData;
 
   useEffect(() => {
-    console.log(choice);
     likeUser({
       id: user.accountId,
       ans: choice,
     });
   }, [choice, user.accountId]);
 
-  function onSubmit() {
+  // alert submit button when roommee trying to remove someone on his/her match status
+  function onRemove() {
     confirmAlert({
-      title: "Confirm to submit",
+      title: "Remove Confirmation",
       message:
         "The roommee will be removed from your status, but you can still find him/her in the match page. Please confirm your action",
       buttons: [
@@ -60,28 +65,59 @@ function DivStatus(user) {
     });
   }
 
+  // alert submit button when roommee trying to remove someone on his/her match status
+  function onChat() {
+    confirmAlert({
+      title: "Chat Not Ready",
+      message: "The chat functionality is not ready yet",
+      buttons: [
+        {
+          label: "Ok",
+          onClick: () => {},
+        },
+      ],
+    });
+  }
+
   return (
     <div className="container-single-status">
       {choice === "yes" && (
         <div className="match-status">
-          <p>Name: {user.firstName + user.surName}</p>
+          <p>Name: {user.firstName + " " + user.surName}</p>
           <p>Gender: {user.gender}</p>
           <p>Nationality: {user.nationality}</p>
           <p>Hobby: {user.hobby}</p>
           <p>Language: {user.language}</p>
           <p>Find a place to stay in: {user.preferStay}</p>
-          <label>Ring Roommee?</label>
-          <button
-            className="change-status-button"
-            onClick={() => {
-              setChoice("yes");
-            }}
-          >
-            Yes
-          </button>
-          <button className="change-status-button" onClick={onSubmit}>
-            No
-          </button>
+
+          {userStatusMatch.clickedMatch === user.accountId.toString() ? (
+            <p className="current-match-status">This is your roommee</p>
+          ) : userStatusMatch.chat.indexOf(user.accountId.toString()) !== 1 ? (
+            <p className="current-match-status">Pending Invitation</p>
+          ) : (
+            <>
+              <p className="current-match-status">Go and Say Hi!</p>
+              <button className="chat-button" onClick={onChat}>
+                Chat
+              </button>
+            </>
+          )}
+          {userStatusMatch.clickedMatch !== user.accountId.toString() && (
+            <div className="status-buttons">
+              <label>Ring Roommee?</label>
+              <button
+                className="change-status-button"
+                onClick={() => {
+                  setChoice("yes");
+                }}
+              >
+                Yes
+              </button>
+              <button className="change-status-button" onClick={onRemove}>
+                No
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

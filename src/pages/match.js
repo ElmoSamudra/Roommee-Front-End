@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useMatch, likeUser } from "../api/matchApi";
 import { useProfile } from "../api/profileApi";
 
