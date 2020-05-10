@@ -32,7 +32,7 @@ function Match(matches) {
   //const [showUpdate, setShowUpdate] = useState(false);
 
   const [choice, setChoice] = useState([]);
-  const [matchId, setMatchId] = useState([]);
+  //const [matchId, setMatchId] = useState([]);
   const [index, setIndex] = useState(0);
 
   // increment or decrement the match by 1
@@ -45,8 +45,9 @@ function Match(matches) {
 
   function likedProfile() {
     // e.preventDefault();
+    console.log(choice);
     likeUser({
-      id: matchId,
+      id: allMatches[index].accountId,
       ans: choice,
     });
   }
@@ -75,35 +76,14 @@ function Match(matches) {
         <input
           type="text"
           onChange={(event) => {
-            setChoice(event.target.value);
-            setMatchId(allMatches[index].accountId.toString());
+            setChoice(event.target.value.toLowerCase());
           }}
+          placeholder="yes or no"
+          required
         />
         <button type="button" onClick={likedProfile}>
           Submit
         </button>
-        {/* <input
-          type="text"
-          name="firstName"
-          placeholder="yes or no"
-          onChange={(event) => {
-            setChoice(event.target.value);
-            setMatchId(allMatches[index].accountId.toString());
-          }}
-        /> */}
-
-        {/* <button
-          id="add-to-favorites"
-          className="mdc-icon-button"
-          aria-label="Add to favorites"
-          aria-pressed="false"
-        >
-          <i className="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">
-            pan_tool
-          </i>
-          <i className="material-icons mdc-icon-button__icon">pan_tool</i>
-
-        </button> */}
 
         {index > 0 && (
           <button className="btn-next" onClick={prevMatch}>

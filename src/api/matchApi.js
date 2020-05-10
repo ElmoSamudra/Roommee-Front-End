@@ -1,10 +1,18 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+//mport axios from "axios";
 
 const BASE_URL = "http://localhost:3000";
 
 function runMatch() {
   const endpoint = BASE_URL + `/user-match`;
+  return fetch(endpoint).then((res) => {
+    console.log(res);
+    return res.json();
+  });
+}
+
+function getMatchStatus() {
+  const endpoint = BASE_URL + "/user-match/status";
   return fetch(endpoint).then((res) => {
     console.log(res);
     return res.json();
@@ -51,5 +59,31 @@ export function useMatch() {
     loadingMatch: loading,
     userMatch,
     errorMatch: error,
+  };
+}
+
+export function useStatusMatch() {
+  const [loading, setLoading] = useState(true);
+  const [statusMatch, setStatusMatch] = useState([]);
+  const [error, setError] = useState(null);
+
+  // get the match status
+  useEffect(() => {
+    getMatchStatus()
+      .then((status) => {
+        setStatusMatch(status);
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        setError(e);
+        setLoading(false);
+      });
+  }, []);
+
+  return {
+    loading,
+    statusMatch,
+    error,
   };
 }
