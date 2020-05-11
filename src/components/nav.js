@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+// hide links, guide the user for the page
+
 export default function Nav() {
   return (
     <nav>

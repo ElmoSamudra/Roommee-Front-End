@@ -18,6 +18,22 @@ nav a.active {
   border-bottom: 2px solid #fff;
 }
 
+.home-image {
+  position: fixed;
+  top: 100px;
+  bottom: 0;
+  left: auto;
+  right: auto;
+
+  /* Size limit */
+  max-width: 100%;
+  max-height: 100%;
+
+  /* Other required settings */
+  margin: auto;
+  overflow: auto;
+}
+
 .material-icons {
   font-family: "Material Icons";
   font-weight: normal;

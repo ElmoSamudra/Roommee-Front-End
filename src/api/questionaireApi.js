@@ -23,7 +23,7 @@ export function updateQuestionaire(questionaire) {
     playsMusicRate,
     seekIntrovertRate,
     seekExtrovertRate,
-    cleanlinessToleranceRate
+    cleanlinessToleranceRate,
   } = questionaire;
   const endpoint = BASE_URL + "/user-questionaire/update";
   // return fetch query to update an author
@@ -45,9 +45,12 @@ export function updateQuestionaire(questionaire) {
       playsMusicRate,
       seekIntrovertRate,
       seekExtrovertRate,
-      cleanlinessToleranceRate
+      cleanlinessToleranceRate,
     }),
-  }).then((res) => window.location.reload(window.location.reload));
+  }).then((res) => {
+    console.log(res);
+    window.location.reload();
+  });
 }
 
 export function useQuestionaire() {
@@ -74,4 +77,3 @@ export function useQuestionaire() {
     error,
   };
 }
-
