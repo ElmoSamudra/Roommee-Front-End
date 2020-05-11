@@ -1,0 +1,26 @@
+.registerMain{
+    background-color: #464646;
+}
+
+.column {
+    float: left;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.registerAesth{
+    height: 1000px;
+    width: 500px;
+    text-align:left;
+    margin:auto;
+    padding:0;
+}
+
+.registerForm{
+    align-content: right;
+}
