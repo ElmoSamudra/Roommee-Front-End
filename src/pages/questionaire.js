@@ -40,6 +40,11 @@ function Questionaire(questionaire) {
     numRoommeePref,
     ageDiffRange,
   } = filter1
+  console.log("ageDiffRange: " + ageDiffRange)
+
+  const ageFrom = ageDiffRange[0]
+  const ageTo = ageDiffRange[ageDiffRange.length-1]
+  
 
   const {
     homeCookRate,
@@ -56,7 +61,14 @@ function Questionaire(questionaire) {
   const [petsPrefInput, setPetsPref] = useState(petsPref);
   const [sameLangPrefInput, setSameLangPref] = useState(sameLangPref);
   const [numRoommeePrefInput, setNumRoommeePref] = useState(numRoommeePref);
+
+  const [ageFromInput, setAgeFrom] = useState(ageFrom);
+  console.log("ageFromInput: " + ageFromInput);
+  const [ageToInput, setAgeTo] = useState(ageTo);
+  console.log("ageToInput: " + ageToInput);
   const [ageDiffRangeInput, setAgeDiffRange] = useState(ageDiffRange);
+  console.log("ageDiffRangeInput: " + ageDiffRangeInput);
+  
   const [homeCookRateInput, setHomeCookRate] = useState(homeCookRate);
   const [nightOwlRateInput, setNightOwlRate] = useState(nightOwlRate);
   const [playsMusicRateInput, setPlaysMusicRate] = useState(playsMusicRate);
@@ -74,7 +86,9 @@ function Questionaire(questionaire) {
         petsPref: petsPrefInput,
         sameLangPref: sameLangPrefInput,
         numRoommeePref: numRoommeePrefInput,
-        ageDiffRange: ageDiffRangeInput.toString(),
+        // ageFrom: ageFromInput,
+        // ageTo: ageToInput,
+        ageDiffRange: ageDiffRangeInput,
         homeCookRate: homeCookRateInput,
         nightOwlRate: nightOwlRateInput,
         playsMusicRate: playsMusicRateInput,
@@ -158,16 +172,49 @@ function Questionaire(questionaire) {
         />
         <br></br>
 
-        <label>Please indicate the range age gap for your roommee: </label>
-        <input
-          type="text"
+        <label>Please indicate the range age gap for your roommee </label>
+        <br></br>
+        <label>From:</label>
+        <input 
+          type="number" 
+          name = "ageFrom" 
+          value = {ageFromInput} 
+          onChange={(event) => {
+            setAgeFrom(event.target.value);
+        }}
+        required
+        />
+        <br></br>
+
+        <label>To:</label>
+        <input 
+          type="number" 
+          name = "ageTo" 
+          value = {ageToInput} 
+          onChange={(event) => {
+            setAgeDiffRange(ageDiffRangeInput);
+            setAgeTo(event.target.value);
+            
+        }}
+        required
+        />
+        <br></br>
+
+
+        {/* // <label>To:</label>
+        // <input type="number" name = "ageTo" value = {ageToInput} min="18"
+        //  onChange={(event) => {
+        //   setAgeDiffRange(event.target.value);
+        // }}></input>
+        {/* <input
+          type="number"
           name="ageDiffRange"
           value={ageDiffRangeInput}
           onChange={(event) => {
             setAgeDiffRange(event.target.value);
           }}
-        />
-        <br></br>
+        /> */}
+        
 
         <label>Enjoy home cooking: </label>
         <input
@@ -191,7 +238,7 @@ function Questionaire(questionaire) {
         />
         <br></br>
 
-        <label>Enjoy hearing and playing music : </label>
+        <label>Enjoy hearing and playing music: </label>
         <input
           type="number"
           name="playsMusicRate"
