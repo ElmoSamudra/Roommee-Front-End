@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useMatch, likeUser } from "../api/matchApi";
 import { useProfile } from "../api/profileApi";
+import { Button } from "@material-ui/core";
+import { toast } from "react-toastify";
+import { ToggleButton } from "@material-ui/lab";
+import "react-toastify/dist/ReactToastify.css";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 export default function ShowMatch() {
   const { loadingMatch, userMatch, errorMatch } = useMatch();
@@ -41,10 +46,19 @@ function Match(matches) {
   }
 
   // choice is the yes or no button
-  function likedProfileChoice(choice) {
-    likeUser({
+  async function likedProfileChoice(choice) {
+    await likeUser({
       id: allMatches[index].accountId,
       ans: choice,
+    });
+    toast.info("Nice!, check them in your match status page!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     });
   }
 
@@ -70,22 +84,25 @@ function Match(matches) {
         </label>
         <br></br>
 
-        <button type="button" onClick={likedProfileChoice("yes")}>
+        <Button type="button" onClick={() => likedProfileChoice("yes")}>
           Yes
-        </button>
-        <button type="button" onClick={likedProfileChoice("no")}>
+        </Button>
+        <Button type="button" onClick={() => likedProfileChoice("no")}>
           No
-        </button>
+        </Button>
 
         {index > 0 && (
-          <button className="btn-next" onClick={prevMatch}>
+          <Button className="btn-next" onClick={prevMatch}>
             Previous
-          </button>
+          </Button>
         )}
         {index < lenMatches - 1 && (
-          <button className="btn-next" onClick={nextMatch}>
-            Next
-          </button>
+          // <Button className="btn-next" onClick={nextMatch}>
+          //   Next
+          // </Button>
+          <ToggleButton value="check" onClick={nextMatch}>
+            <ArrowForwardIcon />
+          </ToggleButton>
         )}
       </form>
     </div>

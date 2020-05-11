@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useStatusMatch, likeUser } from "../api/matchApi";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { Button } from "@material-ui/core";
 
 export default function ShowStatusMatch() {
   const { loading, statusMatch, error } = useStatusMatch();
@@ -97,25 +98,25 @@ function DivStatus({ matchData, user }) {
           ) : (
             <>
               <p className="current-match-status">Go and Say Hi!</p>
-              <button className="chat-button" onClick={onChat}>
+              <Button className="chat-button" onClick={onChat}>
                 Chat
-              </button>
+              </Button>
             </>
           )}
           {userStatusMatch.clickedMatch !== user.accountId.toString() && (
             <div className="status-buttons">
               <label>Ring Roommee?</label>
-              <button
+              <Button
                 className="change-status-button"
                 onClick={() => {
                   setChoice("yes");
                 }}
               >
                 Yes
-              </button>
-              <button className="change-status-button" onClick={onRemove}>
+              </Button>
+              <Button className="change-status-button" onClick={onRemove}>
                 No
-              </button>
+              </Button>
             </div>
           )}
         </div>

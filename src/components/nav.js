@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
 
-// hide links, guide the user for the page
-
 export default function Nav() {
   const { loadingProfile, userProfile, errorProfile } = useProfile();
   const {

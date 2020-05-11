@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { MDCIconButtonToggle } from "@material/icon-button";
 
 import Nav from "./components/nav";
 import Home from "./pages/home";
@@ -33,6 +35,19 @@ export default function App() {
 
           <Route exact path="/matching">
             <ShowMatch />
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+            {/* Same as */}
+            <ToastContainer />
           </Route>
 
           <Route exact path="/matching-status">
