@@ -4,12 +4,12 @@ import { useProfile, updateProfile } from "../api/profileApi";
 //import Button from "../components/button";
 
 export default function ShowProfile() {
-  const { loading, userProfile, error } = useProfile();
-  if (loading) {
+  const { loadingProfile, userProfile, errorProfile } = useProfile();
+  if (loadingProfile) {
     return <p>Loading...</p>;
   }
-  if (error) {
-    return <p>Something went wrong: {error.message}</p>;
+  if (errorProfile) {
+    return <p>Something went wrong: {errorProfile.message}</p>;
   }
   console.log("called");
   // use this to make sure you are getting the right data
@@ -53,11 +53,11 @@ function Profile(profile) {
       firstName: firstNameInput,
       surName: surNameInput,
       age: ageInput,
-      gender: genderInput,
-      nationality: nationalityInput,
-      hobby: hobbyInput.toString(),
-      language: languageInput.toString(),
-      preferStay: preferStayInput.toString(),
+      gender: genderInput.toLowerCase(),
+      nationality: nationalityInput.toLowerCase(),
+      hobby: hobbyInput.toString().toLowerCase(),
+      language: languageInput.toString().toLowerCase(),
+      preferStay: preferStayInput.toString().toLowerCase(),
     });
   }
 

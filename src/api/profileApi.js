@@ -59,8 +59,8 @@ export function useProfile() {
   }, []);
 
   return {
-    loading,
+    loadingProfile: loading,
     userProfile,
-    error,
+    errorProfile: error,
   };
 }

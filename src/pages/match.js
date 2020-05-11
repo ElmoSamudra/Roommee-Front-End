@@ -4,12 +4,12 @@ import { useProfile } from "../api/profileApi";
 
 export default function ShowMatch() {
   const { loadingMatch, userMatch, errorMatch } = useMatch();
-  const { loading, userProfile, error } = useProfile();
+  const { loadingProfile, userProfile, errorProfile } = useProfile();
 
-  if (loadingMatch || loading) {
+  if (loadingMatch || loadingProfile) {
     return <p>Loading...</p>;
   }
-  if (errorMatch || error) {
+  if (errorMatch || errorProfile) {
     return <p>Something went wrong: {errorMatch.message}</p>;
   }
 
@@ -29,10 +29,7 @@ export default function ShowMatch() {
 function Match(matches) {
   const allMatches = matches;
   const lenMatches = Object.keys(allMatches).length;
-  //const [showUpdate, setShowUpdate] = useState(false);
 
-  const [choice, setChoice] = useState([]);
-  //const [matchId, setMatchId] = useState([]);
   const [index, setIndex] = useState(0);
 
   // increment or decrement the match by 1
@@ -43,9 +40,8 @@ function Match(matches) {
     setIndex(index - 1);
   }
 
-  function likedProfile() {
-    // e.preventDefault();
-    console.log(choice);
+  // choice is the yes or no button
+  function likedProfileChoice(choice) {
     likeUser({
       id: allMatches[index].accountId,
       ans: choice,
@@ -73,16 +69,12 @@ function Match(matches) {
           Looking for a place to stay in: {allMatches[index].preferStay}
         </label>
         <br></br>
-        <input
-          type="text"
-          onChange={(event) => {
-            setChoice(event.target.value.toLowerCase());
-          }}
-          placeholder="yes or no"
-          required
-        />
-        <button type="button" onClick={likedProfile}>
-          Submit
+
+        <button type="button" onClick={likedProfileChoice("yes")}>
+          Yes
+        </button>
+        <button type="button" onClick={likedProfileChoice("no")}>
+          No
         </button>
 
         {index > 0 && (

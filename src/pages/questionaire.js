@@ -4,12 +4,16 @@ import { useQuestionaire, updateQuestionaire } from "../api/questionaireApi";
 //import Button from "../components/button";
 
 export default function ShowQuestionaire() {
-  const { loading, userQuestionaire, error } = useQuestionaire();
-  if (loading) {
+  const {
+    loadingQuestionaire,
+    userQuestionaire,
+    errorQuestionaire,
+  } = useQuestionaire();
+  if (loadingQuestionaire) {
     return <p>Loading...</p>;
   }
-  if (error) {
-    return <p>Something went wrong: {error.message}</p>;
+  if (errorQuestionaire) {
+    return <p>Something went wrong: {errorQuestionaire.message}</p>;
   }
   console.log("called");
   // use this to make sure you are getting the right data
@@ -25,11 +29,7 @@ export default function ShowQuestionaire() {
 }
 
 function Questionaire(questionaire) {
-  const {
-    accountId,
-    filter1,
-    filter2
-  } = questionaire;
+  const { accountId, filter1, filter2 } = questionaire;
 
   const {
     sameNationalityPref,
@@ -39,7 +39,7 @@ function Questionaire(questionaire) {
     sameLangPref,
     numRoommeePref,
     ageDiffRange,
-  } = filter1
+  } = filter1;
 
   const {
     homeCookRate,
@@ -47,12 +47,16 @@ function Questionaire(questionaire) {
     playsMusicRate,
     seekIntrovertRate,
     seekExtrovertRate,
-    cleanlinessToleranceRate
-  } = filter2
+    cleanlinessToleranceRate,
+  } = filter2;
 
-  const [sameNationalityPrefInput, setSameNationalityPref] = useState(sameNationalityPref);
+  const [sameNationalityPrefInput, setSameNationalityPref] = useState(
+    sameNationalityPref
+  );
   const [sameGenderPrefInput, setSameGenderPref] = useState(sameGenderPref);
-  const [sameLocationPrefInput, setSameLocationPref] = useState(sameLocationPref);
+  const [sameLocationPrefInput, setSameLocationPref] = useState(
+    sameLocationPref
+  );
   const [petsPrefInput, setPetsPref] = useState(petsPref);
   const [sameLangPrefInput, setSameLangPref] = useState(sameLangPref);
   const [numRoommeePrefInput, setNumRoommeePref] = useState(numRoommeePref);
@@ -60,34 +64,42 @@ function Questionaire(questionaire) {
   const [homeCookRateInput, setHomeCookRate] = useState(homeCookRate);
   const [nightOwlRateInput, setNightOwlRate] = useState(nightOwlRate);
   const [playsMusicRateInput, setPlaysMusicRate] = useState(playsMusicRate);
-  const [seekIntrovertRateInput, setSeekIntrovertRate] = useState(seekIntrovertRate);
-  const [seekExtrovertRateInput, setSeekExtrovertRate] = useState(seekExtrovertRate);
-  const [cleanlinessToleranceRateInput, setCleanlinessToleranceRate] = useState(cleanlinessToleranceRate);
-
+  const [seekIntrovertRateInput, setSeekIntrovertRate] = useState(
+    seekIntrovertRate
+  );
+  const [seekExtrovertRateInput, setSeekExtrovertRate] = useState(
+    seekExtrovertRate
+  );
+  const [cleanlinessToleranceRateInput, setCleanlinessToleranceRate] = useState(
+    cleanlinessToleranceRate
+  );
 
   function onSubmit() {
     // call upate author function
+    console.log(typeof playsMusicRateInput);
     updateQuestionaire({
-        sameNationalityPref: sameNationalityPrefInput,
-        sameGenderPref: sameGenderPrefInput,
-        sameLocationPref: sameLocationPrefInput,
-        petsPref: petsPrefInput,
-        sameLangPref: sameLangPrefInput,
-        numRoommeePref: numRoommeePrefInput,
-        ageDiffRange: ageDiffRangeInput.toString(),
-        homeCookRate: homeCookRateInput,
-        nightOwlRate: nightOwlRateInput,
-        playsMusicRate: playsMusicRateInput,
-        seekIntrovertRate: seekIntrovertRateInput,
-        seekExtrovertRate: seekExtrovertRateInput,
-        cleanlinessToleranceRate: cleanlinessToleranceRateInput
+      sameNationalityPref: sameNationalityPrefInput,
+      sameGenderPref: sameGenderPrefInput,
+      sameLocationPref: sameLocationPrefInput,
+      petsPref: petsPrefInput,
+      sameLangPref: sameLangPrefInput,
+      numRoommeePref: numRoommeePrefInput,
+      ageDiffRange: ageDiffRangeInput,
+      homeCookRate: homeCookRateInput,
+      nightOwlRate: nightOwlRateInput,
+      playsMusicRate: playsMusicRateInput,
+      seekIntrovertRate: seekIntrovertRateInput,
+      seekExtrovertRate: seekExtrovertRateInput,
+      cleanlinessToleranceRate: cleanlinessToleranceRateInput,
     });
   }
 
   return (
     <div className={`questionaire user-${accountId}`} key={accountId}>
       <form>
-        <label>Do you prefer to have the same nationality for your Roommee? </label>
+        <label>
+          Do you prefer to have the same nationality for your Roommee?{" "}
+        </label>
         <input
           type="text"
           name="sameNationalityPref"
@@ -110,7 +122,9 @@ function Questionaire(questionaire) {
         />
         <br></br>
 
-        <label>Do you want your Roommee to have the same suburb preference? </label>
+        <label>
+          Do you want your Roommee to have the same suburb preference?{" "}
+        </label>
         <input
           type="text"
           name="sameLocationPref"
@@ -134,7 +148,9 @@ function Questionaire(questionaire) {
         />
         <br></br>
 
-        <label>Do you prefer having the same language with your Roommee? </label>
+        <label>
+          Do you prefer having the same language with your Roommee?{" "}
+        </label>
         <input
           type="text"
           name="sameLangPref"
@@ -234,7 +250,6 @@ function Questionaire(questionaire) {
           }}
         />
         <br></br>
-
 
         <button className="btn-update" onClick={onSubmit}>
           Update

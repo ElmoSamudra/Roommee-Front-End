@@ -72,8 +72,8 @@ export function useQuestionaire() {
   }, []);
 
   return {
-    loading,
+    loadingQuestionaire: loading,
     userQuestionaire,
-    error,
+    errorQuestionaire: error,
   };
 }
