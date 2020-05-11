@@ -2,11 +2,22 @@ import React, { useState } from 'react';
 import { signUp } from "./api";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+import { Button, TextField, Checkbox, makeStyles, Grid} from '@material-ui/core';
+import { Typography, Paper } from '@material-ui/core'
+import image from './livingroome.png'
 
+const useStyles = makeStyles((theme) => ({
+    text: {
+        width:'50%',
+        padding: '10px',
+        align: 'center'
+    },
+}));
 
 function Register(details){
 
     const { name, surname, email, password, terms} = details;
+    const classes = useStyles();
 
     let history = useHistory();
 
@@ -66,21 +77,32 @@ function Register(details){
     }
     
     return (
-        <div className='registerMain'>
-            <div className="column registerAesth">
-                <h1>
-                    Register Yourself
-                </h1>
-                <p>
-                    Before connecting with other wonderful roommees, <br />
-                    help us to know more about you first!
-                </p>
-            </div>
-
-            <div className="column registerForm">
+        <Grid container direction="row" justify="center" 
+        alignItems="stretch" className={classes.main}>
+            <Grid m={1}>
+                <br />
+                <br />
+                <br />
+                <Paper className={classes.text}>
+                    <Typography variant='h1'>
+                        Register Yourself
+                    </Typography>
+                    <br/>
+                    <Typography variant='body1'>
+                        Before connecting with other wonderful roommees, <br />
+                        help us to know more about you first!
+                    </Typography>
+                    <br/>
+                </Paper>
+            </Grid>
+        
+            <Grid>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <form>
-                    <input
-                        type="text"
+                    <TextField
                         placeholder="First Name"
                         name="name"
                         value={nameInput}
@@ -90,8 +112,7 @@ function Register(details){
                     />
                     <br />
                     <br />
-                    <input
-                        type="text"
+                    <TextField
                         placeholder="Last Name"
                         name="surname"
                         value={surInput}
@@ -101,8 +122,7 @@ function Register(details){
                     />
                     <br />
                     <br />
-                    <input
-                        type="text"
+                    <TextField
                         placeholder="Email"
                         name="email"
                         value={emailInput}
@@ -112,8 +132,7 @@ function Register(details){
                     />
                     <br />
                     <br />
-                    <input
-                        type="text"
+                    <TextField
                         placeholder="Password"
                         name="password"
                         value={passwordInput}
@@ -124,23 +143,33 @@ function Register(details){
                     <br />
                     <br />
                     <label>
-                        <input
+                        {/* <input
                             type="checkbox"
                             name="terms"
                             onChange={event => {
                                 setTerms(event.target.checked);
                             }}
-                        />
-                        Agree to the terms and conditions 
+                        /> */}
+                        <Typography variant='body1'>
+                            <Checkbox
+                                value="checkedA"
+                                inputProps={{ 'aria-label': 'Checkbox A' }}
+                                name="terms"
+                                onChange={event => {
+                                    setTerms(event.target.checked);
+                                }}
+                            />
+                            Agree to the terms and conditions 
+                        </Typography>
                     </label>
                     <br />
                     <br />
-                    <button onClick={onSubmit}>
+                    <Button onClick={onSubmit}>
                         Sign Up
-                    </button>
+                    </Button>
                 </form>
-            </div>
-        </div>
+            </Grid>
+        </Grid>
     )
 }
 export default Register;

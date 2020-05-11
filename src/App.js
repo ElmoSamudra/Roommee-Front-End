@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from './Register';
-import './Register.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'typeface-roboto';
 
 function App() {
   return (
     <Router>
-      <Register />
+      <Register/>
       <ToastContainer
       position="bottom-right"
       autoClose={5000}
