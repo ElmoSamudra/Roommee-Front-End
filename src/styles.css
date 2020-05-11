@@ -1,5 +1,5 @@
 nav {
-  background-color: #268bc6;
+  background-color: #f58d38;
 }
 
 nav a {
@@ -10,7 +10,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #2da2db;
+  color: #f8c387f6;
 }
 
 nav a.active {
@@ -18,6 +18,47 @@ nav a.active {
   border-bottom: 2px solid #fff;
 }
 
+h1 {
+  font-family: 'Garamond';
+  font-size: 30px;
+  color: #524a41f6;
+}
+
+form {
+  margin-left: 40%;
+}
+
+label {
+  font-family: 'Arial';
+  font-size: 15px;
+  color: #524a41f6;
+  margin-left: 10px; 
+}
+
+input {
+  border: 2px solid rgb(253, 202, 135);
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 10px; 
+}
+
+button {
+  background-color: whitesmoke;
+  font-size: 15px;
+  border-radius: 2px;
+  border: 2px solid rgb(253, 158, 81);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin-bottom: 30px;
+  margin-left: 50%;
+  position: absolute;
+  color: #915422;
+}
+
+button:hover {
+  background-color: rgb(253, 158, 81); 
+  color: white;
+}
 .material-icons {
   font-family: "Material Icons";
   font-weight: normal;
