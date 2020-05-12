@@ -39,10 +39,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "13%",
     color: "#524a41f6",
   },
-  input: {
-    size: "small",
-    margin: "dense",
-  },
+  
   updateButton: {
     color: "#524a41f6",
     marginLeft: "40%",
@@ -144,7 +141,6 @@ function Questionaire(questionaire) {
       numRoommeePref: numRoommeePrefInput,
       ageFrom: ageFromInput,
       ageTo: ageToInput,
-      // ageDiffRange: ageDiffRangeInput,
       homeCookRate: homeCookRateInput,
       nightOwlRate: nightOwlRateInput,
       playsMusicRate: playsMusicRateInput,
