@@ -4,14 +4,13 @@ import { useHistory } from "react-router-dom";
 import { toast, Flip } from 'react-toastify';
 import { Button, TextField, Checkbox, makeStyles, Grid} from '@material-ui/core';
 import { Typography, Paper, Box } from '@material-ui/core'
-import houseArt1 from './lineart.png'
 
 const useStyles = makeStyles((theme) => ({
     entireGrid:{
-        backgroundColor: "#f5fffa"
+        backgroundColor: "#f9eadf"
     },
     welcomeStyle:{
-        backgroundColor: "#ffd4a9",
+        backgroundColor: "#db7c27",
     },
     formStyle:{
         backgroundColor: "#80c0ff"
@@ -20,12 +19,6 @@ const useStyles = makeStyles((theme) => ({
         width:'50%',
         padding: '10px',
         align: 'center'
-    },
-    bottomPic:{
-        height: "50px",
-        backgroundImage: `url(${houseArt1})`,
-        backgroundSize: "contain",
-        backgroundRepeat: "repeat-x",
     }
 }));
 
@@ -195,8 +188,6 @@ function Register(details){
                     <br/>
                 </Grid>
             </Grid>
-
-            <Grid className={classes.bottomPic}/>
         </Grid>
     )
 }
