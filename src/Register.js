@@ -8,7 +8,7 @@ import houseArt1 from './lineart.png'
 
 const useStyles = makeStyles((theme) => ({
     entireGrid:{
-        backgroundColor: "#80c0ff"
+        backgroundColor: "#e7f3ff"
     },
     welcomeStyle:{
         backgroundColor: "#cde6ff",
@@ -96,7 +96,7 @@ function Register(details){
     
     return (
         <Grid container direction="column" justify="center"
-        alignItems="stretch">
+        alignItems="stretch" className={classes.entireGrid}>
             
             <Grid>
                 <br/>
