@@ -47,10 +47,7 @@ export function updateQuestionaire(questionaire) {
       seekExtrovertRate,
       cleanlinessToleranceRate,
     }),
-  }).then((res) => {
-    console.log(res);
-    window.location.reload();
-  });
+  }).then((res) => window.location.reload());
 }
 
 export function useQuestionaire() {

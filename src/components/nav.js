@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
+import TemporaryDrawer from "./menu";
 
 export default function Nav() {
   const { loadingProfile, userProfile, errorProfile } = useProfile();
@@ -43,7 +44,7 @@ export default function Nav() {
       {userProfile.matchBuffer.length > 0 && (
         <NavLink to="/matching-status">Matching Status</NavLink>
       )}
-      {/* <NavLink to="/matching-status">Matching Status</NavLink> */}
+      {/* <TemporaryDrawer /> */}
     </nav>
   );
 }

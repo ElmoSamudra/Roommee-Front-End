@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { MDCIconButtonToggle } from "@material/icon-button";
 
 import Nav from "./components/nav";
 import Home from "./pages/home";
@@ -9,6 +8,7 @@ import ShowProfile from "./pages/profile";
 import ShowMatch from "./pages/match";
 import ShowQuestionaire from "./pages/questionaire";
 import ShowStatusMatch from "./pages/matchStatus";
+import ButtonAppBar from "./components/appbar";
 
 import "./styles.css";
 
@@ -16,10 +16,7 @@ export default function App() {
   return (
     <Router>
       <div className="App">
-        {/* the content */}
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Nav />
+        <ButtonAppBar />
         <Switch>
           <Route exact path="/">
             <Home />
