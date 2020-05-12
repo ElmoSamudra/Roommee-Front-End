@@ -1,5 +1,5 @@
 import React from 'react';
-import {Typography, Grid, makeStyles } from '@material-ui/core';
+import {Typography, Grid, makeStyles, Link } from '@material-ui/core';
 
 //image urls
 const lineart = '../../images/lineart.png';
@@ -63,17 +63,17 @@ export default function Footer() {
             >
                 <Grid className={classes.linkTextStyle}>
                     <Typography variant='body1'>
-                        <a href="/">Terms</a>
+                        <Link href="/">Terms</Link>
                     </Typography>
                 </Grid>
                 <Grid className={classes.linkTextStyle}>
                     <Typography variant='body1'>
-                        <a href="/">Settings</a>
+                        <Link href="/">Settings</Link>
                     </Typography>
                 </Grid>
                 <Grid className={classes.linkTextStyle}>
                     <Typography variant='body1'>
-                        <a href="/">Help</a>
+                        <Link href="/">Help</Link>
                     </Typography>
                 </Grid>
             </Grid>
