@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useQuestionaire, updateQuestionaire } from "../api/questionaireApi";
+import DiscreteSlider from "../components/slider";
 import "../styles.css";
 
 //import Button from "../components/button";
@@ -72,11 +73,7 @@ function Questionaire(questionaire) {
   const [numRoommeePrefInput, setNumRoommeePref] = useState(numRoommeePref);
 
   const [ageFromInput, setAgeFrom] = useState(ageFrom);
-  console.log("ageFromInput: " + ageFromInput);
   const [ageToInput, setAgeTo] = useState(ageTo);
-  console.log("ageToInput: " + ageToInput);
-  const [ageDiffRangeInput, setAgeDiffRange] = useState(ageDiffRange);
-  console.log("ageDiffRangeInput: " + ageDiffRangeInput);
 
   const [homeCookRateInput, setHomeCookRate] = useState(homeCookRate);
   const [nightOwlRateInput, setNightOwlRate] = useState(nightOwlRate);
@@ -91,6 +88,8 @@ function Questionaire(questionaire) {
     cleanlinessToleranceRate
   );
 
+  console.log(cleanlinessToleranceRateInput);
+
   function onSubmit() {
     // call upate author function
     console.log(typeof playsMusicRateInput);
@@ -101,9 +100,9 @@ function Questionaire(questionaire) {
       petsPref: petsPrefInput,
       sameLangPref: sameLangPrefInput,
       numRoommeePref: numRoommeePrefInput,
-      // ageFrom: ageFromInput,
-      // ageTo: ageToInput,
-      ageDiffRange: ageDiffRangeInput,
+      ageFrom: ageFromInput,
+      ageTo: ageToInput,
+      // ageDiffRange: ageDiffRangeInput,
       homeCookRate: homeCookRateInput,
       nightOwlRate: nightOwlRateInput,
       playsMusicRate: playsMusicRateInput,
@@ -208,6 +207,7 @@ function Questionaire(questionaire) {
           value={ageFromInput}
           onChange={(event) => {
             setAgeFrom(event.target.value);
+            console.log(ageFrom);
           }}
           required
         />
@@ -219,8 +219,9 @@ function Questionaire(questionaire) {
           name="ageTo"
           value={ageToInput}
           onChange={(event) => {
-            setAgeDiffRange(ageDiffRangeInput);
+            // setAgeDiffRange(ageDiffRangeInput);
             setAgeTo(event.target.value);
+            console.log(ageTo);
           }}
           required
         />
@@ -302,13 +303,17 @@ function Questionaire(questionaire) {
 
         <label>Cleanliness tolerance: </label>
         <br></br>
-        <input
+        {/* <input
           type="number"
           name="cleanlinessToleranceRate"
           value={cleanlinessToleranceRateInput}
           onChange={(event) => {
             setCleanlinessToleranceRate(event.target.value);
           }}
+        /> */}
+        <DiscreteSlider
+          initValue={cleanlinessToleranceRateInput}
+          set={setCleanlinessToleranceRate}
         />
         <br></br>
         <br></br>
