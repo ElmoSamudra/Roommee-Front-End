@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useQuestionaire, updateQuestionaire } from "../api/questionaireApi";
+import DiscreteSlider from "../components/slider";
 import "../styles.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
@@ -128,11 +129,7 @@ function Questionaire(questionaire) {
   const [numRoommeePrefInput, setNumRoommeePref] = useState(numRoommeePref);
 
   const [ageFromInput, setAgeFrom] = useState(ageFrom);
-  console.log("ageFromInput: " + ageFromInput);
   const [ageToInput, setAgeTo] = useState(ageTo);
-  console.log("ageToInput: " + ageToInput);
-  const [ageDiffRangeInput, setAgeDiffRange] = useState(ageDiffRange);
-  console.log("ageDiffRangeInput: " + ageDiffRangeInput);
 
   const [homeCookRateInput, setHomeCookRate] = useState(homeCookRate);
   const [nightOwlRateInput, setNightOwlRate] = useState(nightOwlRate);
@@ -147,6 +144,8 @@ function Questionaire(questionaire) {
     cleanlinessToleranceRate
   );
 
+  console.log(cleanlinessToleranceRateInput);
+
   function onSubmit() {
     // call upate author function
     console.log(typeof playsMusicRateInput);
@@ -157,9 +156,9 @@ function Questionaire(questionaire) {
       petsPref: petsPrefInput,
       sameLangPref: sameLangPrefInput,
       numRoommeePref: numRoommeePrefInput,
-      // ageFrom: ageFromInput,
-      // ageTo: ageToInput,
-      ageDiffRange: ageDiffRangeInput,
+      ageFrom: ageFromInput,
+      ageTo: ageToInput,
+      // ageDiffRange: ageDiffRangeInput,
       homeCookRate: homeCookRateInput,
       nightOwlRate: nightOwlRateInput,
       playsMusicRate: playsMusicRateInput,
@@ -300,7 +299,7 @@ function Questionaire(questionaire) {
                 name="ageTo"
                 value={ageToInput}
                 onChange={(event) => {
-                  setAgeDiffRange(ageDiffRangeInput);
+                  //setAgeDiffRange(ageDiffRangeInput);
                   setAgeTo(event.target.value);
                 }}
                 required
