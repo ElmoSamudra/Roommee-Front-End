@@ -4,17 +4,29 @@ import { useHistory } from "react-router-dom";
 import { toast, Flip } from 'react-toastify';
 import { Button, TextField, Checkbox, makeStyles, Grid} from '@material-ui/core';
 import { Typography, Paper, Box } from '@material-ui/core'
+import houseArt1 from './lineart.png'
 
 const useStyles = makeStyles((theme) => ({
+    entireGrid:{
+        backgroundColor: "#80c0ff"
+    },
     welcomeStyle:{
-        backgroundColor: "#add8e6",
-        alignContent: 'stretch'
+        backgroundColor: "#cde6ff",
+    },
+    formStyle:{
+        backgroundColor: "#80c0ff"
     },
     text: {
         width:'50%',
         padding: '10px',
         align: 'center'
     },
+    bottomPic:{
+        height: "50px",
+        backgroundImage: `url(${houseArt1})`,
+        backgroundSize: "contain",
+        backgroundRepeat: "repeat-x",
+    }
 }));
 
 function Register(details){
@@ -84,12 +96,12 @@ function Register(details){
     
     return (
         <Grid container direction="column" justify="center"
-        alignItems="center">
+        alignItems="stretch">
             
             <Grid>
                 <br/>
-                <Box border={0} borderRadius={16} className={classes.welcomeStyle}>
-                    <Typography variant="h1">
+                <Box border={0} borderBottom={3} borderRadius={5} className={classes.welcomeStyle}>
+                    <Typography variant="h1" align="center">
                         Welcome!
                     </Typography>
                 </Box>
@@ -97,10 +109,7 @@ function Register(details){
 
             <Grid container direction="row" justify="center" 
             alignItems="stretch" className={classes.main}>
-                <Grid m={1}>
-                    <br />
-                    <br />
-                    <br />
+                <Grid>
                     <Paper className={classes.text}>
                         <Typography variant='h1'>
                             Register Yourself
@@ -110,15 +119,12 @@ function Register(details){
                             Before connecting with other wonderful roommees, <br />
                             help us to know more about you first!
                         </Typography>
-                        <br/>
                     </Paper>
                 </Grid>
             
                 <Grid>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <form>
                         <TextField
                             placeholder="First Name"
@@ -186,8 +192,11 @@ function Register(details){
                             Sign Up
                         </Button>
                     </form>
+                    <br/>
                 </Grid>
             </Grid>
+
+            <Grid className={classes.bottomPic}/>
         </Grid>
     )
 }
