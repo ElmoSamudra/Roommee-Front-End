@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundRepeat: "repeat-x",
     },
     headingStyle: {
-        backgroundColor: "#e6a469",
+        backgroundColor: "#FCDB87",
         paddingLeft: "27px"
     },
     linkGridStyle: {
