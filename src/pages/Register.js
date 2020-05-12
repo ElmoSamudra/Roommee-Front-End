@@ -107,6 +107,8 @@ function Register(details){
         
             <Grid className={classes.formStyle}>
                 <form align="center">
+                    <br/>
+                    <br/>
                     <TextField
                         placeholder="First Name"
                         name="name"
