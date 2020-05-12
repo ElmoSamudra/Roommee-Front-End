@@ -5,9 +5,6 @@ import { toast, Flip } from 'react-toastify';
 import { Button, TextField, Checkbox, makeStyles, Grid} from '@material-ui/core';
 import { Typography, Paper } from '@material-ui/core'
 
-//image urls
-const bedBg = '../../images/bed.png'
-
 const useStyles = makeStyles((theme) => ({
     entireGrid:{
         backgroundColor: "#f9eadf"
