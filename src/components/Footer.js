@@ -1,7 +1,9 @@
 import React from 'react';
 import {Typography, Grid, makeStyles } from '@material-ui/core';
-import lineart from '../lineart.png'
-import roommeeLogo from '../roommeelogo.png'
+
+//image urls
+const lineart = '../../images/lineart.png';
+const roommeeLogo = '../../images/roommeelogo.png'
 
 const useStyles = makeStyles((theme) => ({
     topPic: {

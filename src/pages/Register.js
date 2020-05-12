@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { signUp } from "./api";
+import { signUp } from "../api";
 import { useHistory } from "react-router-dom";
 import { toast, Flip } from 'react-toastify';
 import { Button, TextField, Checkbox, makeStyles, Grid} from '@material-ui/core';
 import { Typography, Paper } from '@material-ui/core'
-import bedBg from './bed.png'
+
+//image urls
+const bedBg = '../../images/bed.png'
 
 const useStyles = makeStyles((theme) => ({
     entireGrid:{
