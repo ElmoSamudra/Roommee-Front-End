@@ -1,22 +1,21 @@
 import React from 'react';
 import {Typography, Grid, makeStyles } from '@material-ui/core';
-import houseArt1 from '../lineart3.png'
+import lineart from '../lineart.png'
 import roommeeLogo from '../roommeelogo.png'
 
 const useStyles = makeStyles((theme) => ({
     topPic: {
         height: "150px",
-        backgroundImage: `url(${houseArt1})`,
+        backgroundImage: `url(${lineart})`,
         backgroundSize: "contain",
         backgroundRepeat: "repeat-x",
-        backgroundColor: "#f9eadf"
     },
     headingStyle: {
         backgroundColor: "#e6a469",
         paddingLeft: "27px"
     },
     linkGridStyle: {
-        backgroundColor: "#db7c27",
+        backgroundColor: "#f9eadf",
         height: "50px",
         paddingRight: "27px"
     },

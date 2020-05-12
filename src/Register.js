@@ -4,21 +4,22 @@ import { useHistory } from "react-router-dom";
 import { toast, Flip } from 'react-toastify';
 import { Button, TextField, Checkbox, makeStyles, Grid} from '@material-ui/core';
 import { Typography, Paper, Box } from '@material-ui/core'
+import bedBg from './bed.png'
 
 const useStyles = makeStyles((theme) => ({
     entireGrid:{
         backgroundColor: "#f9eadf"
     },
-    welcomeStyle:{
-        backgroundColor: "#db7c27",
-    },
     formStyle:{
         backgroundColor: "#80c0ff"
     },
     text: {
+        padding:"50px 100px 200px 100px",
         width:'50%',
-        padding: '10px',
-        align: 'center'
+        align: 'center',
+        backgroundImage: `url(${bedBg})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
     }
 }));
 
@@ -88,105 +89,90 @@ function Register(details){
     }
     
     return (
-        <Grid container direction="column" justify="center"
-        alignItems="stretch" className={classes.entireGrid}>
-            
+        <Grid container direction="row" justify="flex-start" 
+        alignItems="center" className={classes.main}>
             <Grid>
-                <br/>
-                <Box border={0} borderBottom={3} borderRadius={5} className={classes.welcomeStyle}>
-                    <Typography variant="h1" align="center">
-                        Welcome!
+                <Paper className={classes.text}>
+                    <Typography variant='h1'>
+                        Register Yourself
                     </Typography>
-                </Box>
+                    <br/>
+                    <Typography variant='subtitle1'>
+                        Before connecting with other wonderful roommees, <br />
+                        help us to know more about you first!
+                    </Typography>
+                </Paper>
             </Grid>
-
-            <Grid container direction="row" justify="center" 
-            alignItems="stretch" className={classes.main}>
-                <Grid>
-                    <Paper className={classes.text}>
-                        <Typography variant='h1'>
-                            Register Yourself
-                        </Typography>
-                        <br/>
-                        <Typography variant='subtitle1'>
-                            Before connecting with other wonderful roommees, <br />
-                            help us to know more about you first!
-                        </Typography>
-                    </Paper>
-                </Grid>
-            
-                <Grid>
+        
+            <Grid>
+                <form>
+                    <TextField
+                        placeholder="First Name"
+                        name="name"
+                        value={nameInput}
+                        onChange={event => {
+                            setFirstName(event.target.value);
+                        }}
+                    />
                     <br />
                     <br />
-                    <form>
-                        <TextField
-                            placeholder="First Name"
-                            name="name"
-                            value={nameInput}
+                    <TextField
+                        placeholder="Last Name"
+                        name="surname"
+                        value={surInput}
+                        onChange={event => {
+                            setLastName(event.target.value);
+                        }}
+                    />
+                    <br />
+                    <br />
+                    <TextField
+                        placeholder="Email"
+                        name="email"
+                        value={emailInput}
+                        onChange={event => {
+                            setEmail(event.target.value);
+                        }}
+                    />
+                    <br />
+                    <br />
+                    <TextField
+                        placeholder="Password"
+                        name="password"
+                        value={passwordInput}
+                        onChange={event => {
+                            setPassword(event.target.value);
+                        }}
+                    />
+                    <br />
+                    <br />
+                    <label>
+                        {/* <input
+                            type="checkbox"
+                            name="terms"
                             onChange={event => {
-                                setFirstName(event.target.value);
+                                setTerms(event.target.checked);
                             }}
-                        />
-                        <br />
-                        <br />
-                        <TextField
-                            placeholder="Last Name"
-                            name="surname"
-                            value={surInput}
-                            onChange={event => {
-                                setLastName(event.target.value);
-                            }}
-                        />
-                        <br />
-                        <br />
-                        <TextField
-                            placeholder="Email"
-                            name="email"
-                            value={emailInput}
-                            onChange={event => {
-                                setEmail(event.target.value);
-                            }}
-                        />
-                        <br />
-                        <br />
-                        <TextField
-                            placeholder="Password"
-                            name="password"
-                            value={passwordInput}
-                            onChange={event => {
-                                setPassword(event.target.value);
-                            }}
-                        />
-                        <br />
-                        <br />
-                        <label>
-                            {/* <input
-                                type="checkbox"
+                        /> */}
+                        <Typography variant='body1'>
+                            <Checkbox
+                                value="checkedA"
+                                inputProps={{ 'aria-label': 'Checkbox A' }}
                                 name="terms"
                                 onChange={event => {
                                     setTerms(event.target.checked);
                                 }}
-                            /> */}
-                            <Typography variant='body1'>
-                                <Checkbox
-                                    value="checkedA"
-                                    inputProps={{ 'aria-label': 'Checkbox A' }}
-                                    name="terms"
-                                    onChange={event => {
-                                        setTerms(event.target.checked);
-                                    }}
-                                />
-                                Agree to the terms and conditions 
-                            </Typography>
-                        </label>
-                        <br />
-                        <br />
-                        <Button onClick={onSubmit}>
-                            Sign Up
-                        </Button>
-                    </form>
-                    <br/>
-                </Grid>
+                            />
+                            Agree to the terms and conditions 
+                        </Typography>
+                    </label>
+                    <br />
+                    <br />
+                    <Button onClick={onSubmit}>
+                        Sign Up
+                    </Button>
+                </form>
+                <br/>
             </Grid>
         </Grid>
     )
