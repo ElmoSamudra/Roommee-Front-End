@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { signUp } from "./api";
 import { useHistory } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast, Flip } from 'react-toastify';
 import { Button, TextField, Checkbox, makeStyles, Grid} from '@material-ui/core';
-import { Typography, Paper } from '@material-ui/core'
-import image from './livingroome.png'
+import { Typography, Paper, Box } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
+    welcomeStyle:{
+        backgroundColor: "#add8e6",
+        alignContent: 'stretch'
+    },
     text: {
         width:'50%',
         padding: '10px',
@@ -41,133 +44,149 @@ function Register(details){
             history.push("/testkitchen")
         }
         else if(result.status === 0){
-            toast.error('🦄 please input all boxes', {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
+            toast.info('😺 Please input all fields correctly!', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                transition: Flip
             });
         }
         else if(result.status === 1){
-            toast.error('🦄 Please agree to the Terms and Conditions', {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
+            toast.info('😿 We cannot continue without you agreeing to our Terms and Conditions!', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                transition: Flip
             });
         }
         else{
             console.log('ERORR')
-            toast.error('🦄 Email already included!', {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
+            toast.info('🙀 This email address has been used!', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
+                transition: Flip
             });
         }
     }
     
     return (
-        <Grid container direction="row" justify="center" 
-        alignItems="stretch" className={classes.main}>
-            <Grid m={1}>
-                <br />
-                <br />
-                <br />
-                <Paper className={classes.text}>
-                    <Typography variant='h1'>
-                        Register Yourself
-                    </Typography>
-                    <br/>
-                    <Typography variant='body1'>
-                        Before connecting with other wonderful roommees, <br />
-                        help us to know more about you first!
-                    </Typography>
-                    <br/>
-                </Paper>
-            </Grid>
-        
+        <Grid container direction="column" justify="center"
+        alignItems="center">
+            
             <Grid>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
-                <form>
-                    <TextField
-                        placeholder="First Name"
-                        name="name"
-                        value={nameInput}
-                        onChange={event => {
-                            setFirstName(event.target.value);
-                        }}
-                    />
+                <Box border={0} borderRadius={16} className={classes.welcomeStyle}>
+                    <Typography variant="h1">
+                        Welcome!
+                    </Typography>
+                </Box>
+            </Grid>
+
+            <Grid container direction="row" justify="center" 
+            alignItems="stretch" className={classes.main}>
+                <Grid m={1}>
                     <br />
                     <br />
-                    <TextField
-                        placeholder="Last Name"
-                        name="surname"
-                        value={surInput}
-                        onChange={event => {
-                            setLastName(event.target.value);
-                        }}
-                    />
                     <br />
-                    <br />
-                    <TextField
-                        placeholder="Email"
-                        name="email"
-                        value={emailInput}
-                        onChange={event => {
-                            setEmail(event.target.value);
-                        }}
-                    />
-                    <br />
-                    <br />
-                    <TextField
-                        placeholder="Password"
-                        name="password"
-                        value={passwordInput}
-                        onChange={event => {
-                            setPassword(event.target.value);
-                        }}
-                    />
-                    <br />
-                    <br />
-                    <label>
-                        {/* <input
-                            type="checkbox"
-                            name="terms"
+                    <Paper className={classes.text}>
+                        <Typography variant='h1'>
+                            Register Yourself
+                        </Typography>
+                        <br/>
+                        <Typography variant='subtitle1'>
+                            Before connecting with other wonderful roommees, <br />
+                            help us to know more about you first!
+                        </Typography>
+                        <br/>
+                    </Paper>
+                </Grid>
+            
+                <Grid>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <form>
+                        <TextField
+                            placeholder="First Name"
+                            name="name"
+                            value={nameInput}
                             onChange={event => {
-                                setTerms(event.target.checked);
+                                setFirstName(event.target.value);
                             }}
-                        /> */}
-                        <Typography variant='body1'>
-                            <Checkbox
-                                value="checkedA"
-                                inputProps={{ 'aria-label': 'Checkbox A' }}
+                        />
+                        <br />
+                        <br />
+                        <TextField
+                            placeholder="Last Name"
+                            name="surname"
+                            value={surInput}
+                            onChange={event => {
+                                setLastName(event.target.value);
+                            }}
+                        />
+                        <br />
+                        <br />
+                        <TextField
+                            placeholder="Email"
+                            name="email"
+                            value={emailInput}
+                            onChange={event => {
+                                setEmail(event.target.value);
+                            }}
+                        />
+                        <br />
+                        <br />
+                        <TextField
+                            placeholder="Password"
+                            name="password"
+                            value={passwordInput}
+                            onChange={event => {
+                                setPassword(event.target.value);
+                            }}
+                        />
+                        <br />
+                        <br />
+                        <label>
+                            {/* <input
+                                type="checkbox"
                                 name="terms"
                                 onChange={event => {
                                     setTerms(event.target.checked);
                                 }}
-                            />
-                            Agree to the terms and conditions 
-                        </Typography>
-                    </label>
-                    <br />
-                    <br />
-                    <Button onClick={onSubmit}>
-                        Sign Up
-                    </Button>
-                </form>
+                            /> */}
+                            <Typography variant='body1'>
+                                <Checkbox
+                                    value="checkedA"
+                                    inputProps={{ 'aria-label': 'Checkbox A' }}
+                                    name="terms"
+                                    onChange={event => {
+                                        setTerms(event.target.checked);
+                                    }}
+                                />
+                                Agree to the terms and conditions 
+                            </Typography>
+                        </label>
+                        <br />
+                        <br />
+                        <Button onClick={onSubmit}>
+                            Sign Up
+                        </Button>
+                    </form>
+                </Grid>
             </Grid>
         </Grid>
     )
