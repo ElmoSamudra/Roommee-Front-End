@@ -61,17 +61,17 @@ export default function Footer() {
             >
                 <Grid className={classes.linkTextStyle}>
                     <Typography variant='body1'>
-                        Terms
+                        <a href="/">Terms</a>
                     </Typography>
                 </Grid>
                 <Grid className={classes.linkTextStyle}>
                     <Typography variant='body1'>
-                        Settings
+                        <a href="/">Settings</a>
                     </Typography>
                 </Grid>
                 <Grid className={classes.linkTextStyle}>
                     <Typography variant='body1'>
-                        Help
+                        <a href="/">Help</a>
                     </Typography>
                 </Grid>
             </Grid>
