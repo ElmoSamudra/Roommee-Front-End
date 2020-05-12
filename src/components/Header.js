@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 2,
-    colorInherit: "#000000"
+    color: "#000000"
   },
   bar: {
     background : '#FFFAFA'
-  }
+  },
 }));
 
 export default function Header() {
@@ -31,7 +31,7 @@ export default function Header() {
 
   return (
     <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar elevation={0} position="static">
             <Toolbar className={classes.bar}>
                 <IconButton 
                     edge="start" 
@@ -42,13 +42,12 @@ export default function Header() {
                         <Avatar alt="Logo" src={roommeeLogo} />
                     </Link>
                 </IconButton>
-                <Typography variant="h6" color="primary" className={classes.title}>
+                <Typography variant="h5" className={classes.title}>
                     Welcome
                 </Typography>
-                <Button>
-                    <Link href="/">
-                        Login
-                    </Link>
+
+                <Button href="/">
+                    Login
                 </Button>
             </Toolbar>
       </AppBar>
