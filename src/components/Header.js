@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import Link from '@material-ui/core/Link'
+import Grid from '@material-ui/core/Grid'
 
 const roommeeLogo = '../../images/roommeelogo3.png'
 
@@ -30,7 +31,14 @@ export default function Header() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Grid 
+        container
+        direction="row"
+        justify="flex-start"
+        alignItems="stretch"
+        className={classes.root}
+    >
+        
         <AppBar elevation={0} position="static">
             <Toolbar className={classes.bar}>
                 <IconButton 
@@ -51,6 +59,6 @@ export default function Header() {
                 </Button>
             </Toolbar>
       </AppBar>
-    </div>
+    </Grid>
   );
 }

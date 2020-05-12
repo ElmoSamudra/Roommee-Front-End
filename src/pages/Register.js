@@ -13,15 +13,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#f9eadf"
     },
     formStyle:{
-        backgroundColor: "#80c0ff"
+        width: "50%",
     },
     text: {
-        padding:"50px 100px 200px 100px",
-        width:'50%',
         align: 'center',
-        backgroundImage: `url(${bedBg})`,
         backgroundSize: "cover",
-        backgroundRepeat: "no-repeat"
+        backgroundRepeat: "no-repeat",
     }
 }));
 
@@ -91,23 +88,28 @@ function Register(details){
     }
     
     return (
-        <Grid container direction="row" justify="center" 
+        <Grid container direction="row" justify="space-evenly" 
         alignItems="center" className={classes.main}>
             <Grid>
-                <Paper className={classes.text}>
+                <Paper className={classes.text} elevation={0}>
                     <Typography variant='h1'>
-                        Register Yourself
+                        Register
+                    </Typography>
+                    <Typography variant='h2'>
+                        Yourself
                     </Typography>
                     <br/>
-                    <Typography variant='subtitle1'>
+                    <Typography variant='body1'>
                         Before connecting with other wonderful roommees, <br />
                         help us to know more about you first!
                     </Typography>
+                    <br/>
+                    <br/>
                 </Paper>
             </Grid>
         
-            <Grid>
-                <form>
+            <Grid className={classes.formStyle}>
+                <form align="center">
                     <TextField
                         placeholder="First Name"
                         name="name"
@@ -149,13 +151,6 @@ function Register(details){
                     <br />
                     <br />
                     <label>
-                        {/* <input
-                            type="checkbox"
-                            name="terms"
-                            onChange={event => {
-                                setTerms(event.target.checked);
-                            }}
-                        /> */}
                         <Typography variant='body1'>
                             <Checkbox
                                 value="checkedA"
