@@ -45,7 +45,9 @@ export default function Footer() {
                     alignItems="flex-start"
                 >   
                     <Grid>
-                        <img src={roommeeLogo} alt="" height="75px" />
+                        <Link href="/">
+                            <img src={roommeeLogo} alt="" height="75px" />
+                        </Link>
                     </Grid>
                     <Grid>
                         <Typography variant='h5'>
