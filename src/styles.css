@@ -1,5 +1,5 @@
 nav {
-  background-color: #f58d38;
+  background-color: #574f48;
 }
 
 nav a {
@@ -17,32 +17,32 @@ nav a.active {
   padding-bottom: 8px;
   border-bottom: 2px solid #fff;
 }
-h1 {
+/* h1 {
   font-family: "Garamond";
   font-size: 30px;
   color: #524a41f6;
-}
+} */
 
-form {
+/* form {
   margin-left: 40%;
-}
+} */
 
-label {
+/* label {
   font-family: "Arial";
-  font-size: 15px;
+  font-size: 14px;
   color: #524a41f6;
-  margin-left: 10px;
-}
+  
+} */
 
-input {
+/* input {
   border: 2px solid rgb(253, 202, 135);
   border-radius: 4px;
   margin-top: 5px;
   margin-bottom: 10px;
   margin-left: 10px;
-}
+} */
 
-button {
+/* button {
   background-color: whitesmoke;
   font-size: 15px;
   border-radius: 2px;
@@ -52,12 +52,12 @@ button {
   margin-left: 50%;
   position: absolute;
   color: #915422;
-}
+} */
 
-button:hover {
+/* button:hover {
   background-color: rgb(253, 158, 81);
   color: white;
-}
+} */
 .material-icons {
   font-family: "Material Icons";
   font-weight: normal;

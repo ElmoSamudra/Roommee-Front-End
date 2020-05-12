@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+
   },
   title: {
     flexGrow: 1,
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     display: "inline-block",
   },
+  
 }));
 
 export default function ButtonAppBar() {
