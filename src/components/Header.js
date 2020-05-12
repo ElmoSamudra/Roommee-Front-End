@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import Link from '@material-ui/core/Link'
 
-const roommeeLogo = '../../images/roommeelogo2.png'
+const roommeeLogo = '../../images/roommeelogo3.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
