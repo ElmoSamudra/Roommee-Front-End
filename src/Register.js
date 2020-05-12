@@ -3,7 +3,7 @@ import { signUp } from "./api";
 import { useHistory } from "react-router-dom";
 import { toast, Flip } from 'react-toastify';
 import { Button, TextField, Checkbox, makeStyles, Grid} from '@material-ui/core';
-import { Typography, Paper, Box } from '@material-ui/core'
+import { Typography, Paper } from '@material-ui/core'
 import bedBg from './bed.png'
 
 const useStyles = makeStyles((theme) => ({
@@ -89,7 +89,7 @@ function Register(details){
     }
     
     return (
-        <Grid container direction="row" justify="flex-start" 
+        <Grid container direction="row" justify="center" 
         alignItems="center" className={classes.main}>
             <Grid>
                 <Paper className={classes.text}>
