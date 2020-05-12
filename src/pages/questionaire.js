@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useQuestionaire, updateQuestionaire } from "../api/questionaireApi";
 import DiscreteSlider from "../components/slider";
+import FormControlLabelPlacement from "../components/radio";
 import "../styles.css";
 
 //import Button from "../components/button";
@@ -17,7 +18,6 @@ export default function ShowQuestionaire() {
   if (errorQuestionaire) {
     return <p>Something went wrong: {errorQuestionaire.message}</p>;
   }
-  console.log("called");
   // use this to make sure you are getting the right data
   console.log(userQuestionaire);
 
@@ -47,7 +47,6 @@ function Questionaire(questionaire) {
     numRoommeePref,
     ageDiffRange,
   } = filter1;
-  console.log("ageDiffRange: " + ageDiffRange);
 
   const ageFrom = ageDiffRange[0];
   const ageTo = ageDiffRange[ageDiffRange.length - 1];
@@ -64,6 +63,7 @@ function Questionaire(questionaire) {
   const [sameNationalityPrefInput, setSameNationalityPref] = useState(
     sameNationalityPref
   );
+  console.log(sameNationalityPref);
   const [sameGenderPrefInput, setSameGenderPref] = useState(sameGenderPref);
   const [sameLocationPrefInput, setSameLocationPref] = useState(
     sameLocationPref
@@ -88,11 +88,8 @@ function Questionaire(questionaire) {
     cleanlinessToleranceRate
   );
 
-  console.log(cleanlinessToleranceRateInput);
-
   function onSubmit() {
     // call upate author function
-    console.log(typeof playsMusicRateInput);
     updateQuestionaire({
       sameNationalityPref: sameNationalityPrefInput,
       sameGenderPref: sameGenderPrefInput,
@@ -116,10 +113,10 @@ function Questionaire(questionaire) {
     <div className={`questionaire user-${accountId}`} key={accountId}>
       <form>
         <label>
-          Do you prefer to have the same nationality for your Roommee?{" "}
+          Do you prefer to have the same nationality for your Roommee?
         </label>
         <br></br>
-        <input
+        {/* <input
           type="text"
           name="sameNationalityPref"
           value={sameNationalityPrefInput}
@@ -127,6 +124,10 @@ function Questionaire(questionaire) {
             setSameNationalityPref(event.target.value);
           }}
           required
+        /> */}
+        <FormControlLabelPlacement
+          initValue={sameNationalityPrefInput}
+          set={setSameNationalityPref}
         />
         <br></br>
 
@@ -207,7 +208,6 @@ function Questionaire(questionaire) {
           value={ageFromInput}
           onChange={(event) => {
             setAgeFrom(event.target.value);
-            console.log(ageFrom);
           }}
           required
         />
@@ -221,7 +221,6 @@ function Questionaire(questionaire) {
           onChange={(event) => {
             // setAgeDiffRange(ageDiffRangeInput);
             setAgeTo(event.target.value);
-            console.log(ageTo);
           }}
           required
         />
@@ -303,19 +302,11 @@ function Questionaire(questionaire) {
 
         <label>Cleanliness tolerance: </label>
         <br></br>
-        {/* <input
-          type="number"
-          name="cleanlinessToleranceRate"
-          value={cleanlinessToleranceRateInput}
-          onChange={(event) => {
-            setCleanlinessToleranceRate(event.target.value);
-          }}
-        /> */}
+
         <DiscreteSlider
           initValue={cleanlinessToleranceRateInput}
           set={setCleanlinessToleranceRate}
         />
-        <br></br>
         <br></br>
 
         <button className="btn-update" onClick={onSubmit}>

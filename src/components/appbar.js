@@ -22,9 +22,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   link: {
-    color: "#fff",
+    color: "black",
     padding: "10px",
     display: "inline-block",
+    textDecoration: "none",
   },
 }));
 
@@ -50,7 +51,7 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" elevation={0} color="transparent">
         <Toolbar>
           <TemporaryDrawer />
 

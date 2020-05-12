@@ -6,6 +6,7 @@ import Slider from "@material-ui/core/Slider";
 const useStyles = makeStyles({
   root: {
     width: 300,
+    paddingTop: "50px",
   },
 });
 
@@ -19,9 +20,6 @@ export default function DiscreteSlider({ set, initValue }) {
   console.log("inside slider" + initValue);
   return (
     <div className={classes.root}>
-      {/* <Typography id="discrete-slider" gutterBottom>
-        Rate
-      </Typography> */}
       <Slider
         defaultValue={initValue}
         getAriaValueText={valuetext}
@@ -31,8 +29,8 @@ export default function DiscreteSlider({ set, initValue }) {
         marks
         min={1}
         max={10}
-        onChange={(event) => {
-          set(event.target.value);
+        onChange={(e, val) => {
+          set(val);
         }}
       />
     </div>
