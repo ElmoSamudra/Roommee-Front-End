@@ -8,10 +8,10 @@ import houseArt1 from './lineart.png'
 
 const useStyles = makeStyles((theme) => ({
     entireGrid:{
-        backgroundColor: "#e7f3ff"
+        backgroundColor: "#f5fffa"
     },
     welcomeStyle:{
-        backgroundColor: "#cde6ff",
+        backgroundColor: "#ffd4a9",
     },
     formStyle:{
         backgroundColor: "#80c0ff"
