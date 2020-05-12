@@ -17,9 +17,11 @@ import MenuIcon from "@material-ui/icons/Menu";
 const useStyles = makeStyles({
   list: {
     width: 250,
+    
   },
   fullList: {
     width: "auto",
+    
   },
 });
 
