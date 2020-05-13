@@ -74,8 +74,11 @@ function FrontPage(details){
         >  
             <Grid>
                 <Typography variant="h1" align="center">
-                    <br/>
                     Nice to see you
+                    <br />
+                    <Button href="/register" variant="outlined">
+                        Register Now
+                    </Button>
                 </Typography>    
             </Grid> 
             
@@ -83,8 +86,6 @@ function FrontPage(details){
             alignItems="center" className={classes.main}>
                 
                 <Grid>
-                    <br/>
-                    <br/>
                     <Typography variant='h1'>
                         Login
                     </Typography>
