@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     firstInfo:{
         paddingTop: "15px"
-    },
+    }, 
     secondInfo:{
         paddingTop: "15px",
         backgroundColor: "#fdf8f4"
