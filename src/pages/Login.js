@@ -8,6 +8,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Hidden from '@material-ui/core/Hidden';
 
 const frontImage = '../../images/frontphotoedited.png'
+const humanImage = '../../images/human.png'
 const gearImage = '../../images/gears.png'
 const logoImage = '../../images/roommeeLogo2.png'
 
@@ -80,7 +81,7 @@ function FrontPage(details){
         <Grid container spacing={2} className={classes.frontImage}>  
             <Grid item xs={12} align="center" className={classes.paddings} >
                 <Box>
-                    <img src={logoImage} alt="gearImage"/>
+                    <img src={logoImage} alt="logoImage"/>
                     <Typography variant="subtitle2" align="center">
                         Dedicated in helping everyone find their mates everyday.
                         <br/>
@@ -151,7 +152,7 @@ function FrontPage(details){
             </Grid>
             <Hidden only={['xs','sm']}>
                 <Grid item xs={6} align="center">
-                    <img src={gearImage} alt="gearImage"/>
+                    <img src={humanImage} alt="humanImage"/>
                 </Grid>
             </Hidden>
         </Grid>
