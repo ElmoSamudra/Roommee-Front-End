@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import TemporaryDrawer from "./menu";
 import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
+import Menu from "./menu2";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-
   },
   title: {
     flexGrow: 1,
@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     textDecoration: "none",
   },
-  
 }));
 
 export default function ButtonAppBar() {
@@ -55,7 +54,7 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static" elevation={0} color="transparent">
         <Toolbar>
-          <TemporaryDrawer />
+          <Menu />
 
           <Typography variant="h6" className="nav-bar">
             <NavLink exact to="/" className={classes.link}>

@@ -9,6 +9,7 @@ import ShowMatch from "./pages/match";
 import ShowQuestionaire from "./pages/questionaire";
 import ShowStatusMatch from "./pages/matchStatus";
 import ButtonAppBar from "./components/appbar";
+import Divider from "@material-ui/core/Divider";
 
 import "./styles.css";
 
@@ -17,6 +18,7 @@ export default function App() {
     <Router>
       <div className="App">
         <ButtonAppBar />
+        <Divider />
         <Switch>
           <Route exact path="/">
             <Home />
