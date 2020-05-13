@@ -3,7 +3,7 @@ import { signUp } from "../api";
 import { useHistory } from "react-router-dom";
 import { toast, Flip } from 'react-toastify';
 import { Button, TextField, Checkbox, makeStyles, Grid} from '@material-ui/core';
-import { Typography, Paper } from '@material-ui/core'
+import { Typography, Box } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     entireGrid:{
@@ -85,14 +85,11 @@ function Register(details){
     }
     
     return (
-        <Grid container direction="row" justify="space-evenly" 
-        alignItems="center" className={classes.main}>
-            <Grid>
-                <Paper className={classes.text} elevation={0}>
-                    <Typography variant='h1'>
-                        Register
-                    </Typography>
+        <Grid container alignItems="center" justify="center">
+            <Grid item align="center">
+                <Box className={classes.text}>
                     <Typography variant='h2'>
+                        Register
                         Yourself
                     </Typography>
                     <br/>
@@ -102,11 +99,11 @@ function Register(details){
                     </Typography>
                     <br/>
                     <br/>
-                </Paper>
+                </Box>
             </Grid>
         
-            <Grid className={classes.formStyle}>
-                <form align="center">
+            <Grid item className={classes.formStyle} align="center">
+                <form>
                     <br/>
                     <br/>
                     <TextField
