@@ -58,7 +58,7 @@ function FrontPage(details){
         });
 
         if(result.status === 200){
-            history.push("/testkitchen")
+            history.push("/profile")
         }
         else {
             toast.info('😺 Please input all fields correctly!', {
