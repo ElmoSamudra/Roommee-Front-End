@@ -140,7 +140,7 @@ function FrontPage(details){
             <Grid item xs={6} align="center">
                 <Box width="50%">
                     <Typography variant='h3' align="center">
-                        Self Intro to Roommee
+                        Intro to Roommee
                     </Typography>
                     <Typography variant='body1' align="center">
                         Here in Roommee, we are dedicated to match you 
