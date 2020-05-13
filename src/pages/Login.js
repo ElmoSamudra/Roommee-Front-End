@@ -5,6 +5,7 @@ import { toast, Flip } from 'react-toastify';
 import { Button, TextField, makeStyles, Grid, Box} from '@material-ui/core';
 import { Typography, Paper } from '@material-ui/core'
 import FormLabel from '@material-ui/core/FormLabel';
+import Hidden from '@material-ui/core/Hidden';
 
 const frontImage = '../../images/frontphotoedited.png'
 const gearImage = '../../images/gears.png'
@@ -78,7 +79,7 @@ function FrontPage(details){
         <div>
         <Grid container spacing={2} className={classes.frontImage}>  
             <Grid item xs={12} align="center" className={classes.paddings} >
-                <Box width="20%">
+                <Box>
                     <img src={logoImage} alt="gearImage"/>
                     <Typography variant="subtitle2" align="center">
                         Dedicated in helping everyone find their mates everyday.
@@ -97,7 +98,7 @@ function FrontPage(details){
             </Grid>
             
             <Grid item xs={6} align="center" className={classes.login}>
-                <Box width="40%">
+                <Box>
                     <Typography variant='h2'>
                         Login Now
                     </Typography>
@@ -138,7 +139,7 @@ function FrontPage(details){
         </Grid>
         <Grid container className={classes.firstInfo}>
             <Grid item xs={6} align="center">
-                <Box width="50%">
+                <Box>
                     <Typography variant='h3' align="center">
                         Intro to Roommee
                     </Typography>
@@ -148,14 +149,18 @@ function FrontPage(details){
                     </Typography>
                 </Box>
             </Grid>
-            <Grid xs={6} align="center">
-                <img src={gearImage} alt="gearImage"/>
-            </Grid>
+            <Hidden only={['xs','sm']}>
+                <Grid item xs={6} align="center">
+                    <img src={gearImage} alt="gearImage"/>
+                </Grid>
+            </Hidden>
         </Grid>
         <Grid container className={classes.secondInfo}>
-            <Grid item xs={6} align="center">
-                <img src={gearImage} alt="gearImage"/>
-            </Grid>
+            <Hidden only={['xs','sm']}>
+                <Grid item xs={6} align="center">
+                    <img src={gearImage} alt="gearImage"/>
+                </Grid>
+            </Hidden>
             <Grid item xs={6} align="center">
             <Box width="50%">
                     <Typography variant='h3' align="center">

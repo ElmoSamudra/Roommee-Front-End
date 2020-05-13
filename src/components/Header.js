@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
+import Hidden from '@material-ui/core/Hidden';
 
 const roommeeLogo = '../../images/roommeelogo3.png'
 
@@ -50,10 +51,12 @@ export default function Header() {
                         <Avatar alt="Logo" src={roommeeLogo} />
                     </Link>
                 </IconButton>
-                <Typography variant="h5" className={classes.title}>
-                    Welcome
-                </Typography>
-
+                <Hidden only={['xs','sm']}>
+                  <Typography variant="h5" className={classes.title}>
+                      Welcome
+                  </Typography>
+                </Hidden>
+                
                 <Button href="/register">
                     Register
                 </Button>
