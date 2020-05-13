@@ -27,7 +27,7 @@ function App() {
             pauseOnHover
           />
         </Route>
-        <Route path="/register">
+        <Route exact path="/register">
           <Register/>
           <ToastContainer
             position="top-center"
