@@ -4,18 +4,28 @@ import { useHistory } from "react-router-dom";
 import { toast, Flip } from 'react-toastify';
 import { Button, TextField, makeStyles, Grid} from '@material-ui/core';
 import { Typography, Paper } from '@material-ui/core'
+import FormLabel from '@material-ui/core/FormLabel';
+
+const frontImage = '../../images/frontphoto.png'
 
 const useStyles = makeStyles((theme) => ({
     entireGrid:{
         backgroundColor: "#f9eadf"
     },
     formStyle:{
-        width: "50%",
+        padding: "10% 10% 10% 10%"
     },
     text: {
         align: 'center',
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+    },
+    frontImage: {
+        backgroundImage: `url(${frontImage})`,
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPositionX: '50%',
+        backgroundBlendMode: "lighten",
     }
 }));
 
@@ -54,10 +64,27 @@ function FrontPage(details){
     }
     
     return (
-        <Grid container direction="row" justify="space-evenly" 
-        alignItems="center" className={classes.main}>
+
+        <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="stretch"
+        className={classes.frontImage}
+        >  
             <Grid>
-                <Paper className={classes.text} elevation={0}>
+                <Typography variant="h1" align="center">
+                    <br/>
+                    Nice to see you
+                </Typography>    
+            </Grid> 
+            
+            <Grid container direction="row" justify="space-evenly" 
+            alignItems="center" className={classes.main}>
+                
+                <Grid>
+                    <br/>
+                    <br/>
                     <Typography variant='h1'>
                         Login
                     </Typography>
@@ -70,39 +97,41 @@ function FrontPage(details){
                     </Typography>
                     <br/>
                     <br/>
-                </Paper>
-            </Grid>
-        
-            <Grid className={classes.formStyle}>
-                <form align="center">
+                </Grid>
+            
+                <Grid className={classes.formStyle}>
+                    <FormLabel align="center">
+                        <br/>
+                        <br/>                    
+                        <TextField
+                            id="filled-basic" variant="filled"
+                            placeholder="Email"
+                            name="email"
+                            value={emailInput}
+                            onChange={event => {
+                                setEmail(event.target.value);
+                            }}
+                        />
+                        <br />
+                        <br />
+                        <TextField
+                            id="filled-basic" variant="filled"
+                            placeholder="Password"
+                            name="password"
+                            value={passwordInput}
+                            onChange={event => {
+                                setPassword(event.target.value);
+                            }}
+                        />
+                        <br />                    
+                        <br />
+                        <br />
+                        <Button variant="outlined" onClick={onSubmit}>
+                            Login
+                        </Button>
+                    </FormLabel>
                     <br/>
-                    <br/>                    
-                    <TextField
-                        placeholder="Email"
-                        name="email"
-                        value={emailInput}
-                        onChange={event => {
-                            setEmail(event.target.value);
-                        }}
-                    />
-                    <br />
-                    <br />
-                    <TextField
-                        placeholder="Password"
-                        name="password"
-                        value={passwordInput}
-                        onChange={event => {
-                            setPassword(event.target.value);
-                        }}
-                    />
-                    <br />                    
-                    <br />
-                    <br />
-                    <Button onClick={onSubmit}>
-                        Login
-                    </Button>
-                </form>
-                <br/>
+                </Grid>
             </Grid>
         </Grid>
     )
