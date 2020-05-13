@@ -2,30 +2,41 @@ import React, { useState } from 'react';
 import { logIn } from "../api";
 import { useHistory } from "react-router-dom";
 import { toast, Flip } from 'react-toastify';
-import { Button, TextField, makeStyles, Grid} from '@material-ui/core';
+import { Button, TextField, makeStyles, Grid, Box} from '@material-ui/core';
 import { Typography, Paper } from '@material-ui/core'
 import FormLabel from '@material-ui/core/FormLabel';
 
-const frontImage = '../../images/frontphoto.png'
+const frontImage = '../../images/frontphotoedited.png'
+const gearImage = '../../images/gears.png'
+const logoImage = '../../images/roommeeLogo2.png'
 
 const useStyles = makeStyles((theme) => ({
-    entireGrid:{
-        backgroundColor: "#f9eadf"
+    paddings:{
+        paddingTop: "100px"
     },
-    formStyle:{
-        padding: "10% 10% 10% 10%"
+    firstInfo:{
+        paddingTop: "100px"
     },
-    text: {
-        align: 'center',
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
+    secondInfo:{
+        paddingTop: "100px",
+        backgroundColor: "#fdf8f4"
+    },
+    formStyle: {
+        paddingBottom: "20px",
     },
     frontImage: {
+        height: "100%",
         backgroundImage: `url(${frontImage})`,
-        backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
-        backgroundPositionX: '50%',
-        backgroundBlendMode: "lighten",
+        backgroundSttachment: "fixed",
+        backgroundPosition: "center",
+        backgroundSize: "auto",
+        backgroundPositionY: "10px",
+        paddingBottom: "50px"
+    },
+    login: {
+        borderRight: "solid",
+        borderWidth: "0.25px",
     }
 }));
 
@@ -64,46 +75,38 @@ function FrontPage(details){
     }
     
     return (
-
-        <Grid
-        container
-        direction="column"
-        justify="center"
-        alignItems="stretch"
-        className={classes.frontImage}
-        >  
-            <Grid>
-                <Typography variant="h1" align="center">
-                    Nice to see you here!
-                    <br />
-                    <Button href="/register" variant="outlined">
-                        Register Now
-                    </Button>
-                </Typography>    
-            </Grid> 
-            
-            <Grid container direction="row" justify="space-evenly" 
-            alignItems="center" className={classes.main}>
-                
-                <Grid>
-                    <Typography variant='h1'>
-                        Login
-                    </Typography>
-                    <Typography variant='h2'>
-                        Now
-                    </Typography>
-                    <br/>
-                    <Typography variant='body1'>
-                        Welcome Back!
-                    </Typography>
-                    <br/>
-                    <br/>
-                </Grid>
-            
-                <Grid className={classes.formStyle}>
-                    <FormLabel align="center">
+        <div>
+        <Grid container spacing={2} className={classes.frontImage}>  
+            <Grid item xs={12} align="center" className={classes.paddings} >
+                <Box width="20%">
+                    <img src={logoImage} alt="gearImage"/>
+                    <Typography variant="subtitle2" align="center">
+                        Dedicated in helping everyone find their mates everyday.
                         <br/>
-                        <br/>                    
+                    </Typography>
+                </Box>
+            </Grid>
+                
+            <Grid item xs={12} align="center">
+                <Button href="/register" variant="outlined">
+                    Register Now
+                </Button>
+                <Typography variant="h1" align="center">
+                    <br/>
+                </Typography>
+            </Grid>
+            
+            <Grid item xs={6} align="center" className={classes.login}>
+                <Box width="40%">
+                    <Typography variant='h2'>
+                        Login Now
+                    </Typography>
+                </Box>
+            </Grid>
+
+            <Grid item xs={6} align="center">
+                <FormLabel>
+                    <Box className={classes.formStyle}>
                         <TextField
                             id="filled-basic" variant="filled"
                             placeholder="Email"
@@ -113,8 +116,8 @@ function FrontPage(details){
                                 setEmail(event.target.value);
                             }}
                         />
-                        <br />
-                        <br />
+                    </Box>            
+                    <Box className={classes.formStyle}>
                         <TextField
                             id="filled-basic" variant="filled"
                             placeholder="Password"
@@ -124,17 +127,55 @@ function FrontPage(details){
                                 setPassword(event.target.value);
                             }}
                         />
-                        <br />                    
-                        <br />
-                        <br />
+                    </Box>
+                    <Box className={classes.formStyle}>
                         <Button variant="outlined" onClick={onSubmit}>
                             Login
                         </Button>
-                    </FormLabel>
-                    <br/>
-                </Grid>
+                    </Box>
+                </FormLabel>
             </Grid>
         </Grid>
+        <Grid container className={classes.firstInfo}>
+            <Grid item xs={6} align="center">
+                <Box width="50%">
+                    <Typography variant='h3' align="center">
+                        Self Intro to Roommee
+                    </Typography>
+                    <Typography variant='body1' align="center">
+                        Here in Roommee, we are dedicated to match you 
+                        with your future roommates according to your personal preferences.
+                    </Typography>
+                </Box>
+            </Grid>
+            <Grid xs={6} align="center">
+                <img src={gearImage} alt="gearImage"/>
+            </Grid>
+        </Grid>
+        <Grid container className={classes.secondInfo}>
+            <Grid item xs={6} align="center">
+                <img src={gearImage} alt="gearImage"/>
+            </Grid>
+            <Grid item xs={6} align="center">
+            <Box width="50%">
+                    <Typography variant='h3' align="center">
+                        Header
+                    </Typography>
+                    <Typography variant='body1' align="center">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Nulla lobortis ultricies diam. Pellentesque habitant morbi 
+                    tristique senectus et netus et malesuada fames ac turpis egestas. 
+                    Proin malesuada viverra nunc eu interdum. 
+                    In mollis tortor eget blandit fermentum. 
+                    Nunc in mi pellentesque, eleifend ligula nec, lacinia neque. 
+                    Cras sed faucibus eros. 
+                    Sed eget nulla mollis, sodales nisi non, placerat lorem. 
+                    Nullam eros felis, cursus sit amet orci in, dignissim tempus felis.
+                    </Typography>
+                </Box>
+            </Grid>
+        </Grid>
+        </div>
     )
 }
 export default FrontPage;

@@ -54,6 +54,9 @@ export default function Header() {
                     Welcome
                 </Typography>
 
+                <Button href="/register">
+                    Register
+                </Button>
                 <Button href="/">
                     Login
                 </Button>
