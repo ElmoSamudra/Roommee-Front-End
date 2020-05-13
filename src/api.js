@@ -34,3 +34,30 @@ export function signUp(details) {
         return res;
     })
 };
+
+export function logIn(details) {
+
+    const { email, password } = details;
+
+    if (!email || !password) {
+        return { status: 0 };
+    }
+
+    const endpoint = BASE_URL + `/account-management/accounts/login`;
+    console.log("user loging in");
+    console.log(details)
+    return fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          password
+        })
+    })
+    .then(res => {
+        console.log(res);
+        return res;
+    })
+};
