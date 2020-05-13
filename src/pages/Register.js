@@ -43,7 +43,7 @@ function Register(details){
         });
 
         if(result.status === 201){
-            history.push("/testkitchen")
+            history.push("/profile")
         }
         else if(result.status === 0){
             toast.info('😺 Please input all fields correctly!', {
