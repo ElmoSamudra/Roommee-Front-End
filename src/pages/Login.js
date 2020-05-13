@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: "100px"
     },
     firstInfo:{
-        paddingTop: "100px"
+        paddingTop: "15px"
     },
     secondInfo:{
-        paddingTop: "100px",
+        paddingTop: "15px",
         backgroundColor: "#fdf8f4"
     },
     formStyle: {
@@ -162,7 +162,7 @@ function FrontPage(details){
                 </Grid>
             </Hidden>
             <Grid item xs={6} align="center">
-            <Box width="50%">
+            <Box>
                     <Typography variant='h3' align="center">
                         Header
                     </Typography>
