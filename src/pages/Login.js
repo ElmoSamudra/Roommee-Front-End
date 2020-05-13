@@ -74,7 +74,7 @@ function FrontPage(details){
         >  
             <Grid>
                 <Typography variant="h1" align="center">
-                    Nice to see you
+                    Nice to see you here!
                     <br />
                     <Button href="/register" variant="outlined">
                         Register Now
