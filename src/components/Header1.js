@@ -60,9 +60,6 @@ export default function Header() {
                 <Button href="/register">
                     Register
                 </Button>
-                <Button href="/">
-                    Login
-                </Button>
             </Toolbar>
       </AppBar>
     </Grid>
