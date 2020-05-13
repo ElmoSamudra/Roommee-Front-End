@@ -14,8 +14,23 @@ const roomPic = "../../images/room.jpg";
 const useStyles = makeStyles((theme) => ({
   h1:{
     color: "#524a41f6",
-    marginLeft: "38%",
-    fontSize: "36px"
+    marginLeft: "40%",
+    marginTop: "-1%",
+    fontSize: "70px",
+    fontFamily: "Arial",
+  },
+  h2:{
+    color: "#524a41f6",
+    marginLeft: "40%",
+    marginTop: "-4%",
+    fontSize: "30px",
+    fontFamily: "Arial",
+  },
+  line: {
+    marginLeft: "8.5%",
+    marginRight: "8.5%",
+    marginBottom: "3%",
+    color: "#524a41f6",
   },
   sidePartRight: {
     backgroundColor: "#ffe0b2",
@@ -24,40 +39,58 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#FCDB87",
   },
   details: {
-    paddingRight: "10%",
-    paddingLeft: "10%",
+    paddingRight: "17%",
+    paddingLeft: "17%",
   },
   boxDetails: {
-    marginRight: "10%",
-    marginLeft: "10%",
+    marginRight: "20%",
+    marginLeft: "20%",
+    // color: "#efebe9"
+    borderColor: "#d7ccc8"
   },
   currentMatchStatus: {
-    paddingLeft: "18%",
+    paddingLeft: "30.5%",
+    // fontSize: "15px",
   },
   ring: {
-    paddingLeft: "18%",
+    paddingLeft: "30.5%",
+    // fontSize: "15px",
   },
   containerSingleStatus: {
     marginBottom: "15%",
     fontFamily: "Arial",
-    fontSize: "15px",
+    fontSize: "17px",
     color: "#524a41f6",
   },
   buttonYes: {
     color: "#8bc34a",
-    marginLeft: "10%"
+    marginLeft: "5%"
   },
   buttonNo: {
     color: "#ff8a65",
+    
+  },
+  chatButton: {
+    color: "#4db6ac",
+    marginLeft: "5%"
   },
   paperContainerLeft: {
     height: 280,
     backgroundImage: `url(${friends1Pic})`,
+    opacity: "100%",
   },
   paperContainerRight: {
     height: 280,
     backgroundImage: `url(${roomPic})`,
+    opacity: "100%",
   },
+  containerDetails: {
+    backgroundColor: "#efebe9",
+    marginRight: "10%",
+    marginLeft: "10%",
+    paddingTop: "2%",
+    paddingBottom: "2%",
+  }
 
 }));
 
@@ -81,7 +114,9 @@ export default function ShowStatusMatch() {
   return (
     <>
       <div className="container-match-status">
-      <h1 className={classes.h1}>Matching Status</h1>
+      <h1 className={classes.h1}>Matching</h1>
+      <h2 className={classes.h2}>Status</h2>
+      <Box className={classes.line} borderTop={1}></Box>
         {statusMatch.pendingStatus.map((userPending) => (
           <DivStatus
             key={userPending.accountId}
@@ -155,25 +190,29 @@ function DivStatus({ matchData, user }) {
     >
       <Grid xs={1}>
       </Grid>
-      <Grid className={classes.sidePartLeft}xs={3}>
+      <Grid className={classes.sidePartLeft}xs={2}>
         <Paper className={classes.paperContainerLeft}></Paper>
       </Grid>
 
-      <Grid className={classes.statusSide} xs={4}>
+      <Grid className={classes.statusSide} xs={6}>
         
         <div className={classes.containerSingleStatus}>
         {choice === "yes" && (
           <div className="match-status">
+            {/* <Paper className={classes.containerDetails}> */}
             <Box className={classes.boxDetails} border={1}>
+              
             <div className={classes.details}>
-              <p>Name: {user.firstName + " " + user.surName}</p>
-              <p>Gender: {user.gender}</p>
-              <p>Nationality: {user.nationality}</p>
-              <p>Hobby: {user.hobby}</p>
-              <p>Language: {user.language}</p>
-              <p>Find a place to stay in: {user.preferStay}</p>
+              <p><b>Name: </b>{user.firstName + " " + user.surName}</p>
+              <p><b>Gender: </b>{user.gender}</p>
+              <p><b>Nationality: </b>{user.nationality}</p>
+              <p><b>Hobby: </b>{user.hobby}</p>
+              <p><b>Language: </b>{user.language}</p>
+              <p><b>Find a place to stay in: </b>{user.preferStay}</p>
             </div>
+            
             </Box>
+            {/* </Paper> */}
 
             {userStatusMatch.clickedMatch === user.accountId.toString() ? (
               <p className={classes.currentMatchStatus}>
@@ -212,7 +251,7 @@ function DivStatus({ matchData, user }) {
         )}
         </div>
       </Grid>
-      <Grid className={classes.sidePartRight}xs={3}>
+      <Grid className={classes.sidePartRight}xs={2}>
         <Paper className={classes.paperContainerRight}></Paper>
       </Grid>
       <Grid xs={1}>

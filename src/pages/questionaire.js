@@ -220,19 +220,7 @@ function Questionaire(questionaire) {
               <br></br>
               <br></br>
 
-              {/* <label className={classes.question}>
-                How many Roommee are you looking for?{" "}
-              </label>
-              <br></br>
-              <TextField
-                type="text"
-                name="numRoommeePref"
-                value={numRoommeePrefInput}
-                onChange={(event) => {
-                  setNumRoommeePref(event.target.value);
-                }}
-                required
-              /> */}
+              
               <br></br>
               <Divider />
               <br></br>
