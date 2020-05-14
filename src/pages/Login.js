@@ -95,12 +95,12 @@ function FrontPage(details){
             </Grid>
                 
             <Grid item xs={12} align="center">
-                <Zoom in={checked} timeout={{enter: 1000}}>
+                <Zoom in={checked} timeout={{enter: 1500}}>
                     <Button href="/register" variant="outlined">
                         Register Now
                     </Button>
                 </Zoom>
-                <Typography variant="h1" align="center">
+                <Typography variant="h5" align="center">
                     <br/>
                 </Typography>
             </Grid>
