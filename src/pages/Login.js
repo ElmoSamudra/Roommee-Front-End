@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { logIn } from "../api";
 import { useHistory } from "react-router-dom";
 import { toast, Flip } from 'react-toastify';
-import { Button, TextField, makeStyles, Grid, Box} from '@material-ui/core';
-import { Typography, Paper } from '@material-ui/core'
+import { Button, Grid, TextField } from '@material-ui/core';
+import { Typography, makeStyles, Box } from '@material-ui/core'
 import FormLabel from '@material-ui/core/FormLabel';
 import Hidden from '@material-ui/core/Hidden';
 import Zoom from '@material-ui/core/Zoom';
