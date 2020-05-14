@@ -21,6 +21,7 @@ export default function DiscreteSlider({ set, initValue }) {
   return (
     <div className={classes.root}>
       <Slider
+        color="secondary"
         defaultValue={initValue}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
