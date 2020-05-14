@@ -9,6 +9,7 @@ import { Typography, Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import BinaryTabs from "../components/tab";
 import Hidden from "@material-ui/core/Hidden";
+import GenderBox from "../components/genderBox";
 
 //import Button from "../components/button";
 
@@ -66,9 +67,6 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "100%",
     borderBottomRightRadius: 15,
   },
-  // textLeft: {
-  //   paddingLeft: "27px",
-  // },
   textRight: {
     paddingLeft: "2%",
   },
@@ -81,6 +79,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "40px",
     paddingTop: "3%",
     paddingBottom: 14,
+  },
+  inputTextP: {
+    fontFamily: "Raleway, Arial",
   },
 }));
 
@@ -158,7 +159,7 @@ function Profile(profile) {
                   {/* <h1 >My Profile</h1> */}
                   <Grid container item xs={12} spacing={3}>
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>First name: </label>
                       </Typography>
                       <TextField
@@ -173,7 +174,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Surname: </label>
                       </Typography>
                       <TextField
@@ -188,7 +189,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Age: </label>
                       </Typography>
                       <TextField
@@ -204,7 +205,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Gender: </label>
                       </Typography>
                       <Box width="50%">
@@ -212,7 +213,7 @@ function Profile(profile) {
                       </Box>
                     </Grid>
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Nationality: </label>
                       </Typography>
                       <TextField
@@ -227,7 +228,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Hobby: </label>
                       </Typography>
                       <TextField
@@ -242,7 +243,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Language: </label>
                       </Typography>
                       <TextField
@@ -257,7 +258,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Find a place to stay in (suburb): </label>
                       </Typography>
                       <TextField
@@ -301,7 +302,7 @@ function Profile(profile) {
                   <Typography className={classes.H1}>My Profile</Typography>
                   <Grid container item xs={12} spacing={3}>
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>First name: </label>
                       </Typography>
                       <TextField
@@ -316,7 +317,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Surname: </label>
                       </Typography>
                       <TextField
@@ -331,7 +332,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Age: </label>
                       </Typography>
                       <TextField
@@ -347,15 +348,16 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Gender: </label>
                       </Typography>
-                      <box width="50%">
+                      {/* <Box width="50%">
                         <BinaryTabs init={genderInput} set={setGender} />
-                      </box>
+                      </Box> */}
+                      <GenderBox init={genderInput} set={setGender} />
                     </Grid>
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Nationality: </label>
                       </Typography>
                       <TextField
@@ -370,7 +372,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Hobby: </label>
                       </Typography>
                       <TextField
@@ -385,7 +387,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Language: </label>
                       </Typography>
                       <TextField
@@ -400,7 +402,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Find a place to stay in (suburb): </label>
                       </Typography>
                       <TextField

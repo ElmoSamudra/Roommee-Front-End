@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { useMatch, likeUser } from "../api/matchApi";
 import { useProfile } from "../api/profileApi";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import { toast } from "react-toastify";
 import { ToggleButton } from "@material-ui/lab";
 import "react-toastify/dist/ReactToastify.css";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import SimpleFade from "../components/trans";
+import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
+import Box from "@material-ui/core/Box";
+import Hidden from "@material-ui/core/Hidden";
 
 export default function ShowMatch() {
   const { loadingMatch, userMatch, errorMatch } = useMatch();
@@ -25,16 +31,50 @@ export default function ShowMatch() {
   // Display a list of the authors
   return (
     <div>
-      <h1>Match Roommee</h1>
       <Match key={userProfile.accountId} {...userMatch} />
     </div>
   );
 }
 
+const vector = "./../images/Artboard1.png";
+const image = "./../images/door.png";
+const useStyles = makeStyles((theme) => ({
+  poster: {
+    backgroundImage: `url(${vector})`,
+    height: "100%",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    borderRadius: 15,
+  },
+  profileMatch: {
+    height: "85vh",
+  },
+  profForm: {
+    backgroundColor: "#F3DFB3",
+    padding: "5%",
+    marginRight: "10%",
+    borderRadius: 15,
+    height: "100%",
+    width: "40vh",
+    paddingBottom: 30,
+  },
+  pict: {
+    width: theme.spacing(15),
+    height: theme.spacing(15),
+  },
+  nextButton: {
+    marginLeft: "50%",
+    marginTop: "35%",
+  },
+}));
+
 // matches here is an array of match users
 function Match(matches) {
   const allMatches = matches;
   const lenMatches = Object.keys(allMatches).length;
+  const classes = useStyles();
 
   const [index, setIndex] = useState(0);
 
@@ -57,61 +97,121 @@ function Match(matches) {
       id: allMatches[index].accountId,
       ans: choice,
     });
-    toast.info("Nice!, check them in your match status page!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    if (choice === "yes") {
+      toast.info("Nice!, check them in your match status page!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.info("Whoops!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   }
 
   return (
-    <div className={`profile match user`} key={allMatches[index].accountId}>
-      <form>
-        <label>First name: {allMatches[index].firstName}</label>
-        <br></br>
-        <label>Surname: {allMatches[index].surName}</label>
-        <br></br>
-        <label>Age: {allMatches[index].age}</label>
-        <br></br>
-        <label>Gender: {allMatches[index].gender}</label>
-        <br></br>
-        <label>Nationality: {allMatches[index].nationality}</label>
-        <br></br>
-        <label>Hobby: {allMatches[index].hobby}</label>
-        <br></br>
-        <label>Language: {allMatches[index].language}</label>
-        <br></br>
-        <label>
-          Looking for a place to stay in: {allMatches[index].preferStay}
-        </label>
-        <br></br>
-
-        {/* <Button type="button" onClick={() => likedProfileChoice("yes")}>
-          Yes
-        </Button> */}
-        <SimpleFade func={likedProfileChoice} />
-        {/* <Button type="button" onClick={() => likedProfileChoice("no")}>
-          No
-        </Button> */}
-
-        {index > 0 && (
-          <Button className="btn-next" onClick={prevMatch}>
-            Previous
-          </Button>
-        )}
-        {index < lenMatches - 1 && (
-          // <Button className="btn-next" onClick={nextMatch}>
-          //   Next
-          // </Button>
-          <ToggleButton value="check" onClick={nextMatch}>
-            <ArrowForwardIcon />
-          </ToggleButton>
-        )}
-      </form>
+    <div className={classes.profileMatch} key={allMatches[index].accountId}>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        className={classes.poster}
+      >
+        <Grid item xs={12}>
+          <Box display="flex" justifyContent="flex-end">
+            <form className={classes.profForm}>
+              <Grid container item spacing={2}>
+                <Hidden mdUp>
+                  <Grid xs={12} item>
+                    <Box display="flex" justifyContent="center">
+                      <Avatar className={classes.pict}>H</Avatar>
+                    </Box>
+                  </Grid>
+                </Hidden>
+                <Hidden smDown>
+                  <Grid xs={6} item>
+                    <Avatar className={classes.pict}>H</Avatar>
+                  </Grid>
+                </Hidden>
+                <Grid container item xs={6}>
+                  <Grid xs={12} item>
+                    <Typography>First name</Typography>
+                    <label>{allMatches[index].firstName}</label>
+                  </Grid>
+                  <Grid xs={12} item>
+                    <Typography>Surname</Typography>
+                    <label>{allMatches[index].surName}</label>
+                  </Grid>
+                </Grid>
+                <Grid xs={6} item>
+                  <Typography>Age</Typography>
+                  <label>{allMatches[index].age}</label>
+                </Grid>
+                <Grid xs={6} item>
+                  <Typography>Gender</Typography>
+                  <label>{allMatches[index].gender}</label>
+                </Grid>
+                <Grid xs={6} item>
+                  <Typography>Nationality</Typography>
+                  <label>{allMatches[index].nationality}</label>
+                </Grid>
+                <Grid xs={6} item>
+                  <Typography>Hobby</Typography>
+                  <label>{allMatches[index].hobby}</label>
+                </Grid>
+                <Grid xs={6} item>
+                  <Typography>Language</Typography>
+                  <label>{allMatches[index].language}</label>
+                </Grid>
+                <Grid xs={6} item>
+                  <Typography>Looking for a place to stay in</Typography>
+                  <label>{allMatches[index].preferStay}</label>
+                </Grid>
+                <Grid xs={12} container item>
+                  <Grid xs={4} item>
+                    <SimpleFade func={likedProfileChoice} />
+                  </Grid>
+                  <Grid xs={8} container item>
+                    <Grid xs={6} item>
+                      {index > 0 && (
+                        <ToggleButton
+                          onClick={prevMatch}
+                          className={classes.nextButton}
+                        >
+                          <ArrowBackIcon />
+                        </ToggleButton>
+                      )}
+                    </Grid>
+                    <Grid xs={6} item>
+                      {index < lenMatches - 1 && (
+                        <ToggleButton
+                          onClick={nextMatch}
+                          className={classes.nextButton}
+                        >
+                          <ArrowForwardIcon />
+                        </ToggleButton>
+                      )}
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </form>
+          </Box>
+        </Grid>
+      </Grid>
+      {/* </Box> */}
     </div>
   );
 }

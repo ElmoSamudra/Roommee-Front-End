@@ -17,6 +17,10 @@ nav a.active {
   padding-bottom: 8px;
   border-bottom: 2px solid #fff;
 }
+#matching-page {
+  max-height: 100%;
+  max-width: 100%;
+}
 /* h1 {
   font-family: "Garamond";
   font-size: 30px;

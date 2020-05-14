@@ -3,10 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 import Fade from "@material-ui/core/Fade";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: 180,
+    height: 100,
   },
   container: {
     display: "flex",
@@ -49,7 +50,7 @@ export default function SimpleFade({ func }) {
       />
       <div className={classes.container}>
         <Fade in={checked}>
-          <h5>Invitation Sent!</h5>
+          <Typography>Invitation Sent!</Typography>
         </Fade>
       </div>
     </div>
