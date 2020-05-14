@@ -5,7 +5,7 @@ import FormControlLabelPlacement from "../components/radio";
 import "../styles.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography, Paper, TextField, Button } from "@material-ui/core";
+import { Typography, Paper, TextField, Button, Hidden } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 //import Button from "../components/button";
 
@@ -52,6 +52,13 @@ const useStyles = makeStyles((theme) => ({
   updateButton: {
     color: "#524a41f6",
     marginLeft: "40%",
+    marginTop: "20%",
+    padding: "4%",
+    fontSize: 18
+  },
+  updateButtonSS: {
+    color: "#524a41f6",
+    marginLeft: "4%",
     marginTop: "20%",
     padding: "4%",
     fontSize: 18
@@ -336,10 +343,22 @@ function Questionaire(questionaire) {
               <br></br>
             </form>
           </div>
+          <Hidden lgUp>
+          <Button
+            variant="outlined"
+            className={classes.updateButtonSS}
+            onClick={onSubmit}
+          >
+            Update
+          </Button>
+          </Hidden>
         </Grid>
 
+               
         <Grid className={classes.sidePart} xs={4}>
+        <Hidden mdDown>
           <div className={classes.text}>
+            
             <Typography variant="subtitle1" className={classes.H1}>
               Questionaire
             </Typography>
@@ -348,9 +367,10 @@ function Questionaire(questionaire) {
               Please fill the questionaire so we can find your perfect Roommee!
             </Typography>
           </div>
+        
 
           <Paper className={classes.paperContainer}></Paper>
-
+          
           <Button
             variant="outlined"
             className={classes.updateButton}
@@ -358,6 +378,7 @@ function Questionaire(questionaire) {
           >
             Update
           </Button>
+          </Hidden>
         </Grid>
       </Grid>
     </div>
