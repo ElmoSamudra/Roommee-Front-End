@@ -6,6 +6,7 @@ import { Button, TextField, makeStyles, Grid, Box} from '@material-ui/core';
 import { Typography, Paper } from '@material-ui/core'
 import FormLabel from '@material-ui/core/FormLabel';
 import Hidden from '@material-ui/core/Hidden';
+import Zoom from '@material-ui/core/Zoom';
 
 const frontImage = '../../images/frontphotoedited.png'
 const humanImage = '../../images/human.png'
@@ -52,6 +53,8 @@ function FrontPage(details){
     const [emailInput, setEmail] = useState(email);
     const [passwordInput, setPassword] = useState(password);
 
+    const [checked, setChecked] = React.useState(true);
+
     async function onSubmit(e) {
         e.preventDefault()
         let result = await logIn({
@@ -81,7 +84,9 @@ function FrontPage(details){
         <Grid container spacing={2} className={classes.frontImage}>  
             <Grid item xs={12} align="center" className={classes.paddings} >
                 <Box>
-                    <img src={logoImage} alt="logoImage"/>
+                    <Zoom in={checked} timeout={{enter: 1500}}>
+                        <img src={logoImage} alt="logoImage"/>
+                    </Zoom>
                     <Typography variant="subtitle2" align="center">
                         Dedicated in helping everyone find their mates everyday.
                         <br/>
@@ -90,9 +95,11 @@ function FrontPage(details){
             </Grid>
                 
             <Grid item xs={12} align="center">
-                <Button href="/register" variant="outlined">
-                    Register Now
-                </Button>
+                <Zoom in={checked} timeout={{enter: 1000}}>
+                    <Button href="/register" variant="outlined">
+                        Register Now
+                    </Button>
+                </Zoom>
                 <Typography variant="h1" align="center">
                     <br/>
                 </Typography>
