@@ -5,7 +5,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
-import TemporaryDrawer from "./menu";
 import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
 import Menu from "./menu2";

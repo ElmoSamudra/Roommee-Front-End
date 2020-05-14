@@ -39,10 +39,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "13%",
     color: "#524a41f6",
   },
-  input: {
-    size: "small",
-    margin: "dense",
-  },
+
   updateButton: {
     color: "#524a41f6",
     marginLeft: "40%",
@@ -144,7 +141,6 @@ function Questionaire(questionaire) {
       numRoommeePref: numRoommeePrefInput,
       ageFrom: ageFromInput,
       ageTo: ageToInput,
-      // ageDiffRange: ageDiffRangeInput,
       homeCookRate: homeCookRateInput,
       nightOwlRate: nightOwlRateInput,
       playsMusicRate: playsMusicRateInput,
@@ -224,19 +220,6 @@ function Questionaire(questionaire) {
               <br></br>
               <br></br>
 
-              {/* <label className={classes.question}>
-                How many Roommee are you looking for?{" "}
-              </label>
-              <br></br>
-              <TextField
-                type="text"
-                name="numRoommeePref"
-                value={numRoommeePrefInput}
-                onChange={(event) => {
-                  setNumRoommeePref(event.target.value);
-                }}
-                required
-              /> */}
               <br></br>
               <Divider />
               <br></br>

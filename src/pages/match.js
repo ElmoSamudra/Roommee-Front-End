@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { ToggleButton } from "@material-ui/lab";
 import "react-toastify/dist/ReactToastify.css";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import SimpleFade from "../components/trans";
 
 export default function ShowMatch() {
   const { loadingMatch, userMatch, errorMatch } = useMatch();
@@ -47,6 +48,11 @@ function Match(matches) {
 
   // choice is the yes or no button
   async function likedProfileChoice(choice) {
+    if (!choice) {
+      choice = "yes";
+    } else {
+      choice = "no";
+    }
     await likeUser({
       id: allMatches[index].accountId,
       ans: choice,
@@ -84,12 +90,13 @@ function Match(matches) {
         </label>
         <br></br>
 
-        <Button type="button" onClick={() => likedProfileChoice("yes")}>
+        {/* <Button type="button" onClick={() => likedProfileChoice("yes")}>
           Yes
-        </Button>
-        <Button type="button" onClick={() => likedProfileChoice("no")}>
+        </Button> */}
+        <SimpleFade func={likedProfileChoice} />
+        {/* <Button type="button" onClick={() => likedProfileChoice("no")}>
           No
-        </Button>
+        </Button> */}
 
         {index > 0 && (
           <Button className="btn-next" onClick={prevMatch}>

@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import Nav from "./components/nav";
 import Home from "./pages/home";
 import ShowProfile from "./pages/profile";
 import ShowMatch from "./pages/match";

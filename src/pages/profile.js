@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
   gridParent: {
     display: "flex",
     flexWrap: "wrap",
+    paddingTop: 15,
   },
   gridRight: {
     maxHeight: "100%",
@@ -74,6 +75,12 @@ const useStyles = makeStyles((theme) => ({
   updateButton: {
     paddingTop: 31,
     paddingBottom: 31,
+  },
+  H1: {
+    fontFamily: "Raleway, Arial",
+    fontSize: "40px",
+    paddingTop: "3%",
+    paddingBottom: 14,
   },
 }));
 
@@ -147,9 +154,8 @@ function Profile(profile) {
             <form>
               <Grid item xs={12} className={classes.gridRightTop}>
                 <Box className={classes.profile}>
-                  <Typography>
-                    <h1>My Profile</h1>
-                  </Typography>
+                  <Typography className={classes.H1}>My Profile</Typography>
+                  {/* <h1 >My Profile</h1> */}
                   <Grid container item xs={12} spacing={3}>
                     <Grid item xs={6} className={classes.textLeft}>
                       <Typography>
@@ -201,9 +207,9 @@ function Profile(profile) {
                       <Typography>
                         <label>Gender: </label>
                       </Typography>
-                      <box width="50%">
+                      <Box width="50%">
                         <BinaryTabs init={genderInput} set={setGender} />
-                      </box>
+                      </Box>
                     </Grid>
                     <Grid item xs={6} className={classes.textLeft}>
                       <Typography>
@@ -292,9 +298,7 @@ function Profile(profile) {
             <form>
               <Grid item xs={12} className={classes.gridRightTop}>
                 <Box className={classes.profile}>
-                  <Typography>
-                    <h1>My Profile</h1>
-                  </Typography>
+                  <Typography className={classes.H1}>My Profile</Typography>
                   <Grid container item xs={12} spacing={3}>
                     <Grid item xs={6} className={classes.textLeft}>
                       <Typography>
