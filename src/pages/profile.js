@@ -9,6 +9,8 @@ import { Typography, Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import BinaryTabs from "../components/tab";
 import Hidden from "@material-ui/core/Hidden";
+import GenderBox from "../components/genderBox";
+import { Autocomplete } from "@material-ui/lab";
 
 //import Button from "../components/button";
 
@@ -43,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 40,
   },
   bannerContainer: {
-    maxHeight: "100%",
+    height: "auto",
     maxWidth: "100%",
-    paddingTop: 10,
+    // objectFit: "cover",
     borderBottomLeftRadius: 15,
     borderTopLeftRadius: 15,
   },
@@ -53,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
     paddingTop: 15,
+    height: "100%",
   },
   gridRight: {
     maxHeight: "100%",
@@ -66,9 +69,6 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "100%",
     borderBottomRightRadius: 15,
   },
-  // textLeft: {
-  //   paddingLeft: "27px",
-  // },
   textRight: {
     paddingLeft: "2%",
   },
@@ -81,6 +81,18 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "40px",
     paddingTop: "3%",
     paddingBottom: 14,
+  },
+  inputTextP: {
+    fontFamily: "Raleway, Arial",
+  },
+  formbox: {
+    height: "100%",
+  },
+  bannerGrid: {
+    backgroundColor: "#392621",
+    marginTop: 10,
+    borderBottomLeftRadius: 15,
+    borderTopLeftRadius: 15,
   },
 }));
 
@@ -99,14 +111,14 @@ function Profile(profile) {
   } = profile;
   //const [showUpdate, setShowUpdate] = useState(false);
 
-  const [firstNameInput, setFirstName] = useState(firstName);
-  const [surNameInput, setSurName] = useState(surName);
-  const [ageInput, setAge] = useState(age);
-  const [genderInput, setGender] = useState(gender);
-  const [nationalityInput, setNationality] = useState(nationality);
-  const [hobbyInput, setHobby] = useState(hobby);
-  const [languageInput, setLanguage] = useState(language);
-  const [preferStayInput, setPreferStay] = useState(preferStay);
+  const [firstNameInput, setFirstName] = useState(firstName || []);
+  const [surNameInput, setSurName] = useState(surName || []);
+  const [ageInput, setAge] = useState(age || []);
+  const [genderInput, setGender] = useState(gender || []);
+  const [nationalityInput, setNationality] = useState(nationality || []);
+  const [hobbyInput, setHobby] = useState(hobby || []);
+  const [languageInput, setLanguage] = useState(language || []);
+  const [preferStayInput, setPreferStay] = useState(preferStay || []);
 
   function onSubmit() {
     // call upate author function
@@ -135,7 +147,7 @@ function Profile(profile) {
         // style={{ minHeight: "100vh" }}
       >
         <Hidden smDown>
-          <Grid item xs={4}>
+          <Grid item xs={4} className={classes.bannerGrid}>
             <img
               src={bannerPic}
               alt=""
@@ -151,14 +163,14 @@ function Profile(profile) {
             direction="column"
             className={classes.gridRight}
           >
-            <form>
+            <form className={classes.formbox}>
               <Grid item xs={12} className={classes.gridRightTop}>
                 <Box className={classes.profile}>
                   <Typography className={classes.H1}>My Profile</Typography>
                   {/* <h1 >My Profile</h1> */}
                   <Grid container item xs={12} spacing={3}>
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>First name: </label>
                       </Typography>
                       <TextField
@@ -173,7 +185,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Surname: </label>
                       </Typography>
                       <TextField
@@ -188,7 +200,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Age: </label>
                       </Typography>
                       <TextField
@@ -204,7 +216,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Gender: </label>
                       </Typography>
                       <Box width="50%">
@@ -212,7 +224,7 @@ function Profile(profile) {
                       </Box>
                     </Grid>
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Nationality: </label>
                       </Typography>
                       <TextField
@@ -227,7 +239,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Hobby: </label>
                       </Typography>
                       <TextField
@@ -242,7 +254,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Language: </label>
                       </Typography>
                       <TextField
@@ -257,7 +269,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Find a place to stay in (suburb): </label>
                       </Typography>
                       <TextField
@@ -301,7 +313,7 @@ function Profile(profile) {
                   <Typography className={classes.H1}>My Profile</Typography>
                   <Grid container item xs={12} spacing={3}>
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>First name: </label>
                       </Typography>
                       <TextField
@@ -316,7 +328,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Surname: </label>
                       </Typography>
                       <TextField
@@ -331,7 +343,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Age: </label>
                       </Typography>
                       <TextField
@@ -347,15 +359,16 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Gender: </label>
                       </Typography>
-                      <box width="50%">
+                      {/* <Box width="50%">
                         <BinaryTabs init={genderInput} set={setGender} />
-                      </box>
+                      </Box> */}
+                      <GenderBox init={genderInput} set={setGender} />
                     </Grid>
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Nationality: </label>
                       </Typography>
                       <TextField
@@ -370,7 +383,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Hobby: </label>
                       </Typography>
                       <TextField
@@ -385,7 +398,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textLeft}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Language: </label>
                       </Typography>
                       <TextField
@@ -400,7 +413,7 @@ function Profile(profile) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.textRight}>
-                      <Typography>
+                      <Typography className={classes.inputTextP}>
                         <label>Find a place to stay in (suburb): </label>
                       </Typography>
                       <TextField

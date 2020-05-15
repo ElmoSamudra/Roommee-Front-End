@@ -82,8 +82,8 @@ export function useStatusMatch() {
   }, []);
 
   return {
-    loading,
+    loadingStatus: loading,
     statusMatch,
-    error,
+    errorStatus: error,
   };
 }
