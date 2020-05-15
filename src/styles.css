@@ -1,0 +1,88 @@
+nav {
+  background-color: #574f48;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  display: inline-block;
+}
+
+nav a:hover {
+  color: #f8c387f6;
+}
+
+nav a.active {
+  padding-bottom: 8px;
+  border-bottom: 2px solid #fff;
+}
+#matching-page {
+  max-height: 100%;
+  max-width: 100%;
+}
+/* h1 {
+  font-family: "Garamond";
+  font-size: 30px;
+  color: #524a41f6;
+} */
+
+/* form {
+  margin-left: 40%;
+} */
+
+/* label {
+  font-family: "Arial";
+  font-size: 14px;
+  color: #524a41f6;
+  
+} */
+
+/* input {
+  border: 2px solid rgb(253, 202, 135);
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+} */
+
+/* button {
+  background-color: whitesmoke;
+  font-size: 15px;
+  border-radius: 2px;
+  border: 2px solid rgb(253, 158, 81);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 30px;
+  margin-left: 50%;
+  position: absolute;
+  color: #915422;
+} */
+
+/* button:hover {
+  background-color: rgb(253, 158, 81);
+  color: white;
+} */
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}

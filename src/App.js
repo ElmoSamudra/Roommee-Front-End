@@ -7,6 +7,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from './components/Footer';
 import Header1 from './components/Header1';
 import AccountCard from './pages/MyAccount';
+import Home from "./pages/home";
+import ShowProfile from "./pages/profile";
+import ShowMatch from "./pages/match";
+import ShowQuestionaire from "./pages/questionaire";
+import ShowStatusMatch from "./pages/matchStatus";
+import ButtonAppBar from "./components/appbar";
+import Divider from "@material-ui/core/Divider";
 
 
 
@@ -44,6 +51,33 @@ function App() {
             pauseOnHover
           />
         </Route>
+        <Route exact path="/profile">
+          <ButtonAppBar />
+          <Divider />
+          <ShowProfile />
+        </Route>
+        <Route exact path="/questionaire">
+          <ButtonAppBar />
+          <Divider />
+          <ShowQuestionaire />
+        </Route>
+
+        <Route exact path="/matching">
+          <ButtonAppBar />
+          <Divider />
+          <ShowMatch />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </Route>
         <Route path="/myaccount">
           <AccountCard/>
           <ToastContainer
@@ -56,7 +90,14 @@ function App() {
               pauseOnFocusLoss
               draggable
               pauseOnHover
-          />
+            />
+          {/* Same as */}
+          <ToastContainer />
+        </Route>
+        <Route exact path="/matching-status">
+          <ButtonAppBar />
+          <Divider />
+          <ShowStatusMatch />
         </Route>
         <Route path="/404">
           <div>
@@ -67,7 +108,8 @@ function App() {
         </Route>
       </Switch>
       <Footer />
-    </Router> )
+    </Router> 
+  )
 }
 
 export default App;
