@@ -13,9 +13,9 @@ import AccountCard from './pages/MyAccount';
 function App() {
   return (
     <Router>
-      <Header1 />
       <Switch>
         <Route exact path="/">
+          <Header1 />
           <FrontPage/>
           <ToastContainer
             position="top-center"
@@ -30,6 +30,7 @@ function App() {
           />
         </Route>
         <Route exact path="/register">
+          <Header1 />
           <Register/>
           <ToastContainer
             position="top-center"
