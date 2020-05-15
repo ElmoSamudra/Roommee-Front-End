@@ -6,7 +6,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './components/Footer';
 import Header1 from './components/Header1';
-import Header2 from './components/Header2';
 import AccountCard from './pages/MyAccount';
 
 

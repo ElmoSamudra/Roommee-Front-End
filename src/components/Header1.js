@@ -70,7 +70,6 @@ export default function Header() {
         alignItems="stretch"
         className={classes.root}
     >
-        
         <AppBar elevation={0} position="static">
             <Toolbar className={classes.bar}>
                 <IconButton 
