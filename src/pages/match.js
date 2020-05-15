@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useMatch, likeUser, useStatusMatch } from "../api/matchApi";
 import { useProfile } from "../api/profileApi";
-import { Button, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { toast } from "react-toastify";
 import { ToggleButton } from "@material-ui/lab";
 import "react-toastify/dist/ReactToastify.css";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import SimpleFade from "../components/trans";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -104,35 +103,30 @@ const useStyles = makeStyles((theme) => ({
 // matches here is an array of match users
 function Match(matches) {
   const allMatches = matches;
-  console.log(allMatches);
   const lenMatches = Object.keys(allMatches).length;
   const classes = useStyles();
-  const [fade, setFade] = useState(false);
-  const [ans, setAns] = useState(false);
   const [index, setIndex] = useState(0);
-  const fadeIndex = Object.keys(allMatches).map((user) => false);
+  var [fadeIndex, setFadeIndex] = useState(
+    Object.keys(allMatches).map((user) => false)
+  );
   const [check, setCheck] = useState(false);
 
   // almost
   // increment or decrement the match by 1
   function nextMatch() {
     setIndex(index + 1);
-    setCheck(fadeIndex[index]);
-    console.log(check);
-    // setFade(true);
+    setCheck(fadeIndex[index + 1]);
   }
 
   function prevMatch() {
     setIndex(index - 1);
-    setCheck(fadeIndex[index]);
-    console.log(check);
+    setCheck(fadeIndex[index - 1]);
   }
 
   const handleChange = async (index) => {
     fadeIndex[index] = !fadeIndex[index];
-    setCheck((prev) => !prev);
-    console.log(check);
-    console.log(fadeIndex[index]);
+    setCheck(fadeIndex[index]);
+    setFadeIndex(fadeIndex);
   };
   // choice is the yes or no button
   async function likedProfileChoice(choice) {

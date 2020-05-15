@@ -7,10 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import { Typography, Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import BinaryTabs from "../components/tab";
 import Hidden from "@material-ui/core/Hidden";
 import GenderBox from "../components/genderBox";
-import { Autocomplete } from "@material-ui/lab";
 
 //import Button from "../components/button";
 
@@ -43,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 10,
     borderTopRightRadius: 15,
     paddingBottom: 40,
+    height: "100%",
   },
   bannerContainer: {
     height: "auto",
@@ -62,11 +61,13 @@ const useStyles = makeStyles((theme) => ({
   },
   gridRightTop: {
     paddingTop: 10,
-    maxHeight: "100%",
+    // maxHeight: "100%",
+    height: "80%",
   },
   gridRightBottom: {
     backgroundColor: "#E3D1BA",
-    maxHeight: "100%",
+    // maxHeight: "100%",
+    height: "20%",
     borderBottomRightRadius: 15,
   },
   textRight: {
@@ -219,9 +220,10 @@ function Profile(profile) {
                       <Typography className={classes.inputTextP}>
                         <label>Gender: </label>
                       </Typography>
-                      <Box width="50%">
+                      {/* <Box width="50%">
                         <BinaryTabs init={genderInput} set={setGender} />
-                      </Box>
+                      </Box> */}
+                      <GenderBox init={genderInput} set={setGender} />
                     </Grid>
                     <Grid item xs={6} className={classes.textLeft}>
                       <Typography className={classes.inputTextP}>
@@ -307,7 +309,7 @@ function Profile(profile) {
             direction="column"
             className={classes.gridRight}
           >
-            <form>
+            <form className={classes.formbox}>
               <Grid item xs={12} className={classes.gridRightTop}>
                 <Box className={classes.profile}>
                   <Typography className={classes.H1}>My Profile</Typography>
