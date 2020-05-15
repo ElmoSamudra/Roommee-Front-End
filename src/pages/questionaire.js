@@ -5,26 +5,33 @@ import FormControlLabelPlacement from "../components/radio";
 import "../styles.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography, Paper, TextField, Button } from "@material-ui/core";
+import { Typography, Paper, TextField, Button, Hidden } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 //import Button from "../components/button";
 
-const friendsPic = "../../images/friends.png";
+const friendsPic = "../../images/room1.jpg";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   entirePage: {},
   sidePart: {
-    backgroundColor: "#FCDB87",
+    marginTop: "3%",
+    marginBottom: "3%",
+    //backgroundColor: "#fdc8b2",
+    borderRadius: 10
   },
   paperContainer: {
-    height: 480,
+    height: 1000,
+    //width: 560,
     backgroundImage: `url(${friendsPic})`,
+    backgroundSize: "cover"
   },
   questionairePart: {},
   text: {
-    backgroundColor: "#FCDB87",
+    backgroundColor: "#fdc8b2",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10
   },
   H1: {
     paddingTop: "7%",
@@ -32,6 +39,8 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "13%",
     paddingLeft: "13%",
     color: "#524a41f6",
+    fontFamily: "Raleway, Arial",
+    fontSize: 60
   },
   subtitle: {
     paddingLeft: "13%",
@@ -44,12 +53,22 @@ const useStyles = makeStyles((theme) => ({
     color: "#524a41f6",
     marginLeft: "40%",
     marginTop: "20%",
+    padding: "4%",
+    fontSize: 18
+  },
+  updateButtonSS: {
+    color: "#524a41f6",
+    marginLeft: "4%",
+    marginTop: "20%",
+    padding: "4%",
+    fontSize: 18
   },
   question: {
     fontFamily: "Arial",
-    fontSize: "15px",
+    fontSize: "18px",
     color: "#524a41f6",
   },
+  
 }));
 
 export default function ShowQuestionaire() {
@@ -160,7 +179,7 @@ function Questionaire(questionaire) {
       >
         <Grid item className={classes.questionairePart} xs={1}></Grid>
 
-        <Grid item className={classes.questionairePart} xs={5}>
+        <Grid item className={classes.questionairePart} xs={6}>
           <div className={`questionaire user-${accountId}`} key={accountId}>
             <form>
               <br></br>
@@ -169,7 +188,7 @@ function Questionaire(questionaire) {
                 Do you prefer to have the same nationality for your Roommee?
               </label>
               <br></br>
-              <FormControlLabelPlacement
+              <FormControlLabelPlacement className={classes.radioButton}
                 initValue={sameNationalityPrefInput}
                 set={setSameNationalityPref}
               />
@@ -324,11 +343,23 @@ function Questionaire(questionaire) {
               <br></br>
             </form>
           </div>
+          <Hidden lgUp>
+          <Button
+            variant="outlined"
+            className={classes.updateButtonSS}
+            onClick={onSubmit}
+          >
+            Update
+          </Button>
+          </Hidden>
         </Grid>
 
-        <Grid className={classes.sidePart} xs={5}>
+               
+        <Grid className={classes.sidePart} xs={4}>
+        <Hidden mdDown>
           <div className={classes.text}>
-            <Typography variant="h2" className={classes.H1}>
+            
+            <Typography variant="subtitle1" className={classes.H1}>
               Questionaire
             </Typography>
 
@@ -336,9 +367,10 @@ function Questionaire(questionaire) {
               Please fill the questionaire so we can find your perfect Roommee!
             </Typography>
           </div>
+        
 
           <Paper className={classes.paperContainer}></Paper>
-
+          
           <Button
             variant="outlined"
             className={classes.updateButton}
@@ -346,6 +378,7 @@ function Questionaire(questionaire) {
           >
             Update
           </Button>
+          </Hidden>
         </Grid>
       </Grid>
     </div>
