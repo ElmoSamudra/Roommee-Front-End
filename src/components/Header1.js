@@ -9,6 +9,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 import Hidden from '@material-ui/core/Hidden';
+import { useHistory } from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const roommeeLogo = '../../images/roommeelogo3.png'
 
@@ -30,6 +32,35 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
   const classes = useStyles();
+
+    let loginLogoutRegisterButtonText = null
+
+    let history = useHistory();
+    const page = useSelector(state => state.page);
+    console.log("!!!!!!!!"+page)
+
+    if (localStorage.getItem("token") != null){
+        loginLogoutRegisterButtonText = "Logout"
+    }else if (page == "register") {
+        loginLogoutRegisterButtonText = "Login"
+    }else if (page == "login"){
+        loginLogoutRegisterButtonText = "Register"
+    }else{
+        loginLogoutRegisterButtonText = "Login"
+    }
+
+    function f() {
+        if (loginLogoutRegisterButtonText == "Login"){
+            history.push("/")
+
+        } else if(loginLogoutRegisterButtonText == "Logout"){
+            localStorage.removeItem('token')
+            history.push("/")
+        } else if(loginLogoutRegisterButtonText == "Register"){
+            history.push("/register")
+        }
+
+    }
 
   return (
     <Grid 
@@ -57,8 +88,8 @@ export default function Header() {
                   </Typography>
                 </Hidden>
                 
-                <Button href="/register">
-                    Register
+                <Button onClick={()=>f()}>
+                    {loginLogoutRegisterButtonText}
                 </Button>
             </Toolbar>
       </AppBar>
