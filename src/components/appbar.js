@@ -12,7 +12,6 @@ import Menu from "./menu2";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    padding: "1%",
     // display='flex',
   },
   menuButton: {

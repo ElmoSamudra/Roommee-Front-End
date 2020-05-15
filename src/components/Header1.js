@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#000000"
   },
   bar: {
-    background : '#FFFAFA'
+    background : '#ffffff'
   },
 }));
 
@@ -70,7 +70,7 @@ export default function Header() {
         alignItems="stretch"
         className={classes.root}
     >
-        <AppBar elevation={0} position="static">
+        <AppBar elevation={0} color="transparent" position="static">
             <Toolbar className={classes.bar}>
                 <IconButton 
                     edge="start" 
