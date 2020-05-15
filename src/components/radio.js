@@ -27,7 +27,7 @@ export default function FormControlLabelPlacement({ set, initValue }) {
         />
         <FormControlLabel
           value="no"
-          control={<Radio color="primary" />}
+          control={<Radio color="secondary" />}
           label="No"
           labelPlacement="bottom"
         />
