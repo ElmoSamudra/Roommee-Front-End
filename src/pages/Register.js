@@ -70,7 +70,7 @@ export default function Register(){
         });
 
         if(result.status === 201){
-            history.push("/profile")
+            history.push("/")
         }
         else if(result.status === 400){
             toast.info(result.statusText, {

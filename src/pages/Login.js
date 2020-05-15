@@ -82,7 +82,7 @@ function FrontPage(details){
                     console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" + resultInJSON.account)
                     localStorage.setItem("token", resultInJSON.token)
                     localStorage.setItem("account", resultInJSON.account)
-                    history.push("/myaccount")
+                    history.push("/home")
                 }
                 else {
                     toast.info('😺 Please input all fields correctly!', {

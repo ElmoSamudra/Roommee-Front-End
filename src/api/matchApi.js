@@ -5,7 +5,15 @@ const BASE_URL = "http://localhost:3000";
 
 function runMatch() {
   const endpoint = BASE_URL + `/user-match`;
-  return fetch(endpoint).then((res) => {
+  const token = localStorage.token;
+  return fetch(endpoint, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+  }).then((res) => {
     console.log(res);
     return res.json();
   });
@@ -13,7 +21,14 @@ function runMatch() {
 
 function getMatchStatus() {
   const endpoint = BASE_URL + "/user-match/status";
-  return fetch(endpoint).then((res) => {
+  const token = localStorage.token;
+  return fetch(endpoint, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+  }).then((res) => {
     console.log(res);
     return res.json();
   });
@@ -22,11 +37,14 @@ function getMatchStatus() {
 export function likeUser(user) {
   const { id, ans } = user;
   const endpoint = BASE_URL + "/user-match/fill-status";
+  const token = localStorage.token;
 
   return fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({
       id,

@@ -4,7 +4,15 @@ const BASE_URL = "http://localhost:3000";
 
 function getProfile() {
   const endpoint = BASE_URL + `/user-profile`;
-  return fetch(endpoint).then((res) => {
+  const token = localStorage.token;
+  return fetch(endpoint, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+  }).then((res) => {
     return res.json();
   });
 }
@@ -22,10 +30,14 @@ export function updateProfile(profile) {
   } = profile;
   const endpoint = BASE_URL + "/user-profile/update";
   // return fetch query to update an author
+  const token = localStorage.token;
+
   return fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({
       firstName,
