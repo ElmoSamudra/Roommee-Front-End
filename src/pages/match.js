@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 15,
   },
   profileMatch: {
-    height: "85vh",
+    height: "100%",
   },
   profForm: {
     backgroundColor: "#F3DFB3",
@@ -75,16 +75,28 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "10%",
     borderRadius: 15,
     height: "100%",
-    width: "40vh",
+    width: "350px",
     paddingBottom: 30,
   },
   pict: {
     width: theme.spacing(15),
     height: theme.spacing(15),
   },
-  nextButton: {
+  nextButtonLeft: {
     marginLeft: "50%",
     marginTop: "35%",
+  },
+  nextButtonRight: {
+    marginRight: "50%",
+    marginTop: "35%",
+  },
+  nextButtonSmallBottom: {
+    marginBottom: 20,
+    marginLeft: 30,
+  },
+  nextButtonSmallTop: {
+    marginTop: 20,
+    marginLeft: 23,
   },
   boxUndefined: {
     backgroundColor: "#F3DFB3",
@@ -94,6 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     height: 100,
+    width: 50,
   },
   container: {
     display: "flex",
@@ -222,54 +235,125 @@ function Match(matches) {
                     <Typography>Looking for a place to stay in</Typography>
                     <label>{allMatches[index].preferStay}</label>
                   </Grid>
+                  <Hidden mdUp>
+                    <Grid xs={6} item>
+                      {index > 0 && (
+                        <ToggleButton
+                          onClick={prevMatch}
+                          className={classes.nextButtonSmallTop}
+                        >
+                          <ArrowBackIcon />
+                        </ToggleButton>
+                      )}
+                    </Grid>
+                  </Hidden>
                   <Grid xs={12} container item>
-                    <Grid xs={4} item>
-                      {/* <SimpleFade func={likedProfileChoice} check={fade} /> */}
+                    <Hidden smDown>
+                      <Grid xs={4} item>
+                        {/* <SimpleFade func={likedProfileChoice} check={fade} /> */}
 
-                      <div className={classes.root}>
-                        <FormControlLabel
-                          control={
-                            <Switch
-                              checked={check}
-                              onChange={async () => {
-                                // await handleChange();
-                                await handleChange(index);
-                                console.log(fadeIndex);
-                                await likedProfileChoice(check);
-                              }}
-                            />
-                          }
-                          label="Ring Roommee?"
-                        />
-                        <div className={classes.container}>
-                          <Fade in={check}>
-                            <Typography>You have rang this roommie!</Typography>
-                          </Fade>
+                        <div className={classes.root}>
+                          <FormControlLabel
+                            control={
+                              <Switch
+                                checked={check}
+                                onChange={async () => {
+                                  // await handleChange();
+                                  await handleChange(index);
+                                  console.log(fadeIndex);
+                                  await likedProfileChoice(check);
+                                }}
+                              />
+                            }
+                            label={
+                              <span
+                                style={{ fontSize: "15px", fontColor: "white" }}
+                              >
+                                {"Ring Roommee?"}
+                              </span>
+                            }
+                          />
+                          <div className={classes.container}>
+                            <Fade in={check}>
+                              <Typography>
+                                You have rang this roommie!
+                              </Typography>
+                            </Fade>
+                          </div>
                         </div>
-                      </div>
-                    </Grid>
-                    <Grid xs={8} container item>
-                      <Grid xs={6} item>
-                        {index > 0 && (
-                          <ToggleButton
-                            onClick={prevMatch}
-                            className={classes.nextButton}
-                          >
-                            <ArrowBackIcon />
-                          </ToggleButton>
-                        )}
                       </Grid>
-                      <Grid xs={6} item>
-                        {index < lenMatches - 1 && (
-                          <ToggleButton
-                            onClick={nextMatch}
-                            className={classes.nextButton}
-                          >
-                            <ArrowForwardIcon />
-                          </ToggleButton>
-                        )}
+
+                      <Grid xs={8} container item>
+                        <Grid xs={6} item>
+                          {index > 0 && (
+                            <ToggleButton
+                              onClick={prevMatch}
+                              className={classes.nextButtonLeft}
+                            >
+                              <ArrowBackIcon />
+                            </ToggleButton>
+                          )}
+                        </Grid>
+                        <Grid xs={6} item>
+                          {index < lenMatches - 1 && (
+                            <ToggleButton
+                              onClick={nextMatch}
+                              className={classes.nextButtonRight}
+                            >
+                              <ArrowForwardIcon />
+                            </ToggleButton>
+                          )}
+                        </Grid>
                       </Grid>
-                    </Grid>
+                    </Hidden>
+                    <Hidden mdUp>
+                      <Grid xs={6} item>
+                        {/* <SimpleFade func={likedProfileChoice} check={fade} /> */}
+
+                        <div className={classes.root}>
+                          <FormControlLabel
+                            control={
+                              <Switch
+                                checked={check}
+                                onChange={async () => {
+                                  // await handleChange();
+                                  await handleChange(index);
+                                  console.log(fadeIndex);
+                                  await likedProfileChoice(check);
+                                }}
+                              />
+                            }
+                            label={
+                              <span
+                                style={{ fontSize: "15px", fontColor: "white" }}
+                              >
+                                {"Ring Roommee?"}
+                              </span>
+                            }
+                          />
+                          <div className={classes.container}>
+                            <Fade in={check}>
+                              <Typography>
+                                You have rang this roommie!
+                              </Typography>
+                            </Fade>
+                          </div>
+                        </div>
+                      </Grid>
+
+                      <Grid xs={6} container item>
+                        <Grid xs={6} item>
+                          {index < lenMatches - 1 && (
+                            <ToggleButton
+                              onClick={nextMatch}
+                              className={classes.nextButtonSmallBottom}
+                            >
+                              <ArrowForwardIcon />
+                            </ToggleButton>
+                          )}
+                        </Grid>
+                      </Grid>
+                    </Hidden>
                   </Grid>
                 </Grid>
               </form>
