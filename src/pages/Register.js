@@ -19,20 +19,34 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Register(details){
+function Register(){
 
-    const { name, surname, email, password, terms} = details;
     const classes = useStyles();
 
     let history = useHistory();
 
-    const [nameInput, setFirstName] = useState(name);
-    const [surInput, setLastName] = useState(surname);
-    const [emailInput, setEmail] = useState(email);
-    const [passwordInput, setPassword] = useState(password);
-    const [termsInput, setTerms] = useState(terms);
+    const [nameInput, setFirstName] = useState("");
+    const [surInput, setLastName] = useState("");
+    const [emailInput, setEmail] = useState();
+    const [passwordInput, setPassword] = useState("");
+    const [termsInput, setTerms] = useState(false);
 
     async function onSubmit(e) {
+
+        if(nameInput === "" || surInput === "" || emailInput === "" || passwordInput === ""){
+            if(termsInput === false){
+                toast.info('😿 We cannot continue without you agreeing to our Terms and Conditions!', {
+                    position: "top-center",
+                    autoClose: 1000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    transition: Flip
+                });
+            }
+        }
         e.preventDefault()
         let result = await signUp({
             name: nameInput,
@@ -42,46 +56,23 @@ function Register(details){
             terms: termsInput
         });
 
-        if(result.status === 201){
-            history.push("/profile")
-        }
-        else if(result.status === 0){
-            toast.info('😺 Please input all fields correctly!', {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                transition: Flip
-            });
-        }
-        else if(result.status === 1){
-            toast.info('😿 We cannot continue without you agreeing to our Terms and Conditions!', {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                transition: Flip
-            });
-        }
-        else{
-            console.log('ERORR')
-            toast.info('🙀 This email address has been used!', {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                transition: Flip
-            });
-        }
+        console.log(result.error)
+
+        // if(result.status === 201){
+        //     history.push("/profile")
+        // }
+        // else if(result.status === 0){
+        //     toast.info('😺 firstname must be !', {
+        //         position: "top-center",
+        //         autoClose: 1000,
+        //         hideProgressBar: true,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         transition: Flip
+        //     });
+        // }
     }
     
     return (
@@ -139,6 +130,7 @@ function Register(details){
                     <TextField
                         placeholder="Password"
                         name="password"
+                        type="password"
                         value={passwordInput}
                         onChange={event => {
                             setPassword(event.target.value);

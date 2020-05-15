@@ -106,13 +106,22 @@ function FrontPage(details){
             
             <Grid item xs={6} align="center" className={classes.login}>
                 <Box>
-                    <Typography variant='h2'>
-                        Login Now
+                    <Typography variant='h3'>
+                        Match with your future roommates with Roommee.
+                    </Typography>
+                    <Typography variant='h5'>
+                        <br/>
+                        •Personalised matching<br/>
+                        •Find housing together with your mate in app<br/>
+                        •Connecting you to your favourite utilities
                     </Typography>
                 </Box>
             </Grid>
 
             <Grid item xs={6} align="center">
+                <Typography variant='h3' className={classes.formStyle}>
+                    Welcome Back
+                </Typography>
                 <FormLabel>
                     <Box className={classes.formStyle}>
                         <TextField
@@ -128,6 +137,7 @@ function FrontPage(details){
                     <Box className={classes.formStyle}>
                         <TextField
                             id="filled-basic" variant="filled"
+                            type="password"
                             placeholder="Password"
                             name="password"
                             value={passwordInput}
@@ -151,8 +161,10 @@ function FrontPage(details){
                         Intro to Roommee
                     </Typography>
                     <Typography variant='body1' align="center">
-                        Here in Roommee, we are dedicated to match you 
-                        with your future roommates according to your personal preferences.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Nulla lobortis ultricies diam. Pellentesque habitant morbi 
+                        tristique senectus et netus et malesuada fames ac turpis egestas. 
+                        Proin malesuada viverra nunc eu interdum.
                     </Typography>
                 </Box>
             </Grid>
