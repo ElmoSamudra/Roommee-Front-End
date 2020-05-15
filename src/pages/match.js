@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMatch, likeUser } from "../api/matchApi";
+import { useMatch, likeUser, useStatusMatch } from "../api/matchApi";
 import { useProfile } from "../api/profileApi";
 import { Button, Typography } from "@material-ui/core";
 import { toast } from "react-toastify";
@@ -14,30 +14,49 @@ import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
 import Hidden from "@material-ui/core/Hidden";
 
+import Switch from "@material-ui/core/Switch";
+import Fade from "@material-ui/core/Fade";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+
 export default function ShowMatch() {
   const { loadingMatch, userMatch, errorMatch } = useMatch();
   const { loadingProfile, userProfile, errorProfile } = useProfile();
+  const { loadingStatus, statusMatch, errorStatus } = useStatusMatch();
 
-  if (loadingMatch || loadingProfile) {
+  if (loadingMatch || loadingProfile || loadingStatus) {
     return <p>Loading...</p>;
   }
-  if (errorMatch || errorProfile) {
+  if (errorMatch || errorProfile || errorStatus) {
     return <p>Something went wrong: {errorMatch.message}</p>;
+  }
+
+  // filter the match first so that it wont be redundant with match status
+  function filterMatch(matches, status) {
+    const userIds = status.map((user) => user.accountId);
+    let newMatches = [];
+    matches.forEach((match) => {
+      if (userIds.indexOf(match.accountId.toString()) === -1) {
+        newMatches.push(match);
+      }
+    });
+    return newMatches;
   }
 
   // use this to make sure you are getting the right data
   console.log(userMatch);
 
+  const newMatch = filterMatch(userMatch, statusMatch.pendingStatus);
+  console.log(newMatch.length);
+
   // Display a list of the authors
   return (
     <div>
-      <Match key={userProfile.accountId} {...userMatch} />
+      <Match key={userProfile.accountId} {...newMatch} />
     </div>
   );
 }
 
 const vector = "./../images/Artboard1.png";
-const image = "./../images/door.png";
 const useStyles = makeStyles((theme) => ({
   poster: {
     backgroundImage: `url(${vector})`,
@@ -68,27 +87,53 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "50%",
     marginTop: "35%",
   },
+  boxUndefined: {
+    backgroundColor: "#F3DFB3",
+    marginRight: "10%",
+    padding: "5%",
+    borderRadius: 15,
+  },
+  root: {
+    height: 100,
+  },
+  container: {
+    display: "flex",
+  },
 }));
 
 // matches here is an array of match users
 function Match(matches) {
   const allMatches = matches;
+  console.log(allMatches);
   const lenMatches = Object.keys(allMatches).length;
   const classes = useStyles();
-
+  const [fade, setFade] = useState(false);
+  const [ans, setAns] = useState(false);
   const [index, setIndex] = useState(0);
+  const fadeIndex = Object.keys(allMatches).map((user) => false);
+  const [check, setCheck] = useState(false);
 
+  // almost
   // increment or decrement the match by 1
   function nextMatch() {
     setIndex(index + 1);
-  }
-  function prevMatch() {
-    setIndex(index - 1);
+    setCheck(fadeIndex[index]);
+    // setFade(true);
   }
 
+  function prevMatch() {
+    setIndex(index - 1);
+    setCheck(fadeIndex[index]);
+  }
+
+  const handleChange = async (index) => {
+    setCheck(!fadeIndex[index]);
+    console.log(check);
+    fadeIndex[index] = !fadeIndex[index];
+  };
   // choice is the yes or no button
   async function likedProfileChoice(choice) {
-    if (!choice) {
+    if (choice) {
       choice = "yes";
     } else {
       choice = "no";
@@ -121,7 +166,7 @@ function Match(matches) {
   }
 
   return (
-    <div className={classes.profileMatch} key={allMatches[index].accountId}>
+    <div className={classes.profileMatch}>
       <Grid
         container
         direction="row"
@@ -131,87 +176,117 @@ function Match(matches) {
       >
         <Grid item xs={12}>
           <Box display="flex" justifyContent="flex-end">
-            <form className={classes.profForm}>
-              <Grid container item spacing={2}>
-                <Hidden mdUp>
-                  <Grid xs={12} item>
-                    <Box display="flex" justifyContent="center">
+            {lenMatches !== 0 ? (
+              <form className={classes.profForm}>
+                <Grid container item spacing={2}>
+                  <Hidden mdUp>
+                    <Grid xs={12} item>
+                      <Box display="flex" justifyContent="center">
+                        <Avatar className={classes.pict}>H</Avatar>
+                      </Box>
+                    </Grid>
+                  </Hidden>
+                  <Hidden smDown>
+                    <Grid xs={6} item>
                       <Avatar className={classes.pict}>H</Avatar>
-                    </Box>
+                    </Grid>
+                  </Hidden>
+                  <Grid container item xs={6}>
+                    <Grid xs={12} item>
+                      <Typography>First name</Typography>
+                      <label>{allMatches[index].firstName}</label>
+                    </Grid>
+                    <Grid xs={12} item>
+                      <Typography>Surname</Typography>
+                      <label>{allMatches[index].surName}</label>
+                    </Grid>
                   </Grid>
-                </Hidden>
-                <Hidden smDown>
                   <Grid xs={6} item>
-                    <Avatar className={classes.pict}>H</Avatar>
+                    <Typography>Age</Typography>
+                    <label>{allMatches[index].age}</label>
                   </Grid>
-                </Hidden>
-                <Grid container item xs={6}>
-                  <Grid xs={12} item>
-                    <Typography>First name</Typography>
-                    <label>{allMatches[index].firstName}</label>
+                  <Grid xs={6} item>
+                    <Typography>Gender</Typography>
+                    <label>{allMatches[index].gender}</label>
                   </Grid>
-                  <Grid xs={12} item>
-                    <Typography>Surname</Typography>
-                    <label>{allMatches[index].surName}</label>
+                  <Grid xs={6} item>
+                    <Typography>Nationality</Typography>
+                    <label>{allMatches[index].nationality}</label>
                   </Grid>
-                </Grid>
-                <Grid xs={6} item>
-                  <Typography>Age</Typography>
-                  <label>{allMatches[index].age}</label>
-                </Grid>
-                <Grid xs={6} item>
-                  <Typography>Gender</Typography>
-                  <label>{allMatches[index].gender}</label>
-                </Grid>
-                <Grid xs={6} item>
-                  <Typography>Nationality</Typography>
-                  <label>{allMatches[index].nationality}</label>
-                </Grid>
-                <Grid xs={6} item>
-                  <Typography>Hobby</Typography>
-                  <label>{allMatches[index].hobby}</label>
-                </Grid>
-                <Grid xs={6} item>
-                  <Typography>Language</Typography>
-                  <label>{allMatches[index].language}</label>
-                </Grid>
-                <Grid xs={6} item>
-                  <Typography>Looking for a place to stay in</Typography>
-                  <label>{allMatches[index].preferStay}</label>
-                </Grid>
-                <Grid xs={12} container item>
-                  <Grid xs={4} item>
-                    <SimpleFade func={likedProfileChoice} />
+                  <Grid xs={6} item>
+                    <Typography>Hobby</Typography>
+                    <label>{allMatches[index].hobby}</label>
                   </Grid>
-                  <Grid xs={8} container item>
-                    <Grid xs={6} item>
-                      {index > 0 && (
-                        <ToggleButton
-                          onClick={prevMatch}
-                          className={classes.nextButton}
-                        >
-                          <ArrowBackIcon />
-                        </ToggleButton>
-                      )}
+                  <Grid xs={6} item>
+                    <Typography>Language</Typography>
+                    <label>{allMatches[index].language}</label>
+                  </Grid>
+                  <Grid xs={6} item>
+                    <Typography>Looking for a place to stay in</Typography>
+                    <label>{allMatches[index].preferStay}</label>
+                  </Grid>
+                  <Grid xs={12} container item>
+                    <Grid xs={4} item>
+                      {/* <SimpleFade func={likedProfileChoice} check={fade} /> */}
+
+                      <div className={classes.root}>
+                        <FormControlLabel
+                          control={
+                            <Switch
+                              checked={check}
+                              onChange={async () => {
+                                // await handleChange();
+                                await handleChange(index);
+                                console.log(fadeIndex);
+                                await likedProfileChoice(check);
+                              }}
+                            />
+                          }
+                          label="Ring Roommee?"
+                        />
+                        <div className={classes.container}>
+                          <Fade in={check}>
+                            <Typography>You have rang this roommie!</Typography>
+                          </Fade>
+                        </div>
+                      </div>
                     </Grid>
-                    <Grid xs={6} item>
-                      {index < lenMatches - 1 && (
-                        <ToggleButton
-                          onClick={nextMatch}
-                          className={classes.nextButton}
-                        >
-                          <ArrowForwardIcon />
-                        </ToggleButton>
-                      )}
+                    <Grid xs={8} container item>
+                      <Grid xs={6} item>
+                        {index > 0 && (
+                          <ToggleButton
+                            onClick={prevMatch}
+                            className={classes.nextButton}
+                          >
+                            <ArrowBackIcon />
+                          </ToggleButton>
+                        )}
+                      </Grid>
+                      <Grid xs={6} item>
+                        {index < lenMatches - 1 && (
+                          <ToggleButton
+                            onClick={nextMatch}
+                            className={classes.nextButton}
+                          >
+                            <ArrowForwardIcon />
+                          </ToggleButton>
+                        )}
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
-            </form>
+              </form>
+            ) : (
+              <Box width="25%" className={classes.boxUndefined}>
+                <Typography>
+                  Sorry we don't have any other user that matches with your
+                  profile. Please wait for the invitation in your match status
+                </Typography>
+              </Box>
+            )}
           </Box>
         </Grid>
       </Grid>
-      {/* </Box> */}
     </div>
   );
 }

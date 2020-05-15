@@ -4,18 +4,23 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography, Paper, TextField, Button, Box, Hidden} from "@material-ui/core";
-import { borders } from '@material-ui/system';
+import {
+  Typography,
+  Paper,
+  TextField,
+  Button,
+  Box,
+  Hidden,
+} from "@material-ui/core";
+import { borders } from "@material-ui/system";
 import { Redirect } from "react-router-dom";
-
 
 const friends1Pic = "../../images/people.jpg";
 const roomPic = "../../images/people1.jpg";
 
 const useStyles = makeStyles((theme) => ({
-  root:{
+  root: {
     // backgroundColor: "#ffe0b2"
-
   },
   h1: {
     color: "#524a41f6",
@@ -54,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   singleMatch: {
     marginBottom: "2%",
   },
-  
+
   details: {
     paddingTop: "0.5%",
     paddingBottom: "0.5%",
@@ -110,27 +115,25 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonYes: {
     color: "#8bc34a",
-    marginLeft: "5%"
+    marginLeft: "5%",
   },
   buttonNo: {
     color: "#ff8a65",
-    
   },
   chatButton: {
     color: "#4db6ac",
-    marginLeft: "10%"
+    marginLeft: "10%",
   },
   buttonYesSS: {
     color: "#8bc34a",
-    marginLeft: "2%"
+    marginLeft: "2%",
   },
   buttonNoSS: {
     color: "#ff8a65",
-    
   },
   chatButtonSS: {
     color: "#4db6ac",
-    marginLeft: "10%"
+    marginLeft: "10%",
   },
 
   paperContainerLeft: {
@@ -139,7 +142,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(${friends1Pic})`,
     opacity: "100%",
     borderRadius: 10,
-
   },
   paperContainerRight: {
     backgroundSize: "cover",
@@ -154,39 +156,34 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "10%",
     paddingTop: "2%",
     paddingBottom: "2%",
-  }
-
+  },
 }));
-
-
-
-
 
 export default function ShowStatusMatch() {
   const classes = useStyles();
-  const { loading, statusMatch, error } = useStatusMatch();
+  const { loadingStatus, statusMatch, errorStatus } = useStatusMatch();
 
-  if (loading) {
+  if (loadingStatus) {
     return <p>Loading...</p>;
   }
-  if (error) {
-    return <p>Something went wrong: {error.message}</p>;
+  if (errorStatus) {
+    return <p>Something went wrong: {errorStatus.message}</p>;
   }
 
   console.log(statusMatch.pendingStatus);
   // Display a list of the authors
   return (
     <>
-    <div className="container-match-status">
-    <Hidden mdDown>
-      <h1 className={classes.h1}>Matching</h1>
-      <h2 className={classes.h2}>Status</h2>
-    </Hidden>
-    <Hidden lgUp>
-      <h1 className={classes.h1SS}>Matching</h1>
-      <h2 className={classes.h2SS}>Status</h2>
-    </Hidden>
-      <Box className={classes.line} borderTop={1}></Box>
+      <div className="container-match-status">
+        <Hidden mdDown>
+          <h1 className={classes.h1}>Matching</h1>
+          <h2 className={classes.h2}>Status</h2>
+        </Hidden>
+        <Hidden lgUp>
+          <h1 className={classes.h1SS}>Matching</h1>
+          <h2 className={classes.h2SS}>Status</h2>
+        </Hidden>
+        <Box className={classes.line} borderTop={1}></Box>
         {statusMatch.pendingStatus.map((userPending) => (
           <DivStatus
             key={userPending.accountId}
@@ -231,12 +228,10 @@ function DivStatus({ matchData, user }) {
           label: "No",
           onClick: () => {
             setChoice("yes");
-            
           },
         },
       ],
     });
-    
   }
 
   // alert submit button when roommee trying to remove someone on his/her match status
@@ -254,147 +249,165 @@ function DivStatus({ matchData, user }) {
   }
 
   return (
-    
     <div className={classes.root}>
-    <Hidden mdDown> 
-    <Grid
-      container
-      direction="row"
-      className={classes.singleMatch}
-    >
-      
-      <Grid xs={1}>
-      </Grid>
-      <Grid className={classes.sidePartLeft}xs={2}>
-        <Paper className={classes.paperContainerLeft}></Paper>
-      </Grid>
-      
+      <Hidden mdDown>
+        <Grid container direction="row" className={classes.singleMatch}>
+          <Grid xs={1}></Grid>
+          <Grid className={classes.sidePartLeft} xs={2}>
+            <Paper className={classes.paperContainerLeft}></Paper>
+          </Grid>
 
-      <Grid className={classes.statusSide} xs={6}>
-        
-        <div className={classes.containerSingleStatus}>
-        {choice === "yes" && (
-          <div className="match-status">
-            {/* <Paper className={classes.containerDetails}> */}
-            <Box className={classes.boxDetails} border={0}>
-              
-            <div className={classes.details}>
-              <p><b>Name: </b>{user.firstName + " " + user.surName}</p>
-              <p><b>Gender: </b>{user.gender}</p>
-              <p><b>Nationality: </b>{user.nationality}</p>
-              <p><b>Hobby: </b>{user.hobby}</p>
-              <p><b>Language: </b>{user.language}</p>
-              <p><b>Find a place to stay in: </b>{user.preferStay}</p>
-            </div>
-            
-            </Box>
-            {/* </Paper> */}
+          <Grid className={classes.statusSide} xs={6}>
+            <div className={classes.containerSingleStatus}>
+              {choice === "yes" && (
+                <div className="match-status">
+                  {/* <Paper className={classes.containerDetails}> */}
+                  <Box className={classes.boxDetails} border={0}>
+                    <div className={classes.details}>
+                      <p>
+                        <b>Name: </b>
+                        {user.firstName + " " + user.surName}
+                      </p>
+                      <p>
+                        <b>Gender: </b>
+                        {user.gender}
+                      </p>
+                      <p>
+                        <b>Nationality: </b>
+                        {user.nationality}
+                      </p>
+                      <p>
+                        <b>Hobby: </b>
+                        {user.hobby}
+                      </p>
+                      <p>
+                        <b>Language: </b>
+                        {user.language}
+                      </p>
+                      <p>
+                        <b>Find a place to stay in: </b>
+                        {user.preferStay}
+                      </p>
+                    </div>
+                  </Box>
+                  {/* </Paper> */}
 
-            {userStatusMatch.clickedMatch === user.accountId.toString() ? (
-              <p className={classes.currentMatchStatus}>
-                This is your roommee
-              </p>
-            ) : userStatusMatch.chat.indexOf(user.accountId.toString()) !== 1 ? (
-              <p className={classes.currentMatchStatus}>
-                Pending Invitation
-              </p>
-            ) : (
-              <>
-                <label className={classes.currentMatchStatus}>Go and Say Hi!</label>
-                <Button className={classes.chatButton} onClick={onChat}>
-                  Chat
-                </Button>
-              </>
-            )}
-            {userStatusMatch.clickedMatch !== user.accountId.toString() && (
-              <div className="status-buttons">
-                <label className={classes.ring}>Ring Roommee?</label>
-                <Button
-                  className={classes.buttonYes}
-                  onClick={() => {
-                    setChoice("yes");
-                  }}
-                >
-                  Yes
-                </Button>
-                <Button className={classes.buttonNo}
-                 onClick={onRemove}>
-                  No
-                </Button>
-              </div>
+                  {userStatusMatch.clickedMatch ===
+                  user.accountId.toString() ? (
+                    <p className={classes.currentMatchStatus}>
+                      This is your roommee
+                    </p>
+                  ) : userStatusMatch.chat.indexOf(
+                      user.accountId.toString()
+                    ) !== 1 ? (
+                    <p className={classes.currentMatchStatus}>
+                      Pending Invitation
+                    </p>
+                  ) : (
+                    <>
+                      <label className={classes.currentMatchStatus}>
+                        Go and Say Hi!
+                      </label>
+                      <Button className={classes.chatButton} onClick={onChat}>
+                        Chat
+                      </Button>
+                    </>
+                  )}
+                  {userStatusMatch.clickedMatch !==
+                    user.accountId.toString() && (
+                    <div className="status-buttons">
+                      <label className={classes.ring}>Remove Roommee?</label>
+
+                      <Button className={classes.buttonNo} onClick={onRemove}>
+                        Yes
+                      </Button>
+                    </div>
+                  )}
+                </div>
               )}
             </div>
-        )}
-        </div>
-        
-      </Grid>
-      
-      <Grid className={classes.sidePartRight}xs={2}>
-        <Paper className={classes.paperContainerRight}></Paper>
-      </Grid>
-      <Grid xs={1}>
-      </Grid>
-      
-    </Grid>
-    </Hidden>
+          </Grid>
 
-    <Hidden lgUp>
-      <div className={classes.containerSingleStatusSS}>
-        {choice === "yes" && (
-          <div className="match-status">
-            {/* <Paper className={classes.containerDetails}> */}
-            <Box className={classes.boxDetailsSS} border={0}>
-              
-            <div className={classes.detailsSS}>
-              <p><b>Name: </b>{user.firstName + " " + user.surName}</p>
-              <p><b>Gender: </b>{user.gender}</p>
-              <p><b>Nationality: </b>{user.nationality}</p>
-              <p><b>Hobby: </b>{user.hobby}</p>
-              <p><b>Language: </b>{user.language}</p>
-              <p><b>Find a place to stay in: </b>{user.preferStay}</p>
-            </div>
-            
-            </Box>
-            {/* </Paper> */}
-
-            {userStatusMatch.clickedMatch === user.accountId.toString() ? (
-              <p className={classes.currentMatchStatusSS}>
-                This is your roommee
-              </p>
-            ) : userStatusMatch.chat.indexOf(user.accountId.toString()) !== 1 ? (
-              <p className={classes.currentMatchStatusSS}>
-                Pending Invitation
-              </p>
-            ) : (
-              <>
-                <label className={classes.currentMatchStatusSS}>Go and Say Hi!</label>
-                <Button className={classes.chatButtonSS} onClick={onChat}>
-                  Chat
-                </Button>
-              </>
-            )}
-            {userStatusMatch.clickedMatch !== user.accountId.toString() && (
-              <div className="status-buttons">
-                <label className={classes.ringSS}>Ring Roommee?</label>
-                <Button
-                  className={classes.buttonYesSS}
-                  onClick={() => {
-                    setChoice("yes");
-                  }}
-                >
-                  Yes
-                </Button>
-                <Button className={classes.buttonNoSS}
-                 onClick={onRemove}>
-                  No
-                </Button>
-              </div>
-              )}
-            </div>
-        )}
-        </div>
+          <Grid className={classes.sidePartRight} xs={2}>
+            <Paper className={classes.paperContainerRight}></Paper>
+          </Grid>
+          <Grid xs={1}></Grid>
+        </Grid>
       </Hidden>
 
-  </div>              
+      <Hidden lgUp>
+        <div className={classes.containerSingleStatusSS}>
+          {choice === "yes" && (
+            <div className="match-status">
+              {/* <Paper className={classes.containerDetails}> */}
+              <Box className={classes.boxDetailsSS} border={0}>
+                <div className={classes.detailsSS}>
+                  <p>
+                    <b>Name: </b>
+                    {user.firstName + " " + user.surName}
+                  </p>
+                  <p>
+                    <b>Gender: </b>
+                    {user.gender}
+                  </p>
+                  <p>
+                    <b>Nationality: </b>
+                    {user.nationality}
+                  </p>
+                  <p>
+                    <b>Hobby: </b>
+                    {user.hobby}
+                  </p>
+                  <p>
+                    <b>Language: </b>
+                    {user.language}
+                  </p>
+                  <p>
+                    <b>Find a place to stay in: </b>
+                    {user.preferStay}
+                  </p>
+                </div>
+              </Box>
+
+              {userStatusMatch.clickedMatch === user.accountId.toString() ? (
+                <p className={classes.currentMatchStatusSS}>
+                  This is your roommee
+                </p>
+              ) : userStatusMatch.chat.indexOf(user.accountId.toString()) !==
+                1 ? (
+                <p className={classes.currentMatchStatusSS}>
+                  Pending Invitation
+                </p>
+              ) : (
+                <>
+                  <label className={classes.currentMatchStatusSS}>
+                    Go and Say Hi!
+                  </label>
+                  <Button className={classes.chatButtonSS} onClick={onChat}>
+                    Chat
+                  </Button>
+                </>
+              )}
+              {userStatusMatch.clickedMatch !== user.accountId.toString() && (
+                <div className="status-buttons">
+                  <label className={classes.ringSS}>Ring Roommee?</label>
+                  <Button
+                    className={classes.buttonYesSS}
+                    onClick={() => {
+                      setChoice("yes");
+                    }}
+                  >
+                    Yes
+                  </Button>
+                  <Button className={classes.buttonNoSS} onClick={onRemove}>
+                    No
+                  </Button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </Hidden>
+    </div>
   );
 }

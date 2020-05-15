@@ -12,21 +12,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
   },
-  paper: {
-    margin: theme.spacing(1),
-  },
-  svg: {
-    width: 100,
-    height: 100,
-  },
-  polygon: {
-    fill: theme.palette.common.white,
-    stroke: theme.palette.divider,
-    strokeWidth: 1,
-  },
 }));
 
-export default function SimpleFade({ func }) {
+export default function SimpleFade({ func, check }) {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
 
@@ -50,7 +38,7 @@ export default function SimpleFade({ func }) {
       />
       <div className={classes.container}>
         <Fade in={checked}>
-          <Typography>Invitation Sent!</Typography>
+          <Typography>You have rang this room!</Typography>
         </Fade>
       </div>
     </div>

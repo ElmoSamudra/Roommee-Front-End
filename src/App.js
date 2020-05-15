@@ -16,22 +16,28 @@ export default function App() {
   return (
     <Router>
       <div className="App">
-        <ButtonAppBar />
-        <Divider />
         <Switch>
           <Route exact path="/">
+            <ButtonAppBar />
+            <Divider />
             <Home />
           </Route>
 
           <Route exact path="/profile">
+            <ButtonAppBar />
+            <Divider />
             <ShowProfile />
           </Route>
 
           <Route exact path="/questionaire">
+            <ButtonAppBar />
+            <Divider />
             <ShowQuestionaire />
           </Route>
 
           <Route exact path="/matching">
+            <ButtonAppBar />
+            <Divider />
             <ShowMatch />
             <ToastContainer
               position="top-right"
@@ -49,6 +55,8 @@ export default function App() {
           </Route>
 
           <Route exact path="/matching-status">
+            <ButtonAppBar />
+            <Divider />
             <ShowStatusMatch />
           </Route>
         </Switch>

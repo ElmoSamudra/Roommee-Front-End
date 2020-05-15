@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import BinaryTabs from "../components/tab";
 import Hidden from "@material-ui/core/Hidden";
 import GenderBox from "../components/genderBox";
+import { Autocomplete } from "@material-ui/lab";
 
 //import Button from "../components/button";
 
@@ -44,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 40,
   },
   bannerContainer: {
-    maxHeight: "100%",
+    height: "auto",
     maxWidth: "100%",
-    paddingTop: 10,
+    // objectFit: "cover",
     borderBottomLeftRadius: 15,
     borderTopLeftRadius: 15,
   },
@@ -54,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
     paddingTop: 15,
+    height: "100%",
   },
   gridRight: {
     maxHeight: "100%",
@@ -83,6 +85,15 @@ const useStyles = makeStyles((theme) => ({
   inputTextP: {
     fontFamily: "Raleway, Arial",
   },
+  formbox: {
+    height: "100%",
+  },
+  bannerGrid: {
+    backgroundColor: "#392621",
+    marginTop: 10,
+    borderBottomLeftRadius: 15,
+    borderTopLeftRadius: 15,
+  },
 }));
 
 function Profile(profile) {
@@ -100,14 +111,14 @@ function Profile(profile) {
   } = profile;
   //const [showUpdate, setShowUpdate] = useState(false);
 
-  const [firstNameInput, setFirstName] = useState(firstName);
-  const [surNameInput, setSurName] = useState(surName);
-  const [ageInput, setAge] = useState(age);
-  const [genderInput, setGender] = useState(gender);
-  const [nationalityInput, setNationality] = useState(nationality);
-  const [hobbyInput, setHobby] = useState(hobby);
-  const [languageInput, setLanguage] = useState(language);
-  const [preferStayInput, setPreferStay] = useState(preferStay);
+  const [firstNameInput, setFirstName] = useState(firstName || []);
+  const [surNameInput, setSurName] = useState(surName || []);
+  const [ageInput, setAge] = useState(age || []);
+  const [genderInput, setGender] = useState(gender || []);
+  const [nationalityInput, setNationality] = useState(nationality || []);
+  const [hobbyInput, setHobby] = useState(hobby || []);
+  const [languageInput, setLanguage] = useState(language || []);
+  const [preferStayInput, setPreferStay] = useState(preferStay || []);
 
   function onSubmit() {
     // call upate author function
@@ -136,7 +147,7 @@ function Profile(profile) {
         // style={{ minHeight: "100vh" }}
       >
         <Hidden smDown>
-          <Grid item xs={4}>
+          <Grid item xs={4} className={classes.bannerGrid}>
             <img
               src={bannerPic}
               alt=""
@@ -152,7 +163,7 @@ function Profile(profile) {
             direction="column"
             className={classes.gridRight}
           >
-            <form>
+            <form className={classes.formbox}>
               <Grid item xs={12} className={classes.gridRightTop}>
                 <Box className={classes.profile}>
                   <Typography className={classes.H1}>My Profile</Typography>
