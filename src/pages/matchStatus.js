@@ -209,6 +209,13 @@ function DivStatus({ matchData, user }) {
     });
   }, [choice, user.accountId]);
 
+  async function removeUser() {
+    likeUser({
+      id: user.accountId,
+      ans: "no",
+    });
+  }
+
   // alert submit button when roommee trying to remove someone on his/her match status
   function onRemove() {
     confirmAlert({
@@ -218,11 +225,12 @@ function DivStatus({ matchData, user }) {
       buttons: [
         {
           label: "Yes",
-          onClick: () => {
-            setChoice("no");
-            //return;
-            window.location.href = "/matching-status";
+          onClick: async () => {
+            await removeUser();
+            window.location.reload();
           },
+          // window.location.href = "/matching-status";
+          //return;
         },
         {
           label: "No",

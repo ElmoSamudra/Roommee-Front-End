@@ -118,22 +118,25 @@ function Match(matches) {
   function nextMatch() {
     setIndex(index + 1);
     setCheck(fadeIndex[index]);
+    console.log(check);
     // setFade(true);
   }
 
   function prevMatch() {
     setIndex(index - 1);
     setCheck(fadeIndex[index]);
+    console.log(check);
   }
 
   const handleChange = async (index) => {
-    setCheck(!fadeIndex[index]);
-    console.log(check);
     fadeIndex[index] = !fadeIndex[index];
+    setCheck((prev) => !prev);
+    console.log(check);
+    console.log(fadeIndex[index]);
   };
   // choice is the yes or no button
   async function likedProfileChoice(choice) {
-    if (choice) {
+    if (!choice) {
       choice = "yes";
     } else {
       choice = "no";
