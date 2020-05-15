@@ -51,6 +51,11 @@ function App() {
             pauseOnHover
           />
         </Route>
+        <Route exact path="/home">
+          <ButtonAppBar />
+          <Divider />
+          <Home />
+        </Route>
         <Route exact path="/profile">
           <ButtonAppBar />
           <Divider />

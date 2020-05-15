@@ -56,7 +56,7 @@ export default function ButtonAppBar() {
           <Menu />
 
           <Typography variant="h6" className="nav-bar">
-            <NavLink exact to="/" className={classes.link}>
+            <NavLink exact to="/home" className={classes.link}>
               Home
             </NavLink>
           </Typography>

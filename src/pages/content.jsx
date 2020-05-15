@@ -1,16 +1,12 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Logo from "../images/roommeeLogo.png";
 
 const useStyles = makeStyles(() => ({
   buttonStyles: {
-    background: "#FCDB87",
-    color: "white",
-
-    fontWeight: "bold",
-    fontSize: "large",
+    background: "#fdeab9",
     maxWidth: "600px",
     maxHeight: "75px",
     minWidth: "100px",
@@ -41,13 +37,17 @@ const Content = () => {
         justify="space-evenly"
       >
         <Grid item>
-          <Button variant="contained" className={classes.buttonStyles} href="/">
-            List Property
+          <Button variant="contained" className={classes.buttonStyles} href="/home">
+            <Typography variant="h5">
+              List Property
+            </Typography>
           </Button>
         </Grid>
         <Grid item>
-          <Button variant="contained" className={classes.buttonStyles} href="/">
-            Find Roommee
+          <Button variant="contained" className={classes.buttonStyles} href="/matching">
+            <Typography variant="h5">
+              Find Roommee
+            </Typography>
           </Button>
         </Grid>
       </Grid>
