@@ -150,6 +150,11 @@ function FrontPage(details){
                 </Typography>
             </Button>
             </Grid>
+            <Grid item xs={12} align="center">
+                <Typography variant="h1" align="center">
+                    Details on how to find ROOMMEE!
+                </Typography>
+            </Grid>
         </Grid>
         </div>
     )
