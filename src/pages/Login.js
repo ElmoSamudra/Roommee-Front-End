@@ -7,6 +7,7 @@ import { Typography, makeStyles, Box } from '@material-ui/core'
 import FormLabel from '@material-ui/core/FormLabel';
 import Hidden from '@material-ui/core/Hidden';
 import Zoom from '@material-ui/core/Zoom';
+import {useDispatch} from "react-redux";
 
 const frontImage = '../../images/frontphotoedited.png'
 const humanImage = '../../images/human.png'
@@ -54,27 +55,54 @@ function FrontPage(details){
 
     const [checked, setChecked] = React.useState(true);
 
+
+    //Setting up REDUX to save to store what is the current page for later use in the navigation bar
+    const dispatch = useDispatch()
+    const setLogPage = ()=>{
+        return {
+            type: 'LOGIN'
+        }
+    }
+    dispatch(setLogPage())
+
     async function onSubmit(e) {
         e.preventDefault()
-        let result = await logIn({
-            email: emailInput,
-            password: passwordInput,
-        });
+        try{
 
-        if(result.status === 200){
-            history.push("/profile")
-        }
-        else {
-            toast.info('😺 Please input all fields correctly!', {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                transition: Flip
+
+            let result = await logIn({
+                email: emailInput,
+                password: passwordInput,
             });
+
+            if (result){
+
+                if(result.status === 200){
+                    let resultInJSON = await result.json();
+                    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" + resultInJSON.account)
+                    localStorage.setItem("token", resultInJSON.token)
+                    localStorage.setItem("account", resultInJSON.account)
+                    history.push("/myaccount")
+                }
+                else {
+                    toast.info('😺 Please input all fields correctly!', {
+                        position: "top-center",
+                        autoClose: 1000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        transition: Flip
+                    });
+                }
+
+            }else {
+                history.push("/404")
+            }
+
+        }catch (e) {
+            history.push("/404")
         }
     }
     

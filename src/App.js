@@ -6,15 +6,16 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './components/Footer';
 import Header1 from './components/Header1';
-import Header2 from './components/Header2';
+import AccountCard from './pages/MyAccount';
+
 
 
 function App() {
   return (
     <Router>
+      <Header1 />
       <Switch>
         <Route exact path="/">
-          <Header1 />
           <FrontPage/>
           <ToastContainer
             position="top-center"
@@ -29,7 +30,6 @@ function App() {
           />
         </Route>
         <Route exact path="/register">
-          <Header2 />  
           <Register/>
           <ToastContainer
             position="top-center"
@@ -42,6 +42,27 @@ function App() {
             draggable
             pauseOnHover
           />
+        </Route>
+        <Route path="/myaccount">
+          <AccountCard/>
+          <ToastContainer
+              position="top-center"
+              autoClose={1000}
+              hideProgressBar
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+          />
+        </Route>
+        <Route path="/404">
+          <div>
+            <h1>
+              404 Error - backend server is down, try to reconnect later
+            </h1>
+          </div>
         </Route>
       </Switch>
       <Footer />

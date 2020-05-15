@@ -5,6 +5,7 @@ import { toast, Flip } from 'react-toastify';
 import { Button, TextField, Checkbox, makeStyles, Grid} from '@material-ui/core';
 import { Typography, Box } from '@material-ui/core'
 
+
 const useStyles = makeStyles((theme) => ({
     entireGrid:{
         backgroundColor: "#f9eadf"
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Register(){
+export default function Register(){
 
     const classes = useStyles();
 
@@ -83,6 +84,7 @@ function Register(){
                 transition: Flip
             });
         }
+
     }
     
     return (
@@ -172,4 +174,3 @@ function Register(){
         </Grid>
     )
 }
-export default Register;
