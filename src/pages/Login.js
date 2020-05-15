@@ -139,9 +139,9 @@ function FrontPage(details){
                     </Typography>
                     <Typography variant='h5'>
                         <br/>
-                        •Personalised matching<br/>
-                        •Find housing together with your mate in app<br/>
-                        •Connecting you to your favourite utilities
+                        Personalised matching<br/>
+                        Find housing together with your mate in app<br/>
+                        Connecting you to your favourite utilities
                     </Typography>
                 </Box>
             </Grid>
