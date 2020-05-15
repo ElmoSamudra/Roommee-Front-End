@@ -27,27 +27,39 @@ function Register(){
 
     const [nameInput, setFirstName] = useState("");
     const [surInput, setLastName] = useState("");
-    const [emailInput, setEmail] = useState();
+    const [emailInput, setEmail] = useState("");
     const [passwordInput, setPassword] = useState("");
     const [termsInput, setTerms] = useState(false);
 
     async function onSubmit(e) {
-
-        if(nameInput === "" || surInput === "" || emailInput === "" || passwordInput === ""){
-            if(termsInput === false){
-                toast.info('😿 We cannot continue without you agreeing to our Terms and Conditions!', {
-                    position: "top-center",
-                    autoClose: 1000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    transition: Flip
-                });
-            }
-        }
         e.preventDefault()
+        if(nameInput === "" || surInput === "" || emailInput === "" || passwordInput === ""){
+            toast.info('😿 please fill all fields!', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                transition: Flip
+            });
+            return
+        }
+        if(termsInput === false){
+            toast.info('😿 We cannot continue without you agreeing to our Terms and Conditions!', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                transition: Flip
+            });
+            return
+        }
+
         let result = await signUp({
             name: nameInput,
             surname: surInput,
@@ -56,23 +68,21 @@ function Register(){
             terms: termsInput
         });
 
-        console.log(result.error)
-
-        // if(result.status === 201){
-        //     history.push("/profile")
-        // }
-        // else if(result.status === 0){
-        //     toast.info('😺 firstname must be !', {
-        //         position: "top-center",
-        //         autoClose: 1000,
-        //         hideProgressBar: true,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         transition: Flip
-        //     });
-        // }
+        if(result.status === 201){
+            history.push("/profile")
+        }
+        else if(result.status === 400){
+            toast.info(result.statusText, {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                transition: Flip
+            });
+        }
     }
     
     return (
