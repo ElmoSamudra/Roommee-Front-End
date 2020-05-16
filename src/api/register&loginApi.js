@@ -41,6 +41,7 @@ export function logIn(details) {
   }
 
   const endpoint = BASE_URL + `/account-management/accounts/login`;
+  console.log(endpoint);
   console.log("user loging in");
   console.log(details);
   return fetch(endpoint, {
