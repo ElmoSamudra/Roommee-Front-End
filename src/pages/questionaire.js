@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "7%",
     paddingRight: "13%",
     paddingBottom: "13%",
-    paddingLeft: "13%",
+    paddingLeft: "7%",
     color: "#524a41f6",
     fontFamily: "Raleway, Arial",
     fontSize: 60,
