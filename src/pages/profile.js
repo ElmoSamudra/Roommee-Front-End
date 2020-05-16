@@ -256,6 +256,7 @@ function Profile(profile) {
                         onChange={(event) => {
                           setHobby(event.target.value);
                         }}
+                        required
                       />
                     </Grid>
 
@@ -271,6 +272,7 @@ function Profile(profile) {
                         onChange={(event) => {
                           setLanguage(event.target.value);
                         }}
+                        required
                       />
                     </Grid>
 
@@ -286,6 +288,7 @@ function Profile(profile) {
                         onChange={(event) => {
                           setPreferStay(event.target.value);
                         }}
+                        required
                       />
                     </Grid>
                   </Grid>
@@ -418,6 +421,7 @@ function Profile(profile) {
                         onChange={(event) => {
                           setHobby(event.target.value);
                         }}
+                        required
                       />
                     </Grid>
 
@@ -433,6 +437,7 @@ function Profile(profile) {
                         onChange={(event) => {
                           setLanguage(event.target.value);
                         }}
+                        required
                       />
                     </Grid>
 
@@ -448,6 +453,7 @@ function Profile(profile) {
                         onChange={(event) => {
                           setPreferStay(event.target.value);
                         }}
+                        required
                       />
                     </Grid>
                   </Grid>

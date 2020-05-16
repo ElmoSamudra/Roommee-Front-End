@@ -392,11 +392,11 @@ function Questionaire(questionaire) {
           <Hidden mdDown>
             <div className={classes.text}>
               <Typography variant="subtitle1" className={classes.H1}>
-                Questionaire
+                Questionnaire
               </Typography>
 
               <Typography variant="subtitle1" className={classes.subtitle}>
-                Please fill the questionaire so we can find your perfect
+                Please fill the questionnaire so we can find your perfect
                 Roommee!
               </Typography>
             </div>

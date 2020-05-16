@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
     height: 38,
     width: 38,
   },
+  buttonProfile: {
+    margin: "auto",
+    padding: "5%"
+  }
   // buttonMatch{
   //     margin:"auto",
   // }
@@ -52,17 +56,17 @@ export default function MatchControlCard({ state }) {
         <CardContent className={classes.content}>
           {state === true ? (
             <Typography variant="h5">
-              Try to use our matching algorithm to get the right fit for your
+              Try using our matching algorithm to get the right fit for your
               roommee
             </Typography>
           ) : (
             <Typography variant="h5">
-              Please fill in the profile and questionnaire form above to find a
-              roommee
+              Please fill in the profile form to get started
             </Typography>
           )}
         </CardContent>
         <div className={classes.controls}>
+        {state === true ? (
           <Button
             variant="contained"
             href="/matching"
@@ -70,6 +74,15 @@ export default function MatchControlCard({ state }) {
           >
             <Typography variant="h5">Find Roommee</Typography>
           </Button>
+           ) : (
+            <Button
+            variant="contained"
+            href="/profile"
+            className={classes.buttonProfile}
+          >
+            <Typography variant="h5"> Create Profile</Typography>
+            </Button>
+           )}
         </div>
       </div>
       <CardMedia

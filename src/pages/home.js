@@ -89,7 +89,7 @@ function FrontPage() {
 
         <Grid item xs={12} align="center">
           <Zoom in={checked} timeout={{ enter: 1500 }}>
-            <Typography variant="subtitle2" align="center">
+            <Typography variant="subtitle1" align="center">
               Dedicated in helping everyone find their mates everyday.
             </Typography>
           </Zoom>
@@ -101,7 +101,7 @@ function FrontPage() {
         {userProfile.age === undefined &&
         userQuestionaire.filter1.sameNationalityPref === "" ? (
           <>
-            <Grid item xs={6} align="center" className={classes.login}>
+            {/* <Grid item xs={12} align="center" className={classes.login}>
               <Button
                 variant="contained"
                 className={classes.buttonStyles}
@@ -109,8 +109,8 @@ function FrontPage() {
               >
                 <Typography variant="h5">Profile</Typography>
               </Button>
-            </Grid>
-            <Grid item xs={6} align="center">
+            </Grid> */}
+            {/* <Grid item xs={6} align="center">
               <Button
                 variant="contained"
                 className={classes.buttonStyles}
@@ -118,7 +118,7 @@ function FrontPage() {
               >
                 <Typography variant="h5">Questionnaire</Typography>
               </Button>
-            </Grid>
+            </Grid> */}
           </>
         ) : (
           <>
