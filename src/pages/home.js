@@ -23,12 +23,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "20px",
   },
   frontImage: {
-    height: "100%",
-    backgroundImage: `url(${frontImage})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "auto",
-    backgroundPositionY: "10px",
+    backgroundColor: "#fdf8f4"
     paddingBottom: "50px",
   },
   login: {
