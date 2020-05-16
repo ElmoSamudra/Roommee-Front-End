@@ -98,8 +98,6 @@ function FrontPage(details) {
   }
 
   return (
-    <ThemeProvider theme={Theme}>
-    <Cssbaseline/>
     <div>
       <Grid container spacing={2} className={classes.frontImage}>
         <Grid item xs={12} align="center" className={classes.paddings}>
@@ -224,7 +222,6 @@ function FrontPage(details) {
         </Grid>
       </Grid>
     </div>
-    </ThemeProvider>
   );
 }
 export default FrontPage;
