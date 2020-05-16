@@ -90,11 +90,5 @@ export async function  getAccount() {
         console.log(e)
         return null;
       }
-    } else {
-      return null;
-    }
-  } catch (e) {
-    console.log(e);
-    return null;
-  }
 }
+
