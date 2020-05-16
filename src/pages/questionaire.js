@@ -313,6 +313,12 @@ function Questionaire(questionaire) {
                 type="number"
                 name="ageFrom"
                 value={ageFromInput}
+                InputProps={{
+                  inputProps: {
+                    max: 100,
+                    min: 18,
+                  },
+                }}
                 onChange={(event) => {
                   setAgeFrom(event.target.value);
                 }}
@@ -325,6 +331,12 @@ function Questionaire(questionaire) {
               <TextField
                 type="number"
                 name="ageTo"
+                InputProps={{
+                  inputProps: {
+                    max: 100,
+                    min: 18,
+                  },
+                }}
                 value={ageToInput}
                 onChange={(event) => {
                   //setAgeDiffRange(ageDiffRangeInput);

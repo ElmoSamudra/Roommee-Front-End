@@ -158,13 +158,16 @@ function Profile(profile) {
   }
 
   async function validate() {
+    console.log(languageInput);
     if (
       firstNameInput === "" ||
       surNameInput === "" ||
       genderInput === "" ||
       nationalityInput === "" ||
-      languageInput === [""] ||
-      preferStayInput[0] === ""
+      languageInput[0] === "" ||
+      languageInput === "" ||
+      preferStayInput[0] === "" ||
+      preferStayInput === ""
     ) {
       return false;
     } else {
@@ -443,7 +446,7 @@ function Profile(profile) {
                       <Typography className={classes.inputTextP}>
                         <label>Nationality: </label>
                       </Typography>
-                      <Input
+                      <TextField
                         name="nationality"
                         value={nationalityInput}
                         variant="outlined"
