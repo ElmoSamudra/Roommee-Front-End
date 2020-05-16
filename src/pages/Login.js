@@ -117,22 +117,24 @@ function FrontPage(details) {
             <br />
           </Typography>
         </Grid>
-
-        <Grid item xs={6} align="center" className={classes.login}>
-          <Box>
-            <Typography variant="h3">
-              Match with your future roommates with Roommee.
-            </Typography>
-            <Typography variant="h5">
-              <br />
-              Personalised matching
-              <br />
-              Find housing together with your mate in app
-              <br />
-              Connecting you to your favourite utilities
-            </Typography>
-          </Box>
-        </Grid>
+        <Hidden only={["xs", "sm"]}>
+          <Grid item xs={6} align="center" className={classes.login}>
+            <Box>
+              <Typography variant="h3">
+                Match with your future roommates with Roommee.
+              </Typography>
+              <Typography variant="h5">
+                <br />
+                Personalised matching
+                <br />
+                Find housing together with your mate in app
+                <br />
+                Connecting you to your favourite utilities
+              </Typography>
+            </Box>
+          </Grid>
+        </Hidden>
+        
 
         <Grid item xs={6} align="center">
           <Typography variant="h3" className={classes.formStyle}>
