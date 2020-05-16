@@ -4,7 +4,7 @@ import { Typography, makeStyles, Box } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
 import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
-
+import MatchControlCard from "../components/matchCard";
 const frontImage = "../../images/frontphotoedited.png";
 const logoImage = "../../images/roommeeLogo2.png";
 
@@ -71,10 +71,10 @@ function FrontPage() {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
 
-  console.log(userProfile.age)
+  console.log(userProfile.age);
   console.log(userQuestionaire);
   console.log(userProfile);
-  console.log(userQuestionaire.filter1.sameNationalityPref)
+  console.log(userQuestionaire.filter1.sameNationalityPref);
 
   return (
     <div>
@@ -122,7 +122,7 @@ function FrontPage() {
           </>
         ) : (
           <>
-            <Grid item xs={6} align="center" className={classes.login}>
+            {/* <Grid item xs={6} align="center" className={classes.login}>
               <Button
                 variant="contained"
                 className={classes.buttonStyles}
@@ -140,16 +140,22 @@ function FrontPage() {
               >
                 <Typography variant="h5">Find Roommee</Typography>
               </Button>
-            </Grid>
+            </Grid> */}
           </>
         )}
-
+        {/* 
         <Grid item xs={12} align="center">
           <Typography variant="h1" align="center">
             Details on how to find ROOMMEE!
           </Typography>
-        </Grid>
+        </Grid> */}
       </Grid>
+      {userProfile.age !== undefined &&
+      userQuestionaire.filter1.sameNationalityPref !== "" ? (
+        <MatchControlCard state={true} />
+      ) : (
+        <MatchControlCard state={false} />
+      )}
     </div>
   );
 }
