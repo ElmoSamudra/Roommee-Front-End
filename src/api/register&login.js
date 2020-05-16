@@ -70,7 +70,7 @@ export async function  getAccount() {
         if (token != null ) {
 
             try {
-                response = await fetch("http://localhost:3000/account-management/accounts/me", {
+                response = await fetch(BASE_URL + "/account-management/accounts/me", {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',

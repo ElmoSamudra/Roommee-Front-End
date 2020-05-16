@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {getAccount, logIn} from "../api";
+import {getAccount, logIn} from "../api/register&login";
 import { withRouter } from "react-router-dom";
 import { toast, Flip } from 'react-toastify';
 import { Button, TextField, makeStyles, Grid} from '@material-ui/core';

@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import { logIn } from "../api";
-import { useHistory } from "react-router-dom";
-import { toast, Flip } from 'react-toastify';
 import { Button, Grid, TextField } from '@material-ui/core';
 import { Typography, makeStyles, Box } from '@material-ui/core'
-import FormLabel from '@material-ui/core/FormLabel';
-import Hidden from '@material-ui/core/Hidden';
 import Zoom from '@material-ui/core/Zoom';
 import {useDispatch} from "react-redux";
 
@@ -50,15 +45,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function FrontPage(details){
-
-    const { email, password } = details;
+function FrontPage(){
     const classes = useStyles();
-
-    let history = useHistory();
-
-    const [emailInput, setEmail] = useState(email);
-    const [passwordInput, setPassword] = useState(password);
 
     const [checked, setChecked] = React.useState(true);
 
@@ -71,47 +59,6 @@ function FrontPage(details){
         }
     }
     dispatch(setLogPage())
-
-    async function onSubmit(e) {
-        e.preventDefault()
-        try{
-
-
-            let result = await logIn({
-                email: emailInput,
-                password: passwordInput,
-            });
-
-            if (result){
-
-                if(result.status === 200){
-                    let resultInJSON = await result.json();
-                    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" + resultInJSON.account)
-                    localStorage.setItem("token", resultInJSON.token)
-                    localStorage.setItem("account", resultInJSON.account)
-                    history.push("/myaccount")
-                }
-                else {
-                    toast.info('😺 Please input all fields correctly!', {
-                        position: "top-center",
-                        autoClose: 1000,
-                        hideProgressBar: true,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        transition: Flip
-                    });
-                }
-
-            }else {
-                history.push("/404")
-            }
-
-        }catch (e) {
-            history.push("/404")
-        }
-    }
     
     return (
         <div>
