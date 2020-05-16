@@ -5,8 +5,7 @@ import Zoom from "@material-ui/core/Zoom";
 import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
 import MatchControlCard from "../components/matchCard";
-const frontImage = "/images/frontphotoedited.png";
-const logoImage = "/images/roommeeLogo2.png";
+const logoImage = "/images/roommeelogo2.png";
 
 const useStyles = makeStyles((theme) => ({
   paddings: {
