@@ -4,6 +4,8 @@ import { Typography, makeStyles, Box } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
 import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
+import MatchControlCard from "../components/matchCard";
+import { CommunicationSpeakerPhone } from "material-ui/svg-icons";
 
 const frontImage = "../../images/frontphotoedited.png";
 const logoImage = "../../images/roommeeLogo2.png";
@@ -55,24 +57,12 @@ function FrontPage() {
     errorQuestionaire,
   } = useQuestionaire();
 
-  // //Setting up REDUX to save to store what is the current page for later use in the navigation bar
-  // const dispatch = useDispatch();
-  // const setLogPage = () => {
-  //   return {
-  //     type: "LOGIN",
-  //   };
-  // };
-  // dispatch(setLogPage());
-
   if (loadingProfile || loadingQuestionaire) {
     return <p>Loading...</p>;
   }
   if (errorProfile || errorQuestionaire) {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
-
-  console.log(userQuestionaire);
-  console.log(userProfile);
 
   return (
     <div>
@@ -96,8 +86,8 @@ function FrontPage() {
           </Typography>
         </Grid>
 
-        {userProfile.age !== 0 &&
-        userQuestionaire.filter1.sameNationalityPref === undefined ? (
+        {userProfile.age === undefined &&
+        userQuestionaire.filter1.sameNationalityPref === "" ? (
           <>
             <Grid item xs={6} align="center" className={classes.login}>
               <Button
@@ -119,35 +109,16 @@ function FrontPage() {
             </Grid>
           </>
         ) : (
-          <>
-            <Grid item xs={6} align="center" className={classes.login}>
-              <Button
-                variant="contained"
-                className={classes.buttonStyles}
-                href="/home"
-              >
-                <Typography variant="h5">List Property</Typography>
-              </Button>
-            </Grid>
-
-            <Grid item xs={6} align="center">
-              <Button
-                variant="contained"
-                className={classes.buttonStyles}
-                href="/matching"
-              >
-                <Typography variant="h5">Find Roommee</Typography>
-              </Button>
-            </Grid>
-          </>
+          <></>
         )}
-
-        <Grid item xs={12} align="center">
-          <Typography variant="h1" align="center">
-            Details on how to find ROOMMEE!
-          </Typography>
-        </Grid>
       </Grid>
+
+      {userProfile.age !== undefined &&
+      userQuestionaire.filter1.sameNationalityPref !== "" ? (
+        <MatchControlCard state={true} />
+      ) : (
+        <MatchControlCard state={false} />
+      )}
     </div>
   );
 }

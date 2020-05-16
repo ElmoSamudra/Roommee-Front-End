@@ -173,7 +173,7 @@ function Match(matches) {
         progress: undefined,
       });
     } else {
-      toast.info("Whoops!", {
+      toast.info("Ooo you changed your mine?", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
