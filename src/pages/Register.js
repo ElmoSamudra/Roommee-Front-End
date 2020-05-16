@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { signUp } from "../api/register&loginApi";
 import { useHistory } from "react-router-dom";
 import { toast, Flip } from "react-toastify";
+import { useDispatch } from "react-redux";
 import {
   Button,
   TextField,
@@ -29,6 +30,15 @@ export default function Register() {
   const classes = useStyles();
 
   let history = useHistory();
+
+  const dispatch = useDispatch();
+  const setLogPage = () => {
+    return {
+      type: "REGISTER",
+    };
+  };
+
+  dispatch(setLogPage());
 
   const [nameInput, setFirstName] = useState("");
   const [surInput, setLastName] = useState("");
