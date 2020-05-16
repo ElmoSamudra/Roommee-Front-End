@@ -5,7 +5,7 @@ import Zoom from '@material-ui/core/Zoom';
 import {useDispatch} from "react-redux";
 
 const frontImage = './../images/frontphotoedited.png';
-const logoImage = './../images/roommeeLogo2.png'
+const logoImage = '/images/roommeeLogo2.png'
 
 const useStyles = makeStyles((theme) => ({
     paddings:{
@@ -64,7 +64,7 @@ function FrontPage(){
             <Grid item xs={12} align="center" className={classes.paddings} >
                 <Box>
                     <Zoom in={checked} timeout={{enter: 1500}}>
-                        <img src={logoImage} alt="logoImage"/>
+                        <img src={process.env.PUBLIC_URL + logoImage} alt="logoImage"/>
                     </Zoom>
                 </Box>
             </Grid>
