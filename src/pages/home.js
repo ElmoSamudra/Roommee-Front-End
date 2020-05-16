@@ -4,8 +4,8 @@ import { Typography, makeStyles, Box } from '@material-ui/core'
 import Zoom from '@material-ui/core/Zoom';
 import {useDispatch} from "react-redux";
 
-const frontImage = process.env.PUBLIC_URL + '/images/frontphotoedited.png'
-const logoImage = process.env.PUBLIC_URL + '/images/roommeeLogo2.png'
+import frontImage from process.env.PUBLIC_URL + '/images/frontphotoedited.png'
+import logoImage from process.env.PUBLIC_URL + '/images/roommeeLogo2.png'
 
 const useStyles = makeStyles((theme) => ({
     paddings:{
