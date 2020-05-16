@@ -5,11 +5,18 @@ import FormControlLabelPlacement from "../components/radio";
 import "../styles.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography, Paper, TextField, Button, Hidden } from "@material-ui/core";
+import {
+  Typography,
+  Paper,
+  TextField,
+  Button,
+  Hidden,
+} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 //import Button from "../components/button";
 
-const friendsPic = "../../images/room1.jpg";
+// const friendsPic = "../../images/room1.jpg";
+const friendsPic = process.env.PUBLIC_URL + "/images/room1.jpg";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -19,19 +26,19 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "3%",
     marginBottom: "3%",
     //backgroundColor: "#fdc8b2",
-    borderRadius: 10
+    borderRadius: 10,
   },
   paperContainer: {
     height: 1000,
     //width: 560,
     backgroundImage: `url(${friendsPic})`,
-    backgroundSize: "cover"
+    backgroundSize: "cover",
   },
   questionairePart: {},
   text: {
     backgroundColor: "#fdc8b2",
     borderTopLeftRadius: 10,
-    borderTopRightRadius: 10
+    borderTopRightRadius: 10,
   },
   H1: {
     paddingTop: "7%",
@@ -40,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "13%",
     color: "#524a41f6",
     fontFamily: "Raleway, Arial",
-    fontSize: 60
+    fontSize: 60,
   },
   subtitle: {
     paddingLeft: "13%",
@@ -54,21 +61,36 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "40%",
     marginTop: "20%",
     padding: "4%",
-    fontSize: 18
+    fontSize: 18,
   },
   updateButtonSS: {
     color: "#524a41f6",
     marginLeft: "4%",
     marginTop: "20%",
     padding: "4%",
-    fontSize: 18
+    fontSize: 18,
+  },
+  matchingButton: {
+    color: "#524a41f6",
+    marginLeft: "25%",
+    marginTop: "5%",
+    padding: "4%",
+    fontSize: 18,
+    marginBottom: "3%",
+  },
+  matchingButtonSS: {
+    color: "#524a41f6",
+    marginLeft: "4%",
+    marginTop: "5%",
+    padding: "4%",
+    fontSize: 18,
+    marginBottom: "3%",
   },
   question: {
     fontFamily: "Arial",
     fontSize: "18px",
     color: "#524a41f6",
   },
-  
 }));
 
 export default function ShowQuestionaire() {
@@ -188,7 +210,8 @@ function Questionaire(questionaire) {
                 Do you prefer to have the same nationality for your Roommee?
               </label>
               <br></br>
-              <FormControlLabelPlacement className={classes.radioButton}
+              <FormControlLabelPlacement
+                className={classes.radioButton}
                 initValue={sameNationalityPrefInput}
                 set={setSameNationalityPref}
               />
@@ -344,40 +367,60 @@ function Questionaire(questionaire) {
             </form>
           </div>
           <Hidden lgUp>
-          <Button
-            variant="outlined"
-            className={classes.updateButtonSS}
-            onClick={onSubmit}
-          >
-            Update
-          </Button>
+            <Grid xs={12} item>
+              <Button
+                variant="outlined"
+                className={classes.updateButtonSS}
+                onClick={onSubmit}
+              >
+                Update
+              </Button>
+            </Grid>
+            <Grid xs={12} item>
+              <Button
+                variant="outlined"
+                className={classes.matchingButtonSS}
+                href="/matching"
+              >
+                Go to Matching Page
+              </Button>
+            </Grid>
           </Hidden>
         </Grid>
 
-               
         <Grid className={classes.sidePart} xs={4}>
-        <Hidden mdDown>
-          <div className={classes.text}>
-            
-            <Typography variant="subtitle1" className={classes.H1}>
-              Questionaire
-            </Typography>
+          <Hidden mdDown>
+            <div className={classes.text}>
+              <Typography variant="subtitle1" className={classes.H1}>
+                Questionaire
+              </Typography>
 
-            <Typography variant="subtitle1" className={classes.subtitle}>
-              Please fill the questionaire so we can find your perfect Roommee!
-            </Typography>
-          </div>
-        
+              <Typography variant="subtitle1" className={classes.subtitle}>
+                Please fill the questionaire so we can find your perfect
+                Roommee!
+              </Typography>
+            </div>
 
-          <Paper className={classes.paperContainer}></Paper>
-          
-          <Button
-            variant="outlined"
-            className={classes.updateButton}
-            onClick={onSubmit}
-          >
-            Update
-          </Button>
+            <Paper className={classes.paperContainer}></Paper>
+
+            <Grid xs={12} item>
+              <Button
+                variant="outlined"
+                className={classes.updateButton}
+                onClick={onSubmit}
+              >
+                Update
+              </Button>
+            </Grid>
+            <Grid xs={12} item>
+              <Button
+                variant="outlined"
+                className={classes.matchingButton}
+                href="/matching"
+              >
+                Go to Matching Page
+              </Button>
+            </Grid>
           </Hidden>
         </Grid>
       </Grid>

@@ -1,7 +1,7 @@
-// import React from "react";
+import React from "react";
 
-//const BASE_URL = "https://roommee.herokuapp.com";
-const BASE_URL ='http://localhost:3000'
+const BASE_URL = "https://roommee.herokuapp.com";
+
 export function signUp(details) {
   const { name, surname, email, password, terms } = details;
 
@@ -57,35 +57,30 @@ export function logIn(details) {
     return res;
   });
 }
-//next phase
+
 export async function getAccount() {
-  return;
-  // try{
-  //     const token = localStorage.token;
-  // let response = null
-  // if (token != null ) {
-
-  //     try {
-  //         response = await fetch(BASE_URL + "/account-management/accounts/me", {
-  //             method: "GET",
-  //             headers: {
-  //                 'Content-Type': 'application/json',
-  //                 Accept: 'application/json',
-  //                 'Authorization': `Bearer ${token}`
-  //             }
-  //         })
-  //         return response
-
-  //     }catch (e) {
-  //         return null
-  //     }
-
-  // } else {
-  //     return null;
-  // }
-
-  // }catch (e) {
-  //     console.log(e)
-  //     return null;
-  //   }
+  try {
+    const token = localStorage.token;
+    let response = null;
+    if (token != null) {
+      try {
+        response = await fetch(BASE_URL + "/account-management/accounts/me", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return response;
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
 }

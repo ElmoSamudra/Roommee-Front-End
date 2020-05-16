@@ -32,7 +32,10 @@ export default function ShowProfile() {
   );
 }
 
-const bannerPic = "../../images/katarzyna-grabowska-oA1-rirIJ2E-unsplash.jpg";
+// const bannerPic = "../../images/katarzyna-grabowska-oA1-rirIJ2E-unsplash.jpg";
+const bannerPic =
+  process.env.PUBLIC_URL +
+  "/images/katarzyna-grabowska-oA1-rirIJ2E-unsplash.jpg";
 const useStyles = makeStyles((theme) => ({
   profile: {
     paddingLeft: "10%",
@@ -63,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 10,
     // maxHeight: "100%",
     height: "80%",
+    paddingBottom: 40,
   },
   gridRightBottom: {
     backgroundColor: "#E3D1BA",
@@ -287,16 +291,34 @@ function Profile(profile) {
                   </Grid>
                 </Box>
               </Grid>
-              <Grid item className={classes.gridRightBottom} align="center">
-                <Box mx="auto" className={classes.updateButton}>
-                  <Button
-                    variant="outlined"
-                    // className={classes.updateButton}
-                    onClick={onSubmit}
-                  >
-                    Update
-                  </Button>
-                </Box>
+              <Grid
+                item
+                container
+                className={classes.gridRightBottom}
+                align="center"
+              >
+                <Grid xs={6} item>
+                  <Box mx="auto" className={classes.updateButton}>
+                    <Button
+                      variant="outlined"
+                      // className={classes.updateButton}
+                      onClick={onSubmit}
+                    >
+                      Update
+                    </Button>
+                  </Box>
+                </Grid>
+                <Grid xs={6} item>
+                  <Box mx="auto" className={classes.updateButton}>
+                    <Button
+                      variant="outlined"
+                      // className={classes.updateButton}
+                      href="/questionaire"
+                    >
+                      Go to Questionnaire page
+                    </Button>
+                  </Box>
+                </Grid>
               </Grid>
             </form>
           </Grid>
@@ -431,16 +453,34 @@ function Profile(profile) {
                   </Grid>
                 </Box>
               </Grid>
-              <Grid item className={classes.gridRightBottom} align="center">
-                <Box mx="auto" className={classes.updateButton}>
-                  <Button
-                    variant="outlined"
-                    // className={classes.updateButton}
-                    onClick={onSubmit}
-                  >
-                    Update
-                  </Button>
-                </Box>
+              <Grid
+                item
+                container
+                className={classes.gridRightBottom}
+                align="center"
+              >
+                <Grid item xs={6}>
+                  <Box mx="auto" className={classes.updateButton}>
+                    <Button
+                      variant="outlined"
+                      // className={classes.updateButton}
+                      onClick={onSubmit}
+                    >
+                      Update
+                    </Button>
+                  </Box>
+                </Grid>
+                <Grid>
+                  <Box mx="auto" className={classes.updateButton}>
+                    <Button
+                      variant="outlined"
+                      // className={classes.updateButton}
+                      href="/questionaire"
+                    >
+                      Go to Questionnaire page
+                    </Button>
+                  </Box>
+                </Grid>
               </Grid>
             </form>
           </Grid>

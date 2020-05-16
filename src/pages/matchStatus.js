@@ -15,8 +15,10 @@ import {
 import { borders } from "@material-ui/system";
 import { Redirect } from "react-router-dom";
 
-const friends1Pic = "../../images/people.jpg";
-const roomPic = "../../images/people1.jpg";
+// const friends1Pic = "../../images/people.jpg";
+const friends1Pic = process.env.PUBLIC_URL + "/images/people.jpg";
+// const roomPic = "../../images/people1.jpg";
+const roomPic = process.env.PUBLIC_URL + "/images/people1.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -228,10 +230,9 @@ function DivStatus({ matchData, user }) {
           label: "Yes",
           onClick: async () => {
             await removeUser();
-            window.location.reload();
+            setTimeout(function(){window.location.reload()}, 2000);
           },
-          // window.location.href = "/matching-status";
-          //return;
+          
         },
         {
           label: "No",

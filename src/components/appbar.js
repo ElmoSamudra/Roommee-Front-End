@@ -61,11 +61,6 @@ export default function ButtonAppBar() {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
 
-
-
-
-
-
   // console.log(userQuestionaire);
   // console.log(userProfile);
 
