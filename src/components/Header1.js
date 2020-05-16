@@ -12,7 +12,7 @@ import Hidden from '@material-ui/core/Hidden';
 import { useHistory } from "react-router-dom";
 import {useSelector} from "react-redux";
 
-const roommeeLogo = '../../images/roommeelogo3.png'
+const roommeeLogo = process.env.PUBLIC_URL + '/images/roommeelogo3.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
