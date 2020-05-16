@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
   const classes = useStyles();
-    //Setting up
+    //Redirect user in case he is already authenticated
     let history = useHistory();
     if (localStorage.getItem("token" != null)){
         history.push("/home")
