@@ -1,7 +1,7 @@
 // import React from "react";
 
-//const BASE_URL = "https://roommee.herokuapp.com";
-const BASE_URL ='http://localhost:3000'
+const BASE_URL = "https://roommee.herokuapp.com";
+// const BASE_URL ='http://localhost:3000'
 export function signUp(details) {
   const { name, surname, email, password, terms } = details;
 
@@ -41,6 +41,7 @@ export function logIn(details) {
   }
 
   const endpoint = BASE_URL + `/account-management/accounts/login`;
+  console.log(endpoint);
   console.log("user loging in");
   console.log(details);
   return fetch(endpoint, {
