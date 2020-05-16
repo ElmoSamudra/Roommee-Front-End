@@ -59,36 +59,36 @@ export function logIn(details) {
         return res;
     })
 };
-
+//next phase
 export async function  getAccount() {
+  return
+    // try{
+    //     const token = localStorage.token;
+        // let response = null
+        // if (token != null ) {
 
-    try{
-        const token = localStorage.token;
-        let response = null
-        if (token != null ) {
+        //     try {
+        //         response = await fetch(BASE_URL + "/account-management/accounts/me", {
+        //             method: "GET",
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 Accept: 'application/json',
+        //                 'Authorization': `Bearer ${token}`
+        //             }
+        //         })
+        //         return response
 
-            try {
-                response = await fetch(BASE_URL + "/account-management/accounts/me", {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
-                return response
+        //     }catch (e) {
+        //         return null
+        //     }
 
-            }catch (e) {
-                return null
-            }
+        // } else {
+        //     return null;
+        // }
 
-        } else {
-            return null;
-        }
-
-    }catch (e) {
-        console.log(e)
-        return null;
-      }
+    // }catch (e) {
+    //     console.log(e)
+    //     return null;
+    //   }
 }
 
