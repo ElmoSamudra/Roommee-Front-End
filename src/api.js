@@ -1,6 +1,6 @@
 import React from "react";
 
-const BASE_URL ='https://roommee-front-end.herokuapp.com'
+const BASE_URL ='https://roommee.herokuapp.com'
 
 export function signUp(details) {
 
