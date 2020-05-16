@@ -10,9 +10,9 @@ import Zoom from "@material-ui/core/Zoom";
 import Slide from "@material-ui/core/Slide";
 import { useDispatch } from "react-redux";
 
-const humanImage = '/images/human.png'
-const gearImage = '/images/gears.png'
-const logoImage = '/images/roommeelogo2.png'
+const humanImage = "/images/human.png";
+const gearImage = "/images/gears.png";
+const logoImage = "/images/roommeelogo2.png";
 
 const useStyles = makeStyles((theme) => ({
   paddings: {
@@ -121,25 +121,24 @@ function FrontPage(details) {
         <Hidden only={["xs", "sm"]}>
           <Grid item xs={6} align="center" className={classes.login}>
             <Box>
-            <Slide in={checked} timeout={{ enter: 1500 }}>
-              <Typography variant="h3">
-                Match with your future roommates with Roommee.
-              </Typography>
-            </Slide>
-            <Slide in={checked} timeout={{ enter: 1500 }}>
-              <Typography variant="h5">
-                <br />
-                Personalised matching
-                <br />
-                Find housing together with your mate in app
-                <br />
-                Connecting you to your favourite utilities
-              </Typography>
-            </Slide>
+              <Slide in={checked} timeout={{ enter: 1500 }}>
+                <Typography variant="h3">
+                  Match with your future roommates with Roommee.
+                </Typography>
+              </Slide>
+              <Slide in={checked} timeout={{ enter: 1500 }}>
+                <Typography variant="h5">
+                  <br />
+                  Personalised matching
+                  <br />
+                  Find housing together with your mate in app
+                  <br />
+                  Connecting you to your favourite utilities
+                </Typography>
+              </Slide>
             </Box>
           </Grid>
         </Hidden>
-        
 
         <Grid item xs={6} align="center">
           <Slide in={checked} timeout={{ enter: 1500 }}>
@@ -198,11 +197,16 @@ function FrontPage(details) {
             <Typography variant="h3" align="left">
               What we do
             </Typography>
+            <Typography variant="subtitle1" align="left">
+              We do the work. You Decide.
+              <br />
+            </Typography>
             <Typography variant="body1" align="left">
-              ~We do the work. You Decide.~<br/>
-              With personalised matching, we will give you user 
-              suggestions that is closest to you.<br/>
-              Provide you with the best housing deals.<br/>
+              With personalised matching, we will give you user suggestions that
+              is closest to you.
+              <br />
+              Provide you with the best housing deals.
+              <br />
               Hook you up with the best utilities in an instant.
             </Typography>
           </Box>
@@ -219,11 +223,16 @@ function FrontPage(details) {
             <Typography variant="h3" align="left">
               What can I do?
             </Typography>
+            <Typography variant="subtitle1" align="left">
+              If you choose to you will be able to.
+              <br />
+            </Typography>
             <Typography variant="body1" align="left">
-              ~If you choose to you will be able to.~<br/>
-              1)Choose who you want to match with.<br/>
-              2)Choose which place to stay.<br/>
-              3)Choose which utility company to go with. 
+              1)Choose who you want to match with.
+              <br />
+              2)Choose which place to stay.
+              <br />
+              3)Choose which utility company to go with.
             </Typography>
           </Box>
         </Grid>
