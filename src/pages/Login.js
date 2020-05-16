@@ -7,6 +7,7 @@ import { Typography, makeStyles, Box } from "@material-ui/core";
 import FormLabel from "@material-ui/core/FormLabel";
 import Hidden from "@material-ui/core/Hidden";
 import Zoom from "@material-ui/core/Zoom";
+import Slide from "@material-ui/core/Slide";
 import { useDispatch } from "react-redux";
 
 const humanImage = '/images/human.png'
@@ -47,7 +48,7 @@ function FrontPage(details) {
   const [emailInput, setEmail] = useState(email);
   const [passwordInput, setPassword] = useState(password);
 
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(true);
 
   //Setting up REDUX to save to store what is the current page for later use in the navigation bar
   const dispatch = useDispatch();
@@ -120,9 +121,12 @@ function FrontPage(details) {
         <Hidden only={["xs", "sm"]}>
           <Grid item xs={6} align="center" className={classes.login}>
             <Box>
+            <Slide in={checked} timeout={{ enter: 1500 }}>
               <Typography variant="h3">
                 Match with your future roommates with Roommee.
               </Typography>
+            </Slide>
+            <Slide in={checked} timeout={{ enter: 1500 }}>
               <Typography variant="h5">
                 <br />
                 Personalised matching
@@ -131,68 +135,78 @@ function FrontPage(details) {
                 <br />
                 Connecting you to your favourite utilities
               </Typography>
+            </Slide>
             </Box>
           </Grid>
         </Hidden>
         
 
         <Grid item xs={6} align="center">
-          <Typography variant="h3" className={classes.formStyle}>
-            Welcome Back
-          </Typography>
+          <Slide in={checked} timeout={{ enter: 1500 }}>
+            <Typography variant="h3" className={classes.formStyle}>
+              Welcome Back
+            </Typography>
+          </Slide>
           <FormLabel>
             <Box className={classes.formStyle}>
-              <TextField
-                id="filled-basic"
-                variant="filled"
-                placeholder="Email"
-                name="email"
-                value={emailInput}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
-              />
+              <Slide in={checked} timeout={{ enter: 1500 }}>
+                <TextField
+                  id="filled-basic"
+                  variant="filled"
+                  placeholder="Email"
+                  name="email"
+                  value={emailInput}
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                  }}
+                />
+              </Slide>
             </Box>
             <Box className={classes.formStyle}>
-              <TextField
-                id="filled-basic"
-                variant="filled"
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={passwordInput}
-                onChange={(event) => {
-                  setPassword(event.target.value);
-                }}
-              />
+              <Slide in={checked} timeout={{ enter: 1500 }}>
+                <TextField
+                  id="filled-basic"
+                  variant="filled"
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={passwordInput}
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                  }}
+                />
+              </Slide>
             </Box>
             <Box className={classes.formStyle}>
-              <Button variant="outlined" onClick={onSubmit}>
-                Login
-              </Button>
+              <Slide in={checked} timeout={{ enter: 1500 }}>
+                <Button variant="outlined" onClick={onSubmit}>
+                  Login
+                </Button>
+              </Slide>
             </Box>
           </FormLabel>
         </Grid>
       </Grid>
       <Grid container className={classes.firstInfo}>
-        <Grid item xs={6} align="center">
-          <Box>
-            <Typography variant="h3" align="center">
-              Intro to Roommee
-            </Typography>
-            <Typography variant="body1" align="center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              lobortis ultricies diam. Pellentesque habitant morbi tristique
-              senectus et netus et malesuada fames ac turpis egestas. Proin
-              malesuada viverra nunc eu interdum.
-            </Typography>
-          </Box>
-        </Grid>
         <Hidden only={["xs", "sm"]}>
           <Grid item xs={6} align="center">
             <img src={process.env.PUBLIC_URL + humanImage} alt="humanImage" />
           </Grid>
         </Hidden>
+        <Grid item xs={6} align="center">
+          <Box>
+            <Typography variant="h3" align="left">
+              What we do
+            </Typography>
+            <Typography variant="body1" align="left">
+              ~We do the work. You Decide.~<br/>
+              With personalised matching, we will give you user 
+              suggestions that is closest to you.<br/>
+              Provide you with the best housing deals.<br/>
+              Hook you up with the best utilities in an instant.
+            </Typography>
+          </Box>
+        </Grid>
       </Grid>
       <Grid container className={classes.secondInfo}>
         <Hidden only={["xs", "sm"]}>
@@ -202,18 +216,14 @@ function FrontPage(details) {
         </Hidden>
         <Grid item xs={6} align="center">
           <Box>
-            <Typography variant="h3" align="center">
-              Header
+            <Typography variant="h3" align="left">
+              What can I do?
             </Typography>
-            <Typography variant="body1" align="center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              lobortis ultricies diam. Pellentesque habitant morbi tristique
-              senectus et netus et malesuada fames ac turpis egestas. Proin
-              malesuada viverra nunc eu interdum. In mollis tortor eget blandit
-              fermentum. Nunc in mi pellentesque, eleifend ligula nec, lacinia
-              neque. Cras sed faucibus eros. Sed eget nulla mollis, sodales nisi
-              non, placerat lorem. Nullam eros felis, cursus sit amet orci in,
-              dignissim tempus felis.
+            <Typography variant="body1" align="left">
+              ~If you choose to you will be able to.~<br/>
+              1)Choose who you want to match with.<br/>
+              2)Choose which place to stay.<br/>
+              3)Choose which utility company to go with. 
             </Typography>
           </Box>
         </Grid>

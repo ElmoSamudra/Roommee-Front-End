@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Grid } from "@material-ui/core";
 import { Typography, makeStyles, Box } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
 import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
 import MatchControlCard from "../components/matchCard";
-const frontImage = "/images/frontphotoedited.png";
-const logoImage = "/images/roommeeLogo2.png";
+const logoImage = "/images/roommeelogo2.png";
 
 const useStyles = makeStyles((theme) => ({
   paddings: {
@@ -23,12 +22,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "20px",
   },
   frontImage: {
-    height: "100%",
-    backgroundImage: `url(${frontImage})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "auto",
-    backgroundPositionY: "10px",
+    backgroundColor: "#fdf8f4",
     paddingBottom: "50px",
   },
   login: {
@@ -47,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 function FrontPage() {
   const classes = useStyles();
 
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(true);
   const { loadingProfile, userProfile, errorProfile } = useProfile();
   const {
     loadingQuestionaire,
@@ -89,7 +83,7 @@ function FrontPage() {
 
         <Grid item xs={12} align="center">
           <Zoom in={checked} timeout={{ enter: 1500 }}>
-            <Typography variant="subtitle2" align="center">
+            <Typography variant="subtitle1" align="center">
               Dedicated in helping everyone find their mates everyday.
             </Typography>
           </Zoom>
@@ -101,7 +95,7 @@ function FrontPage() {
         {userProfile.age === undefined &&
         userQuestionaire.filter1.sameNationalityPref === "" ? (
           <>
-            <Grid item xs={6} align="center" className={classes.login}>
+            {/* <Grid item xs={12} align="center" className={classes.login}>
               <Button
                 variant="contained"
                 className={classes.buttonStyles}
@@ -109,8 +103,8 @@ function FrontPage() {
               >
                 <Typography variant="h5">Profile</Typography>
               </Button>
-            </Grid>
-            <Grid item xs={6} align="center">
+            </Grid> */}
+            {/* <Grid item xs={6} align="center">
               <Button
                 variant="contained"
                 className={classes.buttonStyles}
@@ -118,7 +112,7 @@ function FrontPage() {
               >
                 <Typography variant="h5">Questionnaire</Typography>
               </Button>
-            </Grid>
+            </Grid> */}
           </>
         ) : (
           <>

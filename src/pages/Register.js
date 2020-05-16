@@ -3,6 +3,8 @@ import { signUp } from "../api/register&loginApi";
 import { useHistory } from "react-router-dom";
 import { toast, Flip } from "react-toastify";
 import { useDispatch } from "react-redux";
+import Slide from "@material-ui/core/Slide";
+
 import {
   Button,
   TextField,
@@ -30,6 +32,8 @@ export default function Register() {
   const classes = useStyles();
 
   let history = useHistory();
+
+  const [checked, setChecked] = useState(true);
 
   const dispatch = useDispatch();
   const setLogPage = () => {
@@ -111,12 +115,16 @@ export default function Register() {
     <Grid container alignItems="center" justify="center">
       <Grid item align="center">
         <Box className={classes.text}>
-          <Typography variant="h2">Register Yourself</Typography>
+          <Slide in={checked} timeout={{ enter: 1500 }}>
+            <Typography variant="h2">Register Yourself</Typography>
+          </Slide>  
           <br />
-          <Typography variant="body1">
-            Before connecting with other wonderful roommees, <br />
-            help us to know more about you first!
-          </Typography>
+          <Slide in={checked} timeout={{ enter: 1500 }}>
+            <Typography variant="body1">
+              Before connecting with other wonderful roommees, <br />
+              help us to know more about you first!
+            </Typography>
+          </Slide>
           <br />
           <br />
         </Box>
