@@ -10,7 +10,6 @@ import Zoom from "@material-ui/core/Zoom";
 import { useDispatch } from "react-redux";
 
 const humanImage = '/images/human.png'
-const frontImage = './../images/frontphotoedited.png'
 const gearImage = '/images/gears.png'
 const logoImage = '/images/roommeelogo2.png'
 
@@ -30,11 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   frontImage: {
     height: "100%",
-    backgroundImage: `url(${frontImage})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "auto",
-    backgroundPositionY: "10px",
+    backgroundColor: "#fdf8f4",
     paddingBottom: "50px",
   },
   login: {
@@ -105,7 +100,7 @@ function FrontPage(details) {
             <Zoom in={checked} timeout={{ enter: 1500 }}>
               <img src={process.env.PUBLIC_URL + logoImage} alt="logoImage" />
             </Zoom>
-            <Typography variant="subtitle2" align="center">
+            <Typography variant="subtitle1" align="center">
               Dedicated in helping everyone find their mates everyday.
               <br />
             </Typography>

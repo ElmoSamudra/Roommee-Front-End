@@ -3,7 +3,6 @@ import { Button, Grid, TextField } from '@material-ui/core';
 import { Typography, makeStyles, Box } from '@material-ui/core'
 import Zoom from '@material-ui/core/Zoom';
 
-const frontImage = './../images/frontphotoedited.png';
 const logoImage = '/images/roommeelogo2.png'
 
 const useStyles = makeStyles((theme) => ({
@@ -22,11 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
     frontImage: {
         height: "100%",
-        backgroundImage: `url(${frontImage})`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundSize: "auto",
-        backgroundPositionY: "10px",
+        backgroundColor: "#fdf8f4",
         paddingBottom: "50px"
     },
     login: {
@@ -60,7 +55,7 @@ function FrontPage(){
                 
             <Grid item xs={12} align="center">
                 <Zoom in={checked} timeout={{enter: 1500}}>
-                    <Typography variant="subtitle2" align="center">
+                    <Typography variant="subtitle1" align="center">
                         Dedicated in helping everyone find their mates everyday.
                     </Typography>
                 </Zoom>
