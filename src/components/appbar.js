@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
 import Menu from "./menu2";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     display: "inline-block",
     textDecoration: "none",
+    fontSize: "15px",
   },
 }));
 
@@ -77,11 +79,7 @@ export default function ButtonAppBar() {
               </Typography>
             </>
           ) : (
-            <Typography variant="h6" className="nav-bar">
-              <NavLink to="/matching" className={classes.link}>
-                Matching
-              </NavLink>
-            </Typography>
+            <></>
           )}
           {userProfile.matchBuffer.length > 0 && (
             <Typography variant="h6" className="nav-bar">
@@ -90,8 +88,9 @@ export default function ButtonAppBar() {
               </NavLink>
             </Typography>
           )}
-
-          <Button color="inherit">Logout</Button>
+          <Box display="flex" justifyContent="flex-end" width={"100%"}>
+            <Button color="inherit">Logout</Button>
+          </Box>
         </Toolbar>
       </AppBar>
     </div>

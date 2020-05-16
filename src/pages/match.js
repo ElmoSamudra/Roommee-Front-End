@@ -44,15 +44,23 @@ export default function ShowMatch() {
   // use this to make sure you are getting the right data
   console.log(userMatch);
 
-  const newMatch = filterMatch(userMatch, statusMatch.pendingStatus);
-  console.log(newMatch.length);
-
-  // Display a list of the authors
-  return (
-    <div>
-      <Match key={userProfile.accountId} {...newMatch} />
-    </div>
-  );
+  if (statusMatch.length !== 0) {
+    var newMatch = filterMatch(userMatch, statusMatch.pendingStatus);
+    console.log(newMatch.length);
+    // Display a list of the authors
+    return (
+      <div>
+        <Match key={userProfile.accountId} {...newMatch} />
+      </div>
+    );
+  } else {
+    // Display a list of the authors
+    return (
+      <div>
+        <Match key={userProfile.accountId} {...userMatch} />
+      </div>
+    );
+  }
 }
 
 const vector = "./../images/Artboard1.png";
@@ -83,11 +91,11 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(15),
   },
   nextButtonLeft: {
-    marginLeft: "50%",
+    marginLeft: "38%",
     marginTop: "35%",
   },
   nextButtonRight: {
-    marginRight: "50%",
+    marginRight: "38%",
     marginTop: "35%",
   },
   nextButtonSmallBottom: {
