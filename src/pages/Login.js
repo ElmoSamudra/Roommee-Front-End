@@ -9,10 +9,10 @@ import Hidden from "@material-ui/core/Hidden";
 import Zoom from "@material-ui/core/Zoom";
 import { useDispatch } from "react-redux";
 
-const humanImage = './../images/human.png'
+const humanImage = '/images/human.png'
 const frontImage = './../images/frontphotoedited.png'
-const gearImage = './../images/gears.png'
-const logoImage = './../images/roommeeLogo2.png'
+const gearImage = '/images/gears.png'
+const logoImage = '/images/roommeelogo2.png'
 
 const useStyles = makeStyles((theme) => ({
   paddings: {
@@ -103,7 +103,7 @@ function FrontPage(details) {
         <Grid item xs={12} align="center" className={classes.paddings}>
           <Box>
             <Zoom in={checked} timeout={{ enter: 1500 }}>
-              <img src={logoImage} alt="logoImage" />
+              <img src={process.env.PUBLIC_URL + logoImage} alt="logoImage" />
             </Zoom>
             <Typography variant="subtitle2" align="center">
               Dedicated in helping everyone find their mates everyday.
@@ -193,14 +193,14 @@ function FrontPage(details) {
         </Grid>
         <Hidden only={["xs", "sm"]}>
           <Grid item xs={6} align="center">
-            <img src={humanImage} alt="humanImage" />
+            <img src={process.env.PUBLIC_URL + humanImage} alt="humanImage" />
           </Grid>
         </Hidden>
       </Grid>
       <Grid container className={classes.secondInfo}>
         <Hidden only={["xs", "sm"]}>
           <Grid item xs={6} align="center">
-            <img src={gearImage} alt="gearImage" />
+            <img src={process.env.PUBLIC_URL + gearImage} alt="gearImage" />
           </Grid>
         </Hidden>
         <Grid item xs={6} align="center">
