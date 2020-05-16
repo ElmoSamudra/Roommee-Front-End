@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar() {
+  //Redirecting user to the login page in case he is not authenticated
   let history = useHistory();
   if (localStorage.getItem("token" == null)){
     history.push("/")

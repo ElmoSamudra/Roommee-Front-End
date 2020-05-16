@@ -32,10 +32,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
   const classes = useStyles();
+    //Setting up
+    let history = useHistory();
+    if (localStorage.getItem("token" != null)){
+        history.push("/home")
+    }
 
+  // Logic fore deciding function and naming of logout button
     let loginLogoutRegisterButtonText = null
 
-    let history = useHistory();
     const page = useSelector(state => state.page);
     console.log("!!!!!!!!"+page)
     if (page == "login"){
@@ -54,7 +59,6 @@ export default function Header() {
         } else if(loginLogoutRegisterButtonText == "Register"){
             history.push("/register")
         }
-
     }
 
   return (
