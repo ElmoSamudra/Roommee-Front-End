@@ -121,6 +121,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
   },
+  statusButton: {
+    fontSize: 11
+  }
 }));
 
 // matches here is an array of match users
@@ -288,8 +291,8 @@ function Match(matches) {
                               {/* <Typography>
                                 You have rang this roommie!
                               </Typography> */}
-                              <Button href="matching-status">
-                                See you Match Status
+                              <Button className={classes.statusButton} href="matching-status">
+                                See your Matching Status
                               </Button>
                             </Fade>
                           </div>
