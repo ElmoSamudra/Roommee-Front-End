@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMatch, likeUser, useStatusMatch } from "../api/matchApi";
 import { useProfile } from "../api/profileApi";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import { toast } from "react-toastify";
 import { ToggleButton } from "@material-ui/lab";
 import "react-toastify/dist/ReactToastify.css";
@@ -285,9 +285,12 @@ function Match(matches) {
                           />
                           <div className={classes.container}>
                             <Fade in={check}>
-                              <Typography>
+                              {/* <Typography>
                                 You have rang this roommie!
-                              </Typography>
+                              </Typography> */}
+                              <Button href="matching-status">
+                                See you Match Status
+                              </Button>
                             </Fade>
                           </div>
                         </div>
@@ -343,9 +346,12 @@ function Match(matches) {
                           />
                           <div className={classes.container}>
                             <Fade in={check}>
-                              <Typography>
+                              {/* <Typography>
                                 You have rang this roommie!
-                              </Typography>
+                              </Typography> */}
+                              <Button href="matching-status">
+                                See you Match Status
+                              </Button>
                             </Fade>
                           </div>
                         </div>

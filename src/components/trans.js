@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
   },
+  ringRoom: {
+    fontSize: 10,
+  },
 }));
 
 export default function SimpleFade({ func, check }) {
@@ -38,7 +41,7 @@ export default function SimpleFade({ func, check }) {
       />
       <div className={classes.container}>
         <Fade in={checked}>
-          <Typography>You have rang this room!</Typography>
+          <h5 className={classes.ringRoom}>You have rang this room!</h5>
         </Fade>
       </div>
     </div>
