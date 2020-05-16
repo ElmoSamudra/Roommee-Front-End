@@ -9,6 +9,9 @@ import { Typography, Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Hidden from "@material-ui/core/Hidden";
 import GenderBox from "../components/genderBox";
+import { Input } from "@material-ui/core";
+import { toast, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //import Button from "../components/button";
 
@@ -116,27 +119,57 @@ function Profile(profile) {
   } = profile;
   //const [showUpdate, setShowUpdate] = useState(false);
 
-  const [firstNameInput, setFirstName] = useState(firstName || []);
-  const [surNameInput, setSurName] = useState(surName || []);
-  const [ageInput, setAge] = useState(age || []);
-  const [genderInput, setGender] = useState(gender || []);
-  const [nationalityInput, setNationality] = useState(nationality || []);
-  const [hobbyInput, setHobby] = useState(hobby || []);
-  const [languageInput, setLanguage] = useState(language || []);
-  const [preferStayInput, setPreferStay] = useState(preferStay || []);
+  const [firstNameInput, setFirstName] = useState(firstName || "");
+  const [surNameInput, setSurName] = useState(surName || "");
+  const [ageInput, setAge] = useState(age || 18);
+  const [genderInput, setGender] = useState(gender || "");
+  const [nationalityInput, setNationality] = useState(nationality || "");
+  const [hobbyInput, setHobby] = useState(hobby || "");
+  const [languageInput, setLanguage] = useState(language || "");
+  const [preferStayInput, setPreferStay] = useState(preferStay || "");
 
-  function onSubmit() {
-    // call upate author function
-    updateProfile({
-      firstName: firstNameInput,
-      surName: surNameInput,
-      age: ageInput,
-      gender: genderInput.toLowerCase(),
-      nationality: nationalityInput.toLowerCase(),
-      hobby: hobbyInput.toString().toLowerCase(),
-      language: languageInput.toString().toLowerCase(),
-      preferStay: preferStayInput.toString().toLowerCase(),
-    });
+  async function onSubmit() {
+    const bool = await validate();
+    console.log(bool);
+    if (bool) {
+      // call upate author function
+      updateProfile({
+        firstName: firstNameInput,
+        surName: surNameInput,
+        age: ageInput,
+        gender: genderInput,
+        nationality: nationalityInput.toLowerCase(),
+        hobby: hobbyInput.toString().toLowerCase(),
+        language: languageInput.toString().toLowerCase(),
+        preferStay: preferStayInput.toString().toLowerCase(),
+      });
+    } else {
+      toast.info("😺 Please fill all fields!", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        transition: Flip,
+      });
+    }
+  }
+
+  async function validate() {
+    if (
+      firstNameInput === "" ||
+      surNameInput === "" ||
+      genderInput === "" ||
+      nationalityInput === "" ||
+      languageInput === "" ||
+      preferStayInput === ""
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   return (
@@ -213,6 +246,12 @@ function Profile(profile) {
                         name="age"
                         value={ageInput}
                         variant="outlined"
+                        InputProps={{
+                          inputProps: {
+                            max: 100,
+                            min: 18,
+                          },
+                        }}
                         onChange={(event) => {
                           setAge(event.target.value);
                         }}
@@ -375,6 +414,12 @@ function Profile(profile) {
                         name="age"
                         value={ageInput}
                         variant="outlined"
+                        InputProps={{
+                          inputProps: {
+                            max: 100,
+                            min: 18,
+                          },
+                        }}
                         onChange={(event) => {
                           setAge(event.target.value);
                         }}
@@ -395,7 +440,7 @@ function Profile(profile) {
                       <Typography className={classes.inputTextP}>
                         <label>Nationality: </label>
                       </Typography>
-                      <TextField
+                      <Input
                         name="nationality"
                         value={nationalityInput}
                         variant="outlined"

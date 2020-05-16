@@ -42,15 +42,14 @@ export default function ButtonAppBar() {
     errorQuestionaire,
   } = useQuestionaire();
 
-
-  if (userProfile.error != null){
-    console.log("caught error")
-    history.push("/")
+  if (userProfile.error != null) {
+    console.log("caught error");
+    history.push("/");
   }
 
   function logOut() {
-      localStorage.removeItem('token')
-      history.push("/")
+    localStorage.removeItem("token");
+    history.push("/");
   }
 
   if (loadingProfile || loadingQuestionaire) {
@@ -60,7 +59,8 @@ export default function ButtonAppBar() {
   if (errorProfile || errorQuestionaire) {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
-
+  console.log(userProfile);
+  console.log(userProfile.matchBuffer.length);
   // console.log(userQuestionaire);
   // console.log(userProfile);
 
@@ -68,8 +68,12 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static" elevation={0} color="transparent">
         <Toolbar>
-          <Menu />
-
+          {userProfile.nationality === "" &&
+          userQuestionaire.filter1.sameNationalityPref === "" ? (
+            <></>
+          ) : (
+            <Menu />
+          )}
           <Typography variant="h6" className="nav-bar">
             <NavLink exact to="/home" className={classes.link}>
               Home
@@ -103,7 +107,9 @@ export default function ButtonAppBar() {
             </Typography>
           )}
           <Box display="flex" justifyContent="flex-end" width={"100%"}>
-            <Button color="inherit" onClick={()=>logOut()}>Logout</Button>
+            <Button color="inherit" onClick={() => logOut()}>
+              Logout
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
