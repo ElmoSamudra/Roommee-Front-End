@@ -32,24 +32,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
   const classes = useStyles();
+    //Redirect user in case he is already authenticated
+    let history = useHistory();
+    if (localStorage.getItem("token" != null)){
+        history.push("/home")
+    }
 
+  // Logic fore deciding function and naming of logout button
     let loginLogoutRegisterButtonText = null
 
-    let history = useHistory();
     const page = useSelector(state => state.page);
     console.log("!!!!!!!!"+page)
-
-    if (localStorage.getItem("token") != null){
-        loginLogoutRegisterButtonText = "Logout"
-    }else if (page == "register") {
-        loginLogoutRegisterButtonText = "Login"
-    }else if (page == "login"){
+    if (page == "login"){
         loginLogoutRegisterButtonText = "Register"
     }else{
         loginLogoutRegisterButtonText = "Login"
     }
 
-    function f() {
+    function logOut() {
         if (loginLogoutRegisterButtonText == "Login"){
             history.push("/")
 
@@ -59,7 +59,6 @@ export default function Header() {
         } else if(loginLogoutRegisterButtonText == "Register"){
             history.push("/register")
         }
-
     }
 
   return (
@@ -87,7 +86,7 @@ export default function Header() {
                   </Typography>
                 </Hidden>
                 
-                <Button onClick={()=>f()}>
+                <Button onClick={()=>logOut()}>
                     {loginLogoutRegisterButtonText}
                 </Button>
             </Toolbar>

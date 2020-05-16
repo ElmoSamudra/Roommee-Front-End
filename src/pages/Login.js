@@ -74,9 +74,6 @@ function FrontPage(details) {
       if (result) {
         if (result.status === 200) {
           let resultInJSON = await result.json();
-          console.log(
-            "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" + resultInJSON.account
-          );
           localStorage.setItem("token", resultInJSON.token);
           localStorage.setItem("account", resultInJSON.account);
           history.push("/home");
