@@ -63,7 +63,9 @@ export default function ShowMatch() {
   }
 }
 
-const vector = "./../images/Artboard1.png";
+// const vector = "./../images/Artboard1.png";
+
+const vector = process.env.PUBLIC_URL + "/images/Artboard1.png";
 const useStyles = makeStyles((theme) => ({
   poster: {
     backgroundImage: `url(${vector})`,

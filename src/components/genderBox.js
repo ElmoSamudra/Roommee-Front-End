@@ -1,28 +1,38 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import { makeStyles } from "@material-ui/core/styles";
+import Select from "@material-ui/core/Select";
 
-const options = ["male", "female"];
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 190,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 export default function GenderBox({ init, set }) {
-  const [inputValue, setInputValue] = React.useState("");
-
+  const classes = useStyles();
   return (
     <div>
-      <Autocomplete
-        value={init}
-        onChange={(event, newValue) => {
-          set(newValue);
-        }}
-        inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
-        }}
-        id="controllable-states-demo"
-        options={options}
-        style={{ width: 200 }}
-        renderInput={(params) => <TextField {...params} variant="outlined" />}
-      />
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={init}
+          onChange={(event) => {
+            set(event.target.value);
+          }}
+        >
+          <MenuItem value="male">Male</MenuItem>
+          <MenuItem value="female">Female</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   );
 }

@@ -47,8 +47,8 @@ export default function ButtonAppBar() {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
 
-  console.log(userQuestionaire);
-  console.log(userProfile);
+  // console.log(userQuestionaire);
+  // console.log(userProfile);
 
   return (
     <div className={classes.root}>
