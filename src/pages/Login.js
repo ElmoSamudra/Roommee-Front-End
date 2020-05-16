@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 const humanImage = '/images/human.png'
 const frontImage = './../images/frontphotoedited.png'
 const gearImage = '/images/gears.png'
-const logoImage = '/images/roommeeLogo2.png'
+const logoImage = '/images/roommeelogo2.png'
 
 const useStyles = makeStyles((theme) => ({
   paddings: {

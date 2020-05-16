@@ -4,7 +4,7 @@ import { Typography, makeStyles, Box } from '@material-ui/core'
 import Zoom from '@material-ui/core/Zoom';
 
 const frontImage = './../images/frontphotoedited.png';
-const logoImage = '/images/roommeeLogo2.png'
+const logoImage = '/images/roommeelogo2.png'
 
 const useStyles = makeStyles((theme) => ({
     paddings:{
