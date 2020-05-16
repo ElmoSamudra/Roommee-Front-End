@@ -163,8 +163,8 @@ function Profile(profile) {
       surNameInput === "" ||
       genderInput === "" ||
       nationalityInput === "" ||
-      languageInput.length === 1 ||
-      preferStayInput.length === 1
+      languageInput === [""] ||
+      preferStayInput[0] === ""
     ) {
       return false;
     } else {

@@ -78,6 +78,19 @@ function App() {
             <ButtonAppBar />
             <Divider />
             <ShowQuestionaire />
+            <ToastContainer
+              position="top-center"
+              autoClose={1000}
+              hideProgressBar
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+            {/* Same as */}
+            <ToastContainer />
           </Route>
 
           <Route exact path="/matching">
