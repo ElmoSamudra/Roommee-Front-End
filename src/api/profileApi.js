@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-const BASE_URL = "https://roommee.herokuapp.com";
-
+//const BASE_URL = "https://roommee.herokuapp.com";
+const BASE_URL ='http://localhost:3000'
 function getProfile() {
   const endpoint = BASE_URL + `/user-profile`;
   const token = localStorage.token;

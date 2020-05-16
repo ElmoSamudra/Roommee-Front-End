@@ -32,11 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar() {
-  //Redirecting user to the login page in case he is not authenticated
   let history = useHistory();
-  if (localStorage.getItem("token" == null)){
-    history.push("/")
-  }
 
   const classes = useStyles();
   const { loadingProfile, userProfile, errorProfile } = useProfile();
@@ -45,6 +41,12 @@ export default function ButtonAppBar() {
     userQuestionaire,
     errorQuestionaire,
   } = useQuestionaire();
+
+
+  if (userProfile.error != null){
+    console.log("caught error")
+    history.push("/")
+  }
 
   function logOut() {
       localStorage.removeItem('token')
@@ -59,8 +61,13 @@ export default function ButtonAppBar() {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
 
-  console.log(userQuestionaire);
-  console.log(userProfile);
+
+
+
+
+
+  // console.log(userQuestionaire);
+  // console.log(userProfile);
 
   return (
     <div className={classes.root}>
