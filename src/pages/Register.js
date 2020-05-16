@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { signUp } from "../api";
+import { signUp } from "../api/register&login";
 import { useHistory } from "react-router-dom";
 import { toast, Flip } from "react-toastify";
 import {

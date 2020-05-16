@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { logIn } from "../api";
+import { logIn } from "../api/register&login";
 import { useHistory } from "react-router-dom";
 import { toast, Flip } from "react-toastify";
 import { Button, Grid, TextField } from "@material-ui/core";
