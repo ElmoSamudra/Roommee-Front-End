@@ -2,9 +2,14 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const Theme = createMuiTheme({
+    typography: {
+      h3: {
+        fontFamily: ['Raleway', 'Roboto', 'Bitter', 'sans-serif']
+      }
+    },
     fontFamily: 'Raleway, Roboto, Bitter, sans-serif',
     useNextVariants: true,
-      h2: {
+      h3: {
         fontFamily: 'Raleway, Arial, sans-serif',
         fontWeight: 300,
         fontSize: 14,
