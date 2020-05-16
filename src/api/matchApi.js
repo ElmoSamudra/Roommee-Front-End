@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 //mport axios from "axios";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://roommee.herokuapp.com";
 
 function runMatch() {
   const endpoint = BASE_URL + `/user-match`;
@@ -35,6 +35,7 @@ function getMatchStatus() {
 }
 
 export function likeUser(user) {
+  console.log("update");
   const { id, ans } = user;
   const endpoint = BASE_URL + "/user-match/fill-status";
   const token = localStorage.token;

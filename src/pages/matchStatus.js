@@ -202,14 +202,15 @@ function DivStatus({ matchData, user }) {
   const [choice, setChoice] = useState("yes");
   const userStatusMatch = matchData;
 
-  useEffect(() => {
-    likeUser({
-      id: user.accountId,
-      ans: choice,
-    });
-  }, [choice, user.accountId]);
+  // useEffect(() => {
+  //   likeUser({
+  //     id: user.accountId,
+  //     ans: choice,
+  //   });
+  // }, [choice, user.accountId]);
 
   async function removeUser() {
+    console.log("removed");
     likeUser({
       id: user.accountId,
       ans: "no",
@@ -260,12 +261,12 @@ function DivStatus({ matchData, user }) {
     <div className={classes.root}>
       <Hidden mdDown>
         <Grid container direction="row" className={classes.singleMatch}>
-          <Grid xs={1}></Grid>
-          <Grid className={classes.sidePartLeft} xs={2}>
+          <Grid xs={1} item></Grid>
+          <Grid className={classes.sidePartLeft} item xs={2}>
             <Paper className={classes.paperContainerLeft}></Paper>
           </Grid>
 
-          <Grid className={classes.statusSide} xs={6}>
+          <Grid className={classes.statusSide} item xs={6}>
             <div className={classes.containerSingleStatus}>
               {choice === "yes" && (
                 <div className="match-status">
@@ -336,10 +337,10 @@ function DivStatus({ matchData, user }) {
             </div>
           </Grid>
 
-          <Grid className={classes.sidePartRight} xs={2}>
+          <Grid className={classes.sidePartRight} item xs={2}>
             <Paper className={classes.paperContainerRight}></Paper>
           </Grid>
-          <Grid xs={1}></Grid>
+          <Grid xs={1} item></Grid>
         </Grid>
       </Hidden>
 
@@ -398,17 +399,10 @@ function DivStatus({ matchData, user }) {
               )}
               {userStatusMatch.clickedMatch !== user.accountId.toString() && (
                 <div className="status-buttons">
-                  <label className={classes.ringSS}>Ring Roommee?</label>
-                  <Button
-                    className={classes.buttonYesSS}
-                    onClick={() => {
-                      setChoice("yes");
-                    }}
-                  >
+                  <label className={classes.ring}>Remove Roommee?</label>
+
+                  <Button className={classes.buttonNo} onClick={onRemove}>
                     Yes
-                  </Button>
-                  <Button className={classes.buttonNoSS} onClick={onRemove}>
-                    No
                   </Button>
                 </div>
               )}

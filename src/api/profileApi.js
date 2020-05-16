@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://roommee.herokuapp.com";
 
 function getProfile() {
   const endpoint = BASE_URL + `/user-profile`;
@@ -9,8 +9,8 @@ function getProfile() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Accept: 'application/json',
-      'Authorization': `Bearer ${token}`
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
   }).then((res) => {
     return res.json();
@@ -36,8 +36,8 @@ export function updateProfile(profile) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Accept: 'application/json',
-      'Authorization': `Bearer ${token}`
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       firstName,
