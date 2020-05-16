@@ -198,8 +198,10 @@ function FrontPage(details) {
             <Typography variant="h3" align="left">
               What we do
             </Typography>
+            <Typography variant="subtitle1" align="left">
+              We do the work. You Decide.<br/>
+            </Typography>
             <Typography variant="body1" align="left">
-              ~We do the work. You Decide.~<br/>
               With personalised matching, we will give you user 
               suggestions that is closest to you.<br/>
               Provide you with the best housing deals.<br/>
@@ -219,8 +221,10 @@ function FrontPage(details) {
             <Typography variant="h3" align="left">
               What can I do?
             </Typography>
+            <Typography variant="subtitle1" align="left">
+              If you choose to you will be able to.<br/>
+            </Typography>
             <Typography variant="body1" align="left">
-              ~If you choose to you will be able to.~<br/>
               1)Choose who you want to match with.<br/>
               2)Choose which place to stay.<br/>
               3)Choose which utility company to go with. 
