@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Grid } from "@material-ui/core";
 import { Typography, makeStyles, Box } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 function FrontPage() {
   const classes = useStyles();
 
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(true);
   const { loadingProfile, userProfile, errorProfile } = useProfile();
   const {
     loadingQuestionaire,

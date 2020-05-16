@@ -7,6 +7,7 @@ import { Typography, makeStyles, Box } from "@material-ui/core";
 import FormLabel from "@material-ui/core/FormLabel";
 import Hidden from "@material-ui/core/Hidden";
 import Zoom from "@material-ui/core/Zoom";
+import Slide from "@material-ui/core/Slide";
 import { useDispatch } from "react-redux";
 
 const humanImage = '/images/human.png'
@@ -47,7 +48,7 @@ function FrontPage(details) {
   const [emailInput, setEmail] = useState(email);
   const [passwordInput, setPassword] = useState(password);
 
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(true);
 
   //Setting up REDUX to save to store what is the current page for later use in the navigation bar
   const dispatch = useDispatch();
@@ -120,9 +121,12 @@ function FrontPage(details) {
         <Hidden only={["xs", "sm"]}>
           <Grid item xs={6} align="center" className={classes.login}>
             <Box>
+            <Slide in={checked} timeout={{ enter: 1500 }}>
               <Typography variant="h3">
                 Match with your future roommates with Roommee.
               </Typography>
+            </Slide>
+            <Slide in={checked} timeout={{ enter: 1500 }}>
               <Typography variant="h5">
                 <br />
                 Personalised matching
@@ -131,45 +135,54 @@ function FrontPage(details) {
                 <br />
                 Connecting you to your favourite utilities
               </Typography>
+            </Slide>
             </Box>
           </Grid>
         </Hidden>
         
 
         <Grid item xs={6} align="center">
-          <Typography variant="h3" className={classes.formStyle}>
-            Welcome Back
-          </Typography>
+          <Slide in={checked} timeout={{ enter: 1500 }}>
+            <Typography variant="h3" className={classes.formStyle}>
+              Welcome Back
+            </Typography>
+          </Slide>
           <FormLabel>
             <Box className={classes.formStyle}>
-              <TextField
-                id="filled-basic"
-                variant="filled"
-                placeholder="Email"
-                name="email"
-                value={emailInput}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
-              />
+              <Slide in={checked} timeout={{ enter: 1500 }}>
+                <TextField
+                  id="filled-basic"
+                  variant="filled"
+                  placeholder="Email"
+                  name="email"
+                  value={emailInput}
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                  }}
+                />
+              </Slide>
             </Box>
             <Box className={classes.formStyle}>
-              <TextField
-                id="filled-basic"
-                variant="filled"
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={passwordInput}
-                onChange={(event) => {
-                  setPassword(event.target.value);
-                }}
-              />
+              <Slide in={checked} timeout={{ enter: 1500 }}>
+                <TextField
+                  id="filled-basic"
+                  variant="filled"
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={passwordInput}
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                  }}
+                />
+              </Slide>
             </Box>
             <Box className={classes.formStyle}>
-              <Button variant="outlined" onClick={onSubmit}>
-                Login
-              </Button>
+              <Slide in={checked} timeout={{ enter: 1500 }}>
+                <Button variant="outlined" onClick={onSubmit}>
+                  Login
+                </Button>
+              </Slide>
             </Box>
           </FormLabel>
         </Grid>

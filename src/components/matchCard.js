@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Button } from "@material-ui/core";
+import Slide from "@material-ui/core/Slide";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,20 +50,25 @@ const cardPic =
 export default function MatchControlCard({ state }) {
   const classes = useStyles();
   const theme = useTheme();
+  const [checked, setChecked] = useState(true);
 
   return (
     <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
           {state === true ? (
-            <Typography variant="h5">
-              Try using our matching algorithm to get the right fit for your
-              roommee
-            </Typography>
+            <Slide direction="right" in={checked} timeout={{ enter: 1500 }}>
+              <Typography variant="h5">
+                Try using our matching algorithm to get the right fit for your
+                roommee
+              </Typography>
+            </Slide>
           ) : (
-            <Typography variant="h5">
-              Please fill in the profile form to get started
-            </Typography>
+            <Slide direction="right" in={checked} timeout={{ enter: 1500 }}>
+              <Typography variant="h5">
+                Please fill in the profile form to get started
+              </Typography>
+            </Slide>
           )}
         </CardContent>
         <div className={classes.controls}>
