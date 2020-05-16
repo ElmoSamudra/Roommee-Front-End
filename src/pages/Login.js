@@ -9,10 +9,10 @@ import Hidden from "@material-ui/core/Hidden";
 import Zoom from "@material-ui/core/Zoom";
 import { useDispatch } from "react-redux";
 
-import humanImage from '%PUBLIC_URL%/images/human.png'
-import frontImage from '%PUBLIC_URL%/images/frontphotoedited.png'
-import gearImage from '%PUBLIC_URL%/images/gears.png'
-import logoImage from '%PUBLIC_URL%/images/roommeeLogo2.png'
+const humanImage = './../images/human.png'
+const frontImage = './../images/frontphotoedited.png'
+const gearImage = './../images/gears.png'
+const logoImage = './../images/roommeeLogo2.png'
 
 const useStyles = makeStyles((theme) => ({
   paddings: {
