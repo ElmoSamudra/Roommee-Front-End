@@ -38,12 +38,7 @@ export default function Header() {
     let history = useHistory();
     const page = useSelector(state => state.page);
     console.log("!!!!!!!!"+page)
-
-    if (localStorage.getItem("token") != null){
-        loginLogoutRegisterButtonText = "Logout"
-    }else if (page == "register") {
-        loginLogoutRegisterButtonText = "Login"
-    }else if (page == "login"){
+    if (page == "login"){
         loginLogoutRegisterButtonText = "Register"
     }else{
         loginLogoutRegisterButtonText = "Login"
