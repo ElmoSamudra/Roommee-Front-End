@@ -230,10 +230,9 @@ function DivStatus({ matchData, user }) {
           label: "Yes",
           onClick: async () => {
             await removeUser();
-            window.location.reload();
+            setTimeout(function(){window.location.reload()}, 2000);
           },
-          // window.location.href = "/matching-status";
-          //return;
+          
         },
         {
           label: "No",

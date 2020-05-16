@@ -70,10 +70,18 @@ const useStyles = makeStyles((theme) => ({
     padding: "4%",
     fontSize: 18,
   },
-  profileButton: {
+  matchingButton: {
+    color: "#524a41f6",
+    marginLeft: "25%",
+    marginTop: "5%",
+    padding: "4%",
+    fontSize: 18,
+    marginBottom: "3%",
+  },
+  matchingButtonSS: {
     color: "#524a41f6",
     marginLeft: "4%",
-    marginTop: "20%",
+    marginTop: "5%",
     padding: "4%",
     fontSize: 18,
     marginBottom: "3%",
@@ -371,10 +379,10 @@ function Questionaire(questionaire) {
             <Grid xs={12} item>
               <Button
                 variant="outlined"
-                className={classes.profileButton}
-                href="/profile"
+                className={classes.matchingButtonSS}
+                href="/matching"
               >
-                Go to Profile Page
+                Go to Matching Page
               </Button>
             </Grid>
           </Hidden>
@@ -398,7 +406,7 @@ function Questionaire(questionaire) {
             <Grid xs={12} item>
               <Button
                 variant="outlined"
-                className={classes.updateButtonSS}
+                className={classes.updateButton}
                 onClick={onSubmit}
               >
                 Update
@@ -407,10 +415,10 @@ function Questionaire(questionaire) {
             <Grid xs={12} item>
               <Button
                 variant="outlined"
-                className={classes.profileButton}
-                href="/profile"
+                className={classes.matchingButton}
+                href="/matching"
               >
-                Go to Profile Page
+                Go to Matching Page
               </Button>
             </Grid>
           </Hidden>

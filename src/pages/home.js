@@ -71,8 +71,10 @@ function FrontPage() {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
 
+  console.log(userProfile.age)
   console.log(userQuestionaire);
   console.log(userProfile);
+  console.log(userQuestionaire.filter1.sameNationalityPref)
 
   return (
     <div>
@@ -96,8 +98,8 @@ function FrontPage() {
           </Typography>
         </Grid>
 
-        {userProfile.age !== 0 &&
-        userQuestionaire.filter1.sameNationalityPref === undefined ? (
+        {userProfile.age === undefined &&
+        userQuestionaire.filter1.sameNationalityPref === "" ? (
           <>
             <Grid item xs={6} align="center" className={classes.login}>
               <Button
