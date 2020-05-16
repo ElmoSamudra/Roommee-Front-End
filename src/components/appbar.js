@@ -9,6 +9,7 @@ import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
 import Menu from "./menu2";
 import Box from "@material-ui/core/Box";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar() {
+  let history = useHistory();
+  if (localStorage.getItem("token" == null)){
+    history.push("/")
+  }
+
   const classes = useStyles();
   const { loadingProfile, userProfile, errorProfile } = useProfile();
   const {
@@ -38,6 +44,11 @@ export default function ButtonAppBar() {
     userQuestionaire,
     errorQuestionaire,
   } = useQuestionaire();
+
+  function logOut() {
+      localStorage.removeItem('token')
+      history.push("/")
+  }
 
   if (loadingProfile || loadingQuestionaire) {
     return <p>Loading...</p>;
@@ -89,7 +100,7 @@ export default function ButtonAppBar() {
             </Typography>
           )}
           <Box display="flex" justifyContent="flex-end" width={"100%"}>
-            <Button color="inherit">Logout</Button>
+            <Button color="inherit" onClick={()=>logOut()}>Logout</Button>
           </Box>
         </Toolbar>
       </AppBar>

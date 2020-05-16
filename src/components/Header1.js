@@ -49,7 +49,7 @@ export default function Header() {
         loginLogoutRegisterButtonText = "Login"
     }
 
-    function f() {
+    function logOut() {
         if (loginLogoutRegisterButtonText == "Login"){
             history.push("/")
 
@@ -87,7 +87,7 @@ export default function Header() {
                   </Typography>
                 </Hidden>
                 
-                <Button onClick={()=>f()}>
+                <Button onClick={()=>logOut()}>
                     {loginLogoutRegisterButtonText}
                 </Button>
             </Toolbar>
