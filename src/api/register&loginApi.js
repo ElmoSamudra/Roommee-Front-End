@@ -1,10 +1,6 @@
 import React from "react";
 
-<<<<<<< HEAD:src/api.js
 const BASE_URL = "https://roommee.herokuapp.com";
-=======
-const BASE_URL ='https://roommee.herokuapp.com'
->>>>>>> 05325fe6198b58ceca67fa1b73f3ed48896d3e2c:src/api/register&login.js
 
 export function signUp(details) {
   const { name, surname, email, password, terms } = details;
