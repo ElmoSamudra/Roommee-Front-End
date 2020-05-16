@@ -1,14 +1,11 @@
-import React, { useState } from "react";
-import { Button, Grid, TextField } from "@material-ui/core";
+import React from "react";
+import { Button, Grid } from "@material-ui/core";
 import { Typography, makeStyles, Box } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
-import { useDispatch } from "react-redux";
 import { useProfile } from "../api/profileApi";
 import { useQuestionaire } from "../api/questionaireApi";
 
 const frontImage = "../../images/frontphotoedited.png";
-const humanImage = "../../images/human.png";
-const gearImage = "../../images/gears.png";
 const logoImage = "../../images/roommeeLogo2.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -58,14 +55,14 @@ function FrontPage() {
     errorQuestionaire,
   } = useQuestionaire();
 
-  //Setting up REDUX to save to store what is the current page for later use in the navigation bar
-  const dispatch = useDispatch();
-  const setLogPage = () => {
-    return {
-      type: "LOGIN",
-    };
-  };
-  dispatch(setLogPage());
+  // //Setting up REDUX to save to store what is the current page for later use in the navigation bar
+  // const dispatch = useDispatch();
+  // const setLogPage = () => {
+  //   return {
+  //     type: "LOGIN",
+  //   };
+  // };
+  // dispatch(setLogPage());
 
   if (loadingProfile || loadingQuestionaire) {
     return <p>Loading...</p>;
@@ -83,7 +80,7 @@ function FrontPage() {
         <Grid item xs={12} align="center" className={classes.paddings}>
           <Box>
             <Zoom in={checked} timeout={{ enter: 1500 }}>
-              <img src={logoImage} alt="logoImage" />
+              <img src={process.env.PUBLIC_URL + logoImage} alt="logoImage" />
             </Zoom>
           </Box>
         </Grid>
