@@ -14,11 +14,14 @@ import ShowQuestionaire from "./pages/questionaire";
 import ShowStatusMatch from "./pages/matchStatus";
 import ButtonAppBar from "./components/appbar";
 import Divider from "@material-ui/core/Divider";
+import theme from './theme/muiTheme';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
 
  //app
 function App() {
   return (
+    <MuiThemeProvider theme={theme}>
     <Router>
       <Switch>
         <Route exact path="/">
@@ -114,6 +117,7 @@ function App() {
       </Switch>
       <Footer />
     </Router> 
+    </MuiThemeProvider>
   )
 }
 
