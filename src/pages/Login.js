@@ -8,6 +8,9 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Hidden from "@material-ui/core/Hidden";
 import Zoom from "@material-ui/core/Zoom";
 import { useDispatch } from "react-redux";
+import { Theme } from '../theme/muiTheme'
+import { ThemeProvider } from 'material-ui/styles';
+import Cssbaseline from '@material-ui/core/cssbaseline'
 
 const humanImage = '/images/human.png'
 const frontImage = './../images/frontphotoedited.png'
@@ -98,6 +101,8 @@ function FrontPage(details) {
   }
 
   return (
+    <ThemeProvider theme={Theme}>
+    <Cssbaseline/>
     <div>
       <Grid container spacing={2} className={classes.frontImage}>
         <Grid item xs={12} align="center" className={classes.paddings}>
@@ -222,6 +227,7 @@ function FrontPage(details) {
         </Grid>
       </Grid>
     </div>
+    </ThemeProvider>
   );
 }
 export default FrontPage;
