@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Grid, TextField } from '@material-ui/core';
 import { Typography, makeStyles, Box } from '@material-ui/core'
 import Zoom from '@material-ui/core/Zoom';
-import {useDispatch} from "react-redux";
 
 const frontImage = './../images/frontphotoedited.png';
 const logoImage = '/images/roommeeLogo2.png'
@@ -46,17 +45,7 @@ const useStyles = makeStyles((theme) => ({
 function FrontPage(){
     const classes = useStyles();
 
-    const [checked, setChecked] = React.useState(true);
-
-
-    //Setting up REDUX to save to store what is the current page for later use in the navigation bar
-    const dispatch = useDispatch()
-    const setLogPage = ()=>{
-        return {
-            type: 'LOGIN'
-        }
-    }
-    dispatch(setLogPage())
+    const [checked, setChecked] = useState(true);
     
     return (
         <div>
