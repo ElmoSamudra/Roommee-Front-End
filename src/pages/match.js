@@ -122,8 +122,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   statusButton: {
-    fontSize: 11
-  }
+    fontSize: 11,
+  },
 }));
 
 // matches here is an array of match users
@@ -166,9 +166,9 @@ function Match(matches) {
       ans: choice,
     });
     if (choice === "yes") {
-      toast.info("Nice!, check them in your match status page!", {
+      toast.info("Invitation sent!", {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -176,7 +176,7 @@ function Match(matches) {
         progress: undefined,
       });
     } else {
-      toast.info("Whoops!", {
+      toast.info("Ooops, you just undo your invitation!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -291,7 +291,10 @@ function Match(matches) {
                               {/* <Typography>
                                 You have rang this roommie!
                               </Typography> */}
-                              <Button className={classes.statusButton} href="matching-status">
+                              <Button
+                                className={classes.statusButton}
+                                href="matching-status"
+                              >
                                 See your Matching Status
                               </Button>
                             </Fade>

@@ -159,6 +159,17 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "2%",
     paddingBottom: "2%",
   },
+  noStatus: {
+    marginLeft: "15%",
+    marginRight: "5%",
+    paddingLeft: 10,
+    paddingRight: 10,
+    border: "1px solid white",
+    backgroundColor: "#F9EADF",
+    borderRadius: 5,
+    width: "65%",
+    height: "100%",
+  },
 }));
 
 export default function ShowStatusMatch() {
@@ -186,13 +197,31 @@ export default function ShowStatusMatch() {
           <h2 className={classes.h2SS}>Status</h2>
         </Hidden>
         <Box className={classes.line} borderTop={1}></Box>
-        {statusMatch.pendingStatus.map((userPending) => (
-          <DivStatus
-            key={userPending.accountId}
-            matchData={statusMatch.userMatchData}
-            user={userPending}
-          />
-        ))}
+        {statusMatch.pendingStatus.length === 0 ? (
+          <Box
+            display="flex"
+            justifyContext="center"
+            className={classes.noStatus}
+            overflow="auto"
+          >
+            <Typography>
+              You have no matching status, please find a pick a roommee first in
+              matching page
+            </Typography>
+            <br></br>
+            <Box display="flex" justifyContext="center">
+              <Button href="/matching">Find Roommee</Button>
+            </Box>
+          </Box>
+        ) : (
+          statusMatch.pendingStatus.map((userPending) => (
+            <DivStatus
+              key={userPending.accountId}
+              matchData={statusMatch.userMatchData}
+              user={userPending}
+            />
+          ))
+        )}
       </div>
     </>
   );
@@ -230,9 +259,10 @@ function DivStatus({ matchData, user }) {
           label: "Yes",
           onClick: async () => {
             await removeUser();
-            setTimeout(function(){window.location.reload()}, 2000);
+            setTimeout(function () {
+              window.location.reload();
+            }, 2000);
           },
-          
         },
         {
           label: "No",
