@@ -74,6 +74,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundPosition: "center",
+    objectFit: "cover",
+    // width: "100%",
     borderRadius: 15,
   },
   profileMatch: {

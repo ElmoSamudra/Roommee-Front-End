@@ -50,8 +50,9 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
   bannerContainer: {
-    height: "auto",
-    maxWidth: "100%",
+    height: "100%",
+    width: "100%",
+    objectFit: "cover",
     // objectFit: "cover",
     borderBottomLeftRadius: 15,
     borderTopLeftRadius: 15,
