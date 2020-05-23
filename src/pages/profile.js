@@ -12,6 +12,7 @@ import GenderBox from "../components/genderBox";
 import { Input } from "@material-ui/core";
 import { toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Avatar from "@material-ui/core/Avatar";
 
 //import Button from "../components/button";
 
@@ -98,10 +99,24 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
   bannerGrid: {
+    backgroundImage: `url(${bannerPic})`,
     backgroundColor: "#392621",
+    // backgroundRepeat: "no-repeat",
+    // backgroundAttachment: "fixed",
+    // backgroundPosition: "center",
+    backgroundSize: "cover",
+    // width: "100%",
+    // maxHeight: "100%",
     marginTop: 10,
     borderBottomLeftRadius: 15,
     borderTopLeftRadius: 15,
+  },
+  profPic: {
+    width: theme.spacing(25),
+    height: theme.spacing(25),
+    padding: "auto",
+    margin: "auto",
+    marginTop: "5%",
   },
 }));
 
@@ -117,6 +132,7 @@ function Profile(profile) {
     hobby,
     language,
     preferStay,
+    password,
   } = profile;
   //const [showUpdate, setShowUpdate] = useState(false);
 
@@ -128,6 +144,10 @@ function Profile(profile) {
   const [hobbyInput, setHobby] = useState(hobby || "");
   const [languageInput, setLanguage] = useState(language || "");
   const [preferStayInput, setPreferStay] = useState(preferStay || "");
+  const [passwordInput, setPassword] = useState(password || "");
+  const [curPass, setCurPass] = useState([]);
+  const [pop, setPop] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   async function onSubmit() {
     const bool = await validate();
@@ -156,6 +176,24 @@ function Profile(profile) {
         transition: Flip,
       });
     }
+  }
+
+  function authenticatePop() {
+    setPop(!pop);
+  }
+
+  function checkPass() {
+    console.log(curPass);
+    console.log(curPass === passwordInput);
+    if (curPass === "123456789") {
+      setHidden(true);
+    }
+    // need to ask Eldar how the password thing works
+    // need to ask Eldar how to update the password and email
+    // need to ask Eldar how to use the encrypt password
+    // if (curPass === passwordInput) {
+    //   setHidden(true);
+    // }
   }
 
   async function validate() {
@@ -190,11 +228,45 @@ function Profile(profile) {
       >
         <Hidden smDown>
           <Grid item xs={4} className={classes.bannerGrid}>
-            <img
+            {/* <img
               src={bannerPic}
               alt=""
               className={classes.bannerContainer}
-            ></img>
+            ></img> */}
+            <Avatar className={classes.profPic}>
+              {firstNameInput[0].toUpperCase() + surNameInput[0].toUpperCase()}
+            </Avatar>
+            <Button
+              variant="outlined"
+              // className={classes.updateButton}
+              onClick={authenticatePop}
+            >
+              Change Password or Email
+            </Button>
+            {pop === true ? (
+              hidden === true ? (
+                <>
+                  <Typography>New Password</Typography>
+                  <TextField vairant="outlined" type="password" />
+                  <Typography>Confirm Password</Typography>
+                  <TextField vairant="outlined" type="password" />
+                </>
+              ) : (
+                <>
+                  <Typography>Enter your current password</Typography>
+                  <TextField
+                    variant="outlined"
+                    type="password"
+                    onChange={(event) => {
+                      setCurPass(event.target.value);
+                    }}
+                  />
+                  <Button onClick={checkPass}>Submit</Button>
+                </>
+              )
+            ) : (
+              <></>
+            )}
           </Grid>
         </Hidden>
         <Hidden mdUp>
