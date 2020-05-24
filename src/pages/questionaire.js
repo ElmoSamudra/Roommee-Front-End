@@ -5,6 +5,10 @@ import FormControlLabelPlacement from "../components/radio";
 import "../styles.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import { toast, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 import {
   Typography,
   Paper,
@@ -171,24 +175,56 @@ function Questionaire(questionaire) {
     cleanlinessToleranceRate
   );
 
-  function onSubmit() {
+  async function onSubmit() {
     // call upate author function
-    updateQuestionaire({
-      sameNationalityPref: sameNationalityPrefInput,
-      sameGenderPref: sameGenderPrefInput,
-      sameLocationPref: sameLocationPrefInput,
-      petsPref: petsPrefInput,
-      sameLangPref: sameLangPrefInput,
-      numRoommeePref: numRoommeePrefInput,
-      ageFrom: ageFromInput,
-      ageTo: ageToInput,
-      homeCookRate: homeCookRateInput,
-      nightOwlRate: nightOwlRateInput,
-      playsMusicRate: playsMusicRateInput,
-      seekIntrovertRate: seekIntrovertRateInput,
-      seekExtrovertRate: seekExtrovertRateInput,
-      cleanlinessToleranceRate: cleanlinessToleranceRateInput,
-    });
+    const bool = await validate();
+    if (bool) {
+      updateQuestionaire({
+        sameNationalityPref: sameNationalityPrefInput,
+        sameGenderPref: sameGenderPrefInput,
+        sameLocationPref: sameLocationPrefInput,
+        petsPref: petsPrefInput,
+        sameLangPref: sameLangPrefInput,
+        numRoommeePref: numRoommeePrefInput,
+        ageFrom: ageFromInput,
+        ageTo: ageToInput,
+        homeCookRate: homeCookRateInput,
+        nightOwlRate: nightOwlRateInput,
+        playsMusicRate: playsMusicRateInput,
+        seekIntrovertRate: seekIntrovertRateInput,
+        seekExtrovertRate: seekExtrovertRateInput,
+        cleanlinessToleranceRate: cleanlinessToleranceRateInput,
+      });
+    }
+    else {
+      toast.info("😺 Please fill all fields!", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        transition: Flip,
+      });
+    }
+  }
+
+  async function validate() {
+    if (
+      sameNationalityPrefInput === "" ||
+      sameGenderPrefInput === "" ||
+      sameLocationPrefInput === "" ||
+      petsPrefInput === "" ||
+      sameLangPrefInput === "" ||
+      numRoommeePrefInput === "" ||
+      ageFromInput === 0 ||
+      ageToInput === 0 
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   return (
@@ -277,6 +313,12 @@ function Questionaire(questionaire) {
                 type="number"
                 name="ageFrom"
                 value={ageFromInput}
+                InputProps={{
+                  inputProps: {
+                    max: 100,
+                    min: 18,
+                  },
+                }}
                 onChange={(event) => {
                   setAgeFrom(event.target.value);
                 }}
@@ -289,6 +331,12 @@ function Questionaire(questionaire) {
               <TextField
                 type="number"
                 name="ageTo"
+                InputProps={{
+                  inputProps: {
+                    max: 100,
+                    min: 18,
+                  },
+                }}
                 value={ageToInput}
                 onChange={(event) => {
                   //setAgeDiffRange(ageDiffRangeInput);

@@ -59,16 +59,15 @@ export default function ButtonAppBar() {
   if (errorProfile || errorQuestionaire) {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
-  console.log(userProfile);
+  console.log(userProfile.nationality === "");
+  console.log(userQuestionaire.filter1.sameNationalityPref === "");
   console.log(userProfile.matchBuffer.length);
-  // console.log(userQuestionaire);
-  // console.log(userProfile);
 
   return (
     <div className={classes.root}>
       <AppBar position="static" elevation={0} color="transparent">
         <Toolbar>
-          {userProfile.nationality === "" &&
+          {userProfile.nationality === "" ||
           userQuestionaire.filter1.sameNationalityPref === "" ? (
             <></>
           ) : (

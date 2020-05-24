@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMatch, likeUser, useStatusMatch } from "../api/matchApi";
 import { useProfile } from "../api/profileApi";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import { toast } from "react-toastify";
 import { ToggleButton } from "@material-ui/lab";
 import "react-toastify/dist/ReactToastify.css";
@@ -74,6 +74,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundPosition: "center",
+    objectFit: "cover",
+    // width: "100%",
     borderRadius: 15,
   },
   profileMatch: {
@@ -121,6 +123,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
   },
+  statusButton: {
+    fontSize: 11,
+  },
 }));
 
 // matches here is an array of match users
@@ -163,9 +168,9 @@ function Match(matches) {
       ans: choice,
     });
     if (choice === "yes") {
-      toast.info("Nice!, check them in your match status page!", {
+      toast.info("Invitation sent!", {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -173,7 +178,7 @@ function Match(matches) {
         progress: undefined,
       });
     } else {
-      toast.info("Whoops!", {
+      toast.info("Ooops, you just undo your invitation!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -285,9 +290,15 @@ function Match(matches) {
                           />
                           <div className={classes.container}>
                             <Fade in={check}>
-                              <Typography>
+                              {/* <Typography>
                                 You have rang this roommie!
-                              </Typography>
+                              </Typography> */}
+                              <Button
+                                className={classes.statusButton}
+                                href="matching-status"
+                              >
+                                See your Matching Status
+                              </Button>
                             </Fade>
                           </div>
                         </div>
@@ -343,9 +354,12 @@ function Match(matches) {
                           />
                           <div className={classes.container}>
                             <Fade in={check}>
-                              <Typography>
+                              {/* <Typography>
                                 You have rang this roommie!
-                              </Typography>
+                              </Typography> */}
+                              <Button href="matching-status">
+                                See you Match Status
+                              </Button>
                             </Fade>
                           </div>
                         </div>
