@@ -20,10 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
   firstInfo: {
     paddingTop: "15px",
+    backgroundColor: "#ffffff",
   },
   secondInfo: {
     paddingTop: "15px",
     backgroundColor: "#fdf8f4",
+    paddingLeft: "0"
   },
   formStyle: {
     paddingBottom: "20px",
@@ -37,6 +39,11 @@ const useStyles = makeStyles((theme) => ({
     borderRight: "solid",
     borderWidth: "0.25px",
   },
+  body: {
+    display: "flex",
+    minHeight: "100%",
+    flexDirection: "column"
+  }
 }));
 
 function FrontPage(details) {
@@ -94,7 +101,7 @@ function FrontPage(details) {
   }
 
   return (
-    <div>
+    <div className={classes.body}>
       <Grid container spacing={2} className={classes.frontImage}>
         <Grid item xs={12} align="center" className={classes.paddings}>
           <Box>

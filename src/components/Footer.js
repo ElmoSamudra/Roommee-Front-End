@@ -23,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
     },
     linkTextStyle: {
         paddingRight: "27px"
+    },
+    footer: {
     }
 }));
 
@@ -35,6 +37,7 @@ export default function Footer() {
             direction="column"
             justify="flex-end"
             alignItems="stretch"
+            className={classes.footer}
         >
             <Grid className={classes.topPic}/>
             <Grid className={classes.headingStyle}>
