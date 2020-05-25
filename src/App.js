@@ -16,17 +16,17 @@ import ButtonAppBar from "./components/appbar";
 import Divider from "@material-ui/core/Divider";
 import theme from "./theme/muiTheme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from '@material-ui/core/CssBaseline';
+import "./styles.css"
 
 //app
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
+
       <Router>
         <Switch>
           <Route exact path="/">
             <Header1 />
-            <CssBaseline />
             <FrontPage />
             <ToastContainer
               position="top-center"
@@ -42,7 +42,6 @@ function App() {
           </Route>
           <Route exact path="/register">
             <Header1 />
-            <CssBaseline />
             <Register />
             <ToastContainer
               position="top-center"

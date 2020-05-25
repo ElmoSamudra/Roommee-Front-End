@@ -1,4 +1,4 @@
-nav {
+/* nav {
   background-color: #574f48;
 }
 
@@ -20,7 +20,7 @@ nav a.active {
 #matching-page {
   max-height: 100%;
   max-width: 100%;
-}
+} */
 /* h1 {
   font-family: "Garamond";
   font-size: 30px;
@@ -85,4 +85,14 @@ nav a.active {
 
   /* Support for IE. */
   font-feature-settings: "liga";
+}
+
+body,html{
+  margin: 0;
+  height: 100%;
+}
+#root{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 }

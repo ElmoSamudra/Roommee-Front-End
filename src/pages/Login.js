@@ -38,11 +38,6 @@ const useStyles = makeStyles((theme) => ({
   login: {
     borderRight: "solid",
     borderWidth: "0.25px",
-  },
-  body: {
-    display: "flex",
-    minHeight: "100%",
-    flexDirection: "column"
   }
 }));
 
@@ -102,7 +97,7 @@ function FrontPage(details) {
 
   return (
     <div className={classes.body}>
-      <Grid container spacing={2} className={classes.frontImage}>
+      <Grid container className={classes.frontImage}>
         <Grid item xs={12} align="center" className={classes.paddings}>
           <Box>
             <Zoom in={checked} timeout={{ enter: 1500 }}>

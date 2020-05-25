@@ -27,10 +27,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
   },
   body: {
-    display: "flex",
-    minHeight: "100%",
-    flexDirection: "column",
-    backgroundColor: "#ffffff"
   },
 }));
 
