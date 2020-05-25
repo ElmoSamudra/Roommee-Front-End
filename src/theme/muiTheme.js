@@ -35,7 +35,7 @@ const Theme = createMuiTheme({
     subtitle2: {
       fontFamily: ["Raleway"],
       color: "#674b02",
-      fontSize: "14px",
+      fontSize: "12px",
     },
     body1: {
       fontFamily: ["Raleway"],

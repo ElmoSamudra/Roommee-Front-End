@@ -184,7 +184,7 @@ export default function Register() {
           <br />
           <br />
           <label>
-            <Typography variant="body1">
+            <Typography variant="subtitle2">
               <Checkbox
                 value="checkedA"
                 inputProps={{ "aria-label": "Checkbox A" }}
