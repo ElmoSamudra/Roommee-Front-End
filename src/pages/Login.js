@@ -16,7 +16,7 @@ const logoImage = "/images/roommeelogo2.png";
 
 const useStyles = makeStyles((theme) => ({
   paddings: {
-    paddingTop: "100px",
+    paddingTop: "30px",
   },
   firstInfo: {
     paddingTop: "15px",
