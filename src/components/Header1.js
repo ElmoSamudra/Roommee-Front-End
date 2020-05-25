@@ -16,7 +16,6 @@ const roommeeLogo = process.env.PUBLIC_URL + '/images/roommeelogo3.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
   },
   homeButton: {
     marginRight: theme.spacing(2),

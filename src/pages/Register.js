@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
   },
   body: {
+    flexGrow: 1
   },
 }));
 

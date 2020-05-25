@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
   login: {
     borderRight: "solid",
     borderWidth: "0.25px",
+  },
+  body: {
+    flexGrow: 1
   }
 }));
 
