@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FrontPage from "./pages/Login";
 import Register from "./pages/Register";
+import ChatList from "./pages/ChatList";
+import Chat from "./pages/Chat";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
@@ -131,6 +133,11 @@ function App() {
             <ButtonAppBar />
             <Divider />
             <ShowStatusMatch />
+          </Route>
+          <Route exact path="/chatlist">
+            <ChatList />
+          </Route>
+          <Route path="/chat" component={Chat}>
           </Route>
           <Route path="/404">
             <div>
