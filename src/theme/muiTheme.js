@@ -1,6 +1,11 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+import { orange, brown } from "@material-ui/core/colors";
 
 const Theme = createMuiTheme({
+  palette: {
+    primary: brown,
+    secondary: orange,
+  },
   typography: {
     h1: {
       fontFamily: ["Raleway"],
@@ -30,7 +35,7 @@ const Theme = createMuiTheme({
     subtitle2: {
       fontFamily: ["Raleway"],
       color: "#674b02",
-      fontSize: "14px",
+      fontSize: "12px",
     },
     body1: {
       fontFamily: ["Raleway"],

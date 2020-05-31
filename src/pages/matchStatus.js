@@ -4,6 +4,7 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import { Link } from "react-router-dom";
 import {
   Typography,
   Paper,
@@ -175,6 +176,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ShowStatusMatch() {
   const classes = useStyles();
   const { loadingStatus, statusMatch, errorStatus } = useStatusMatch();
+  // const {loadingProfile, }
 
   if (loadingStatus) {
     return <p>Loading...</p>;
@@ -232,7 +234,10 @@ function DivStatus({ matchData, user }) {
 
   const [choice, setChoice] = useState("yes");
   const userStatusMatch = matchData;
+  console.log(userStatusMatch.chat);
 
+  console.log(user.accountId.toString());
+  console.log(userStatusMatch.chat.indexOf(user.accountId.toString()));
   // useEffect(() => {
   //   likeUser({
   //     id: user.accountId,
@@ -339,7 +344,7 @@ function DivStatus({ matchData, user }) {
                     </p>
                   ) : userStatusMatch.chat.indexOf(
                       user.accountId.toString()
-                    ) !== 1 ? (
+                    ) === -1 ? (
                     <p className={classes.currentMatchStatus}>
                       Pending Invitation
                     </p>
@@ -348,9 +353,13 @@ function DivStatus({ matchData, user }) {
                       <label className={classes.currentMatchStatus}>
                         Go and Say Hi!
                       </label>
+                      {/* <Link to={`/chat?room=${room}`}>
+                        <Button className={classes.chatButton}>Chat</Button>
+                      </Link> */}
                       <Button className={classes.chatButton} onClick={onChat}>
                         Chat
                       </Button>
+                      {/* <button type="submit">Go to room</button> */}
                     </>
                   )}
                   {userStatusMatch.clickedMatch !==
@@ -413,8 +422,8 @@ function DivStatus({ matchData, user }) {
                 <p className={classes.currentMatchStatusSS}>
                   This is your roommee
                 </p>
-              ) : userStatusMatch.chat.indexOf(user.accountId.toString()) !==
-                1 ? (
+              ) : userStatusMatch.chat.indexOf(user.accountId.toString()) ===
+                -1 ? (
                 <p className={classes.currentMatchStatusSS}>
                   Pending Invitation
                 </p>

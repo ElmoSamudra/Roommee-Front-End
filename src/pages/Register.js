@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   },
+  body: {
+    flexGrow: 1
+  },
 }));
 
 export default function Register() {
@@ -112,7 +115,12 @@ export default function Register() {
   }
 
   return (
-    <Grid container alignItems="center" justify="center">
+    <Grid 
+    container 
+    alignItems="center" 
+    justify="center" 
+    className={classes.body}
+    >
       <Grid item align="center">
         <Box className={classes.text}>
           <Slide in={checked} timeout={{ enter: 1500 }}>
@@ -176,7 +184,7 @@ export default function Register() {
           <br />
           <br />
           <label>
-            <Typography variant="body1">
+            <Typography variant="subtitle2"> 
               <Checkbox
                 value="checkedA"
                 inputProps={{ "aria-label": "Checkbox A" }}

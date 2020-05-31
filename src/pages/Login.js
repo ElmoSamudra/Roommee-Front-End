@@ -16,14 +16,16 @@ const logoImage = "/images/roommeelogo2.png";
 
 const useStyles = makeStyles((theme) => ({
   paddings: {
-    paddingTop: "100px",
+    paddingTop: "30px",
   },
   firstInfo: {
     paddingTop: "15px",
+    backgroundColor: "#ffffff",
   },
   secondInfo: {
     paddingTop: "15px",
     backgroundColor: "#fdf8f4",
+    paddingLeft: "0"
   },
   formStyle: {
     paddingBottom: "20px",
@@ -37,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     borderRight: "solid",
     borderWidth: "0.25px",
   },
+  body: {
+    flexGrow: 1
+  }
 }));
 
 function FrontPage(details) {
@@ -94,8 +99,8 @@ function FrontPage(details) {
   }
 
   return (
-    <div>
-      <Grid container spacing={2} className={classes.frontImage}>
+    <div className={classes.body}>
+      <Grid container className={classes.frontImage}>
         <Grid item xs={12} align="center" className={classes.paddings}>
           <Box>
             <Zoom in={checked} timeout={{ enter: 1500 }}>
