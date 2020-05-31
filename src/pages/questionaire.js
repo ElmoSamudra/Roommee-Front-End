@@ -8,7 +8,6 @@ import Grid from "@material-ui/core/Grid";
 import { toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 import {
   Typography,
   Paper,
@@ -195,8 +194,7 @@ function Questionaire(questionaire) {
         seekExtrovertRate: seekExtrovertRateInput,
         cleanlinessToleranceRate: cleanlinessToleranceRateInput,
       });
-    }
-    else {
+    } else {
       toast.info("😺 Please fill all fields!", {
         position: "top-center",
         autoClose: 1000,
@@ -219,12 +217,27 @@ function Questionaire(questionaire) {
       sameLangPrefInput === "" ||
       numRoommeePrefInput === "" ||
       ageFromInput === 0 ||
-      ageToInput === 0 
+      ageToInput === 0
     ) {
       return false;
     } else {
       return true;
     }
+  }
+
+  if (
+    sameNationalityPref === "" ||
+    sameGenderPref === "" ||
+    sameLocationPref === "" ||
+    petsPref === "" ||
+    sameLangPref === "" ||
+    numRoommeePref === "" ||
+    ageFrom === 0 ||
+    ageTo === 0
+  ) {
+    var checkQ = false;
+  } else {
+    var checkQ = true;
   }
 
   return (
@@ -425,13 +438,15 @@ function Questionaire(questionaire) {
               </Button>
             </Grid>
             <Grid xs={12} item>
-              <Button
-                variant="outlined"
-                className={classes.matchingButtonSS}
-                href="/matching"
-              >
-                Go to Matching Page
-              </Button>
+              {checkQ && (
+                <Button
+                  variant="outlined"
+                  className={classes.matchingButtonSS}
+                  href="/matching"
+                >
+                  Go to Matching Page
+                </Button>
+              )}
             </Grid>
           </Hidden>
         </Grid>
@@ -461,13 +476,15 @@ function Questionaire(questionaire) {
               </Button>
             </Grid>
             <Grid xs={12} item>
-              <Button
-                variant="outlined"
-                className={classes.matchingButton}
-                href="/matching"
-              >
-                Go to Matching Page
-              </Button>
+              {checkQ && (
+                <Button
+                  variant="outlined"
+                  className={classes.matchingButton}
+                  href="/matching"
+                >
+                  Go to Matching Page
+                </Button>
+              )}
             </Grid>
           </Hidden>
         </Grid>

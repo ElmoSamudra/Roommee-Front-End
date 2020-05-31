@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-const BASE_URL = "https://roommee.herokuapp.com";
-// const BASE_URL ='http://localhost:3000'
+// const BASE_URL = "https://roommee.herokuapp.com";
+const BASE_URL = "http://localhost:3000";
 function getProfile() {
   const endpoint = BASE_URL + `/user-profile`;
   const token = localStorage.token;
@@ -14,6 +14,81 @@ function getProfile() {
     },
   }).then((res) => {
     return res.json();
+  });
+}
+
+// export function validateEmail(emailInput) {
+//   const endpoint = BASE_URL + "/user-profile/change-cred";
+//   const token = localStorage.token;
+//   return fetch(endpoint, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Accept: "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//     body: JSON.stringify({
+//       emailInput,
+//     }),
+//   }).then((res) => {
+//     return res.json();
+//   });
+// }
+
+// export function updateEmailInProf(inputEmail) {
+//   const email = inputEmail;
+//   const endpoint = BASE_URL + "/user-profile/change-email";
+//   const token = localStorage.token;
+//   return fetch(endpoint, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Accept: "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//     body: JSON.stringify({
+//       email,
+//     }),
+//   }).then((res) => {
+//     return window.location.reload(window.location.reload);
+//   });
+// }
+
+export function updatePass(input) {
+  const password = input;
+  const endpoint = BASE_URL + "/account-management/accounts/me";
+  const token = localStorage.token;
+  return fetch(endpoint, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      password,
+    }),
+  }).then((res) => {
+    return res;
+  });
+}
+
+export function updateEmail(input) {
+  const email = input;
+  const endpoint = BASE_URL + "/account-management/accounts/me";
+  const token = localStorage.token;
+  return fetch(endpoint, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      email,
+    }),
+  }).then((res) => {
+    return res;
   });
 }
 
@@ -49,7 +124,9 @@ export function updateProfile(profile) {
       language,
       preferStay,
     }),
-  }).then((res) => window.location.reload(window.location.reload));
+  }).then((res) => {
+    return res;
+  });
 }
 
 export function useProfile() {
@@ -64,7 +141,7 @@ export function useProfile() {
         setLoading(false);
       })
       .catch((e) => {
-        console.log(e);
+        // console.log(e);
         setError(e);
         setLoading(false);
       });

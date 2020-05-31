@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import { useProfile, updateProfile } from "../api/profileApi";
+import {
+  useProfile,
+  updateProfile,
+  updatePass,
+  updateEmail,
+} from "../api/profileApi";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-// import Card from "@material-ui/core/Card";
-// import CardMedia from "@material-ui/core/CardMedia";
 import Box from "@material-ui/core/Box";
 import { Typography, Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Hidden from "@material-ui/core/Hidden";
 import GenderBox from "../components/genderBox";
-import { Input } from "@material-ui/core";
 import { toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Avatar from "@material-ui/core/Avatar";
-
-//import Button from "../components/button";
+import { useHistory } from "react-router-dom";
 
 export default function ShowProfile() {
   const { loadingProfile, userProfile, errorProfile } = useProfile();
@@ -103,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#392621",
     // backgroundRepeat: "no-repeat",
     // backgroundAttachment: "fixed",
-    // backgroundPosition: "center",
+    backgroundPosition: "center",
     backgroundSize: "cover",
     // width: "100%",
     // maxHeight: "100%",
@@ -117,6 +118,18 @@ const useStyles = makeStyles((theme) => ({
     padding: "auto",
     margin: "auto",
     marginTop: "5%",
+  },
+  // input: {
+  //   backgroundColor: "#F9EADF",
+  // },
+  changePassButton: {
+    margin: "auto",
+    width: "50%",
+  },
+  passBox: {
+    backgroundColor: "#F9EADF",
+    padding: 20,
+    borderRadius: 15,
   },
 }));
 
@@ -132,7 +145,6 @@ function Profile(profile) {
     hobby,
     language,
     preferStay,
-    password,
   } = profile;
   //const [showUpdate, setShowUpdate] = useState(false);
 
@@ -144,17 +156,18 @@ function Profile(profile) {
   const [hobbyInput, setHobby] = useState(hobby || "");
   const [languageInput, setLanguage] = useState(language || "");
   const [preferStayInput, setPreferStay] = useState(preferStay || "");
-  const [passwordInput, setPassword] = useState(password || "");
-  const [curPass, setCurPass] = useState([]);
-  const [pop, setPop] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [passwordInput, setPassword] = useState([] || "");
+  const [validatePass, setValidatePass] = useState([]);
+  const [emailInput, setEmail] = useState([] || "");
+  const [popPass, setPopPass] = useState(false);
+  const [popEmail, setPopEmail] = useState(false);
 
   async function onSubmit() {
     const bool = await validate();
     console.log(bool);
     if (bool) {
       // call upate author function
-      updateProfile({
+      const reqStatus = await updateProfile({
         firstName: firstNameInput,
         surName: surNameInput,
         age: ageInput,
@@ -164,6 +177,21 @@ function Profile(profile) {
         language: languageInput.toString().toLowerCase(),
         preferStay: preferStayInput.toString().toLowerCase(),
       });
+      console.log(reqStatus);
+      if (reqStatus.status === 200) {
+        window.location.reload();
+      } else {
+        toast.info("😺 Please input all fields correctly!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          transition: Flip,
+        });
+      }
     } else {
       toast.info("😺 Please fill all fields!", {
         position: "top-center",
@@ -178,23 +206,88 @@ function Profile(profile) {
     }
   }
 
-  function authenticatePop() {
-    setPop(!pop);
+  function authenticatePopPass() {
+    setPopPass(!popPass);
   }
 
-  function checkPass() {
-    console.log(curPass);
-    console.log(curPass === passwordInput);
-    if (curPass === "123456789") {
-      setHidden(true);
-    }
-    // need to ask Eldar how the password thing works
-    // need to ask Eldar how to update the password and email
-    // need to ask Eldar how to use the encrypt password
-    // if (curPass === passwordInput) {
-    //   setHidden(true);
-    // }
+  function authenticatePopEmail() {
+    setPopEmail(!popEmail);
   }
+
+  async function authenticate(type) {
+    if (type === "pass") {
+      if (validatePass === passwordInput) {
+        let result = await updatePass(passwordInput);
+        if (result.status === 200) {
+          window.location.reload();
+        } else {
+          toast.info("😺 Please input all fields correctly!", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            transition: Flip,
+          });
+        }
+      } else {
+        toast.info("😺 Password does not match", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          transition: Flip,
+        });
+      }
+    } else {
+      console.log("masuk udpate");
+      let result = await updateEmail(emailInput);
+      if (result.status === 200) {
+        window.location.reload();
+      } else {
+        toast.info("😺 Please input all fields correctly!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          transition: Flip,
+        });
+      }
+    }
+  }
+
+  // succeed
+  // async function checkPass(type) {
+  //   const valResult = await validateEmail(curEmail);
+  //   if (valResult === true) {
+  //     setHidden(true);
+  //   } else {
+  //     toast.info("😺 Wrong Email", {
+  //       position: "top-center",
+  //       autoClose: 1000,
+  //       hideProgressBar: true,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       transition: Flip,
+  //     });
+  //   }
+  // }
+  // need to ask Eldar how the password thing works
+  // need to ask Eldar how to update the password and email
+  // need to ask Eldar how to use the encrypt password
+  // if (curPass === passwordInput) {
+  //   setHidden(true);
+  // }
 
   async function validate() {
     console.log(languageInput);
@@ -236,37 +329,98 @@ function Profile(profile) {
             <Avatar className={classes.profPic}>
               {firstNameInput[0].toUpperCase() + surNameInput[0].toUpperCase()}
             </Avatar>
-            <Button
-              variant="outlined"
-              // className={classes.updateButton}
-              onClick={authenticatePop}
+            <Box
+              display="flex block"
+              justifyContent="center"
+              className={classes.changePassButton}
             >
-              Change Password or Email
-            </Button>
-            {pop === true ? (
-              hidden === true ? (
-                <>
+              <Button
+                variant="contained"
+                color="primary"
+                // className={classes.updateButton}
+                onClick={authenticatePopPass}
+              >
+                Change Password
+              </Button>
+              {popPass === true ? (
+                <Box className={classes.passBox}>
                   <Typography>New Password</Typography>
-                  <TextField vairant="outlined" type="password" />
-                  <Typography>Confirm Password</Typography>
-                  <TextField vairant="outlined" type="password" />
-                </>
-              ) : (
-                <>
-                  <Typography>Enter your current password</Typography>
                   <TextField
-                    variant="outlined"
+                    variant="filled"
                     type="password"
+                    name="new-pass"
                     onChange={(event) => {
-                      setCurPass(event.target.value);
+                      setPassword(event.target.value);
                     }}
                   />
-                  <Button onClick={checkPass}>Submit</Button>
-                </>
-              )
-            ) : (
-              <></>
-            )}
+                  <Typography>Confirm Password</Typography>
+                  <TextField
+                    variant="filled"
+                    type="password"
+                    name="confirm-pass"
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    onChange={(event) => {
+                      setValidatePass(event.target.value);
+                    }}
+                  />
+
+                  <Box>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      // className={classes.updateButton}
+                      onClick={() => {
+                        authenticate("pass");
+                      }}
+                    >
+                      Update Password
+                    </Button>
+                  </Box>
+                </Box>
+              ) : (
+                <></>
+              )}
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="center"
+              className={classes.changePassButton}
+            >
+              <Button
+                // className={classes.updateButton}
+                onClick={authenticatePopEmail}
+                variant="contained"
+                color="primary"
+              >
+                Change Email
+              </Button>
+              {popEmail === true ? (
+                <Box>
+                  <Typography>Change Email</Typography>
+                  <TextField
+                    variant="filled"
+                    type="text"
+                    name="update-email"
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                    }}
+                  />
+                  <Button
+                    variant="outlined"
+                    // className={classes.updateButton}
+                    onClick={() => {
+                      authenticate("email");
+                    }}
+                  >
+                    Update Email
+                  </Button>
+                </Box>
+              ) : (
+                <></>
+              )}
+            </Box>
           </Grid>
         </Hidden>
         <Hidden mdUp>
