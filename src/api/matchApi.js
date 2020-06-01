@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const BASE_URL = "https://roommee.herokuapp.com";
-// const BASE_URL = "http://localhost:3000";
+// const BASE_URL = "https://roommee.herokuapp.com";
+const BASE_URL = "http://localhost:3000";
 function runMatch() {
   const endpoint = BASE_URL + `/user-match`;
   const token = localStorage.token;
