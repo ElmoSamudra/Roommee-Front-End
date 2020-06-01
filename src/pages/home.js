@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "100px",
     minHeight: "75px",
   },
+  body: {
+    flexGrow: 1
+  },
 }));
 
 function FrontPage() {
@@ -71,7 +74,7 @@ function FrontPage() {
   console.log(userQuestionaire.filter1.sameNationalityPref);
 
   return (
-    <div>
+    <div className={classes.body}>
       <Grid container spacing={2} className={classes.frontImage}>
         <Grid item xs={12} align="center" className={classes.paddings}>
           <Box>

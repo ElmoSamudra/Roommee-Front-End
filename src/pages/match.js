@@ -80,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
   profileMatch: {
     height: "100%",
+    flexGrow: 1
   },
   profForm: {
     backgroundColor: "#F3DFB3",
