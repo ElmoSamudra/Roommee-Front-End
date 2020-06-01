@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStatusMatch, likeUser } from "../api/matchApi";
+import { useProfile } from "../api/profileApi";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { makeStyles } from "@material-ui/core/styles";
@@ -176,16 +177,19 @@ const useStyles = makeStyles((theme) => ({
 export default function ShowStatusMatch() {
   const classes = useStyles();
   const { loadingStatus, statusMatch, errorStatus } = useStatusMatch();
-  // const {loadingProfile, }
+  const { loadingProfile, userProfile, errorProfile } = useProfile();
 
-  if (loadingStatus) {
+  if (loadingStatus || loadingProfile) {
     return <p>Loading...</p>;
   }
-  if (errorStatus) {
+  if (errorStatus || errorProfile) {
     return <p>Something went wrong: {errorStatus.message}</p>;
   }
 
+  console.log(userProfile);
+  console.log(userProfile.roomList);
   console.log(statusMatch.pendingStatus);
+  console.log(statusMatch.pendingStatus[0].accountId);
   // Display a list of the authors
   return (
     <>
@@ -221,6 +225,8 @@ export default function ShowStatusMatch() {
               key={userPending.accountId}
               matchData={statusMatch.userMatchData}
               user={userPending}
+              chatRooms={userProfile.roomList}
+              userName={userProfile.firstName}
             />
           ))
         )}
@@ -229,15 +235,26 @@ export default function ShowStatusMatch() {
   );
 }
 
-function DivStatus({ matchData, user }) {
+function DivStatus({ matchData, user, chatRooms, userName }) {
   const classes = useStyles();
 
   const [choice, setChoice] = useState("yes");
   const userStatusMatch = matchData;
+  var chatRoomName = "";
+
   console.log(userStatusMatch.chat);
 
   console.log(user.accountId.toString());
   console.log(userStatusMatch.chat.indexOf(user.accountId.toString()));
+  console.log(chatRooms);
+
+  // find the roomname first
+  chatRooms.forEach((room) => {
+    if (room.listUsers.indexOf(user.accountId.toString()) !== -1) {
+      chatRoomName = room.roomName;
+    }
+  });
+
   // useEffect(() => {
   //   likeUser({
   //     id: user.accountId,
@@ -353,12 +370,12 @@ function DivStatus({ matchData, user }) {
                       <label className={classes.currentMatchStatus}>
                         Go and Say Hi!
                       </label>
-                      {/* <Link to={`/chat?room=${room}`}>
+                      <Link to={`/chat?name=${userName}&room=${chatRoomName}`}>
                         <Button className={classes.chatButton}>Chat</Button>
-                      </Link> */}
-                      <Button className={classes.chatButton} onClick={onChat}>
+                      </Link>
+                      {/* <Button className={classes.chatButton} onClick={onChat}>
                         Chat
-                      </Button>
+                      </Button> */}
                       {/* <button type="submit">Go to room</button> */}
                     </>
                   )}
@@ -432,9 +449,12 @@ function DivStatus({ matchData, user }) {
                   <label className={classes.currentMatchStatusSS}>
                     Go and Say Hi!
                   </label>
-                  <Button className={classes.chatButtonSS} onClick={onChat}>
+                  <Link to={`/chat?name=${userName}&room=${chatRoomName}`}>
+                    <Button className={classes.chatButton}>Chat</Button>
+                  </Link>
+                  {/* <Button className={classes.chatButtonSS} onClick={onChat}>
                     Chat
-                  </Button>
+                  </Button> */}
                 </>
               )}
               {userStatusMatch.clickedMatch !== user.accountId.toString() && (

@@ -87,6 +87,12 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 31,
     paddingBottom: 31,
   },
+  updatePassButton: {
+    marginTop: 10,
+  },
+  emailButton: {
+    marginTop: 10,
+  },
   H1: {
     fontFamily: "Raleway, Arial",
     fontSize: "40px",
@@ -337,7 +343,7 @@ function Profile(profile) {
               <Button
                 variant="contained"
                 color="primary"
-                // className={classes.updateButton}
+                className={classes.updatePassButton}
                 onClick={authenticatePopPass}
               >
                 Change Password
@@ -370,7 +376,7 @@ function Profile(profile) {
                     <Button
                       variant="contained"
                       color="primary"
-                      // className={classes.updateButton}
+                      className={classes.updatePassButton}
                       onClick={() => {
                         authenticate("pass");
                       }}
@@ -393,11 +399,12 @@ function Profile(profile) {
                 onClick={authenticatePopEmail}
                 variant="contained"
                 color="primary"
+                className={classes.emailButton}
               >
                 Change Email
               </Button>
               {popEmail === true ? (
-                <Box>
+                <Box className={classes.passBox}>
                   <Typography>Change Email</Typography>
                   <TextField
                     variant="filled"
