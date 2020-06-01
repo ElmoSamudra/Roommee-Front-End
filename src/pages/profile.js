@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     paddingTop: 15,
     height: "100%",
+    flexGrow: 1,
   },
   gridRight: {
     maxHeight: "100%",

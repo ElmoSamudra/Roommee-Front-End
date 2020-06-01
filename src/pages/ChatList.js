@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 
-function Chat() {
+function Chatlist() {
 
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
@@ -17,4 +17,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default Chatlist;

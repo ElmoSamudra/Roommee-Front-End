@@ -172,6 +172,9 @@ const useStyles = makeStyles((theme) => ({
     width: "65%",
     height: "100%",
   },
+  body: {
+    flexGrow: 1
+  },
 }));
 
 export default function ShowStatusMatch() {
@@ -193,7 +196,7 @@ export default function ShowStatusMatch() {
   // Display a list of the authors
   return (
     <>
-      <div className="container-match-status">
+      <div className="body">
         <Hidden mdDown>
           <h1 className={classes.h1}>Matching</h1>
           <h2 className={classes.h2}>Status</h2>
