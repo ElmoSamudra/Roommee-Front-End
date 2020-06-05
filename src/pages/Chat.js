@@ -1,11 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Message from "../components/Message";
+import {
+  Button,
+  Input,
+  Typography,
+  makeStyles,
+  Paper,
+} from "@material-ui/core";
 import { useGetChatHisto } from "../api/chatApi";
 
 let socket;
+
+const useStyles = makeStyles((theme) => ({
+  outerContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+  },
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "spaceBetween",
+    borderRadius: "8px",
+    height: "60%",
+    width: "40%",
+  },
+  messages: {
+    padding: "5% 0",
+    overflow: "auto",
+    flex: "auto",
+  },
+}));
 
 function Chat({ location }) {
   // parse the url to get the room name
@@ -20,19 +49,28 @@ function Chat({ location }) {
     return <p>Something went wrong: {errorHisto.message}</p>;
   }
   console.log(chatHisto);
+  const newHisto = extractHisto(chatHisto.messages);
+  console.log(newHisto);
   return (
     <div>
-      <ChatDiv location={location} history={chatHisto} />
+      <ChatDiv location={location} history={newHisto} names={chatHisto.users} />
     </div>
   );
 }
 
-function ChatDiv({ location, history }) {
+function ChatDiv({ location, history, names }) {
+  const classes = useStyles();
+
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-  const ENDPOINT = "localhost:3000";
+  const messages = useRef([]);
+  const [initMessage, setInitMessage] = useState(false);
+  const ENDPOINT = "https://roommee.herokuapp.com";
+
+  history.forEach((histo) => {
+    messages.current.push(histo);
+  });
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -53,9 +91,8 @@ function ChatDiv({ location, history }) {
   }, [ENDPOINT, location.search]);
 
   useEffect(() => {
-    socket.on("message", (message) => {
-      console.log(message);
-      setMessages([...messages, message]);
+    socket.on("message", function (message) {
+      messages.current.push(message);
     });
   }, [messages]);
 
@@ -71,19 +108,23 @@ function ChatDiv({ location, history }) {
   console.log(message, messages);
 
   return (
-    <div>
-      <div>Logs</div>
-      <div>
-        <ScrollToBottom>
-          {messages.map((message, i) => (
-            <div key={i}>
-              <Message message={message} name={name} />
-            </div>
-          ))}
-        </ScrollToBottom>
+    <div className={classes.outerContainer}>
+      <div className={classes.container}>
+        <Typography variant="h2">
+          <p>{names[0] + " & " + names[1]}</p>
+        </Typography>
       </div>
       <div>
-        <input
+        <Paper style={{ height: "400px", overflow: "auto" }}>
+          <ScrollToBottom className={classes.messages}>
+            {messages.current.map((message, i) => (
+              <div key={i}>
+                <Message message={message} name={name} />
+              </div>
+            ))}
+          </ScrollToBottom>
+        </Paper>
+        <Input
           value={message}
           placeholder="message here"
           onChange={(event) => {
@@ -93,10 +134,22 @@ function ChatDiv({ location, history }) {
             event.key === "Enter" ? sendMessage(event) : null
           }
         />
-        <button onClick={(event) => sendMessage(event)}>Enter</button>
+        <Button onClick={(event) => sendMessage(event)}>Enter</Button>
       </div>
     </div>
   );
+}
+
+// extract the chat histo to match messages
+function extractHisto(histo) {
+  let newHisto = [];
+  histo.forEach((eachHisto) => {
+    let objHisto = {};
+    objHisto.user = eachHisto.from;
+    objHisto.text = eachHisto.body;
+    newHisto.push(objHisto);
+  });
+  return newHisto;
 }
 
 export default Chat;
