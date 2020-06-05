@@ -68,10 +68,6 @@ function ChatDiv({ location, history, names }) {
   const [initMessage, setInitMessage] = useState(false);
   const ENDPOINT = "https://roommee.herokuapp.com";
 
-  history.forEach((histo) => {
-    messages.current.push(histo);
-  });
-
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
@@ -117,6 +113,11 @@ function ChatDiv({ location, history, names }) {
       <div>
         <Paper style={{ height: "400px", overflow: "auto" }}>
           <ScrollToBottom className={classes.messages}>
+          {history.map((histo, i) => (
+              <div key={i}>
+                <Message message={histo} name={name} />
+              </div>
+            ))}
             {messages.current.map((message, i) => (
               <div key={i}>
                 <Message message={message} name={name} />
