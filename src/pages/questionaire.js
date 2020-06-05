@@ -108,8 +108,6 @@ export default function ShowQuestionaire() {
   if (errorQuestionaire) {
     return <p>Something went wrong: {errorQuestionaire.message}</p>;
   }
-  // use this to make sure you are getting the right data
-  console.log(userQuestionaire);
 
   // Display a list of the authors
   return (

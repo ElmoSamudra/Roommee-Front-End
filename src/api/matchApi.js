@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 const BASE_URL = "https://roommee.herokuapp.com";
 // const BASE_URL = "http://localhost:3000";
+
+// get the matching profiles from backend
 function runMatch() {
   const endpoint = BASE_URL + `/user-match`;
   const token = localStorage.token;
@@ -19,6 +20,7 @@ function runMatch() {
   });
 }
 
+// get the matching status from backend
 function getMatchStatus() {
   const endpoint = BASE_URL + "/user-match/status";
   const token = localStorage.token;
@@ -34,6 +36,7 @@ function getMatchStatus() {
   });
 }
 
+// update the liked match that the user has chosen to backend
 export function likeUser(user) {
   console.log("update");
   const { id, ans } = user;
@@ -56,6 +59,7 @@ export function likeUser(user) {
   });
 }
 
+// create the use effect to get the matching profiles
 export function useMatch() {
   const [loading, setLoading] = useState(true);
   const [userMatch, setUserMatch] = useState([]);
@@ -82,6 +86,7 @@ export function useMatch() {
   };
 }
 
+// create the use effect to get all of the matching status
 export function useStatusMatch() {
   const [loading, setLoading] = useState(true);
   const [statusMatch, setStatusMatch] = useState([]);

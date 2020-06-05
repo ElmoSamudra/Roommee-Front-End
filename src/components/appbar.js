@@ -43,7 +43,6 @@ export default function ButtonAppBar() {
   } = useQuestionaire();
 
   if (userProfile.error != null) {
-    console.log("caught error");
     history.push("/");
   }
 
@@ -59,9 +58,6 @@ export default function ButtonAppBar() {
   if (errorProfile || errorQuestionaire) {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
-  console.log(userProfile.nationality === "");
-  console.log(userQuestionaire.filter1.sameNationalityPref === "");
-  console.log(userProfile.matchBuffer.length);
 
   return (
     <div className={classes.root}>
@@ -75,9 +71,7 @@ export default function ButtonAppBar() {
           )}
           <Typography variant="h6" className="nav-bar">
             <NavLink exact to="/home" className={classes.link}>
-              <Button>
-                Home
-              </Button>
+              <Button>Home</Button>
             </NavLink>
           </Typography>
 

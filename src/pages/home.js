@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { Typography, makeStyles, Box } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
 import { useProfile } from "../api/profileApi";
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "75px",
   },
   body: {
-    flexGrow: 1
+    flexGrow: 1,
   },
 }));
 
@@ -67,11 +67,6 @@ function FrontPage() {
   if (errorProfile || errorQuestionaire) {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
-
-  console.log(userProfile.age);
-  console.log(userQuestionaire);
-  console.log(userProfile);
-  console.log(userQuestionaire.filter1.sameNationalityPref);
 
   return (
     <div className={classes.body}>

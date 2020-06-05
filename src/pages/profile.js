@@ -25,9 +25,6 @@ export default function ShowProfile() {
   if (errorProfile) {
     return <p>Something went wrong: {errorProfile.message}</p>;
   }
-  console.log("called");
-  // use this to make sure you are getting the right data
-  console.log(userProfile);
 
   // Display a list of the authors
   return (
@@ -171,7 +168,6 @@ function Profile(profile) {
 
   async function onSubmit() {
     const bool = await validate();
-    console.log(bool);
     if (bool) {
       // call upate author function
       const reqStatus = await updateProfile({
@@ -184,7 +180,6 @@ function Profile(profile) {
         language: languageInput.toString().toLowerCase(),
         preferStay: preferStayInput.toString().toLowerCase(),
       });
-      console.log(reqStatus);
       if (reqStatus.status === 200) {
         window.location.reload();
       } else {
@@ -252,7 +247,6 @@ function Profile(profile) {
         });
       }
     } else {
-      console.log("masuk udpate");
       let result = await updateEmail(emailInput);
       if (result.status === 200) {
         window.location.reload();
@@ -297,7 +291,6 @@ function Profile(profile) {
   // }
 
   async function validate() {
-    console.log(languageInput);
     if (
       firstNameInput === "" ||
       surNameInput === "" ||

@@ -173,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
   body: {
-    flexGrow: 1
+    flexGrow: 1,
   },
 }));
 
@@ -189,10 +189,6 @@ export default function ShowStatusMatch() {
     return <p>Something went wrong: {errorStatus.message}</p>;
   }
 
-  console.log(userProfile);
-  console.log(userProfile.roomList);
-  console.log(statusMatch.pendingStatus);
-  console.log(statusMatch.pendingStatus[0].accountId);
   // Display a list of the authors
   return (
     <>
@@ -245,12 +241,6 @@ function DivStatus({ matchData, user, chatRooms, userName }) {
   const userStatusMatch = matchData;
   var chatRoomName = "";
 
-  console.log(userStatusMatch.chat);
-
-  console.log(user.accountId.toString());
-  console.log(userStatusMatch.chat.indexOf(user.accountId.toString()));
-  console.log(chatRooms);
-
   // find the roomname first
   chatRooms.forEach((room) => {
     if (room.listUsers.indexOf(user.accountId.toString()) !== -1) {
@@ -258,15 +248,7 @@ function DivStatus({ matchData, user, chatRooms, userName }) {
     }
   });
 
-  // useEffect(() => {
-  //   likeUser({
-  //     id: user.accountId,
-  //     ans: choice,
-  //   });
-  // }, [choice, user.accountId]);
-
   async function removeUser() {
-    console.log("removed");
     likeUser({
       id: user.accountId,
       ans: "no",
@@ -294,20 +276,6 @@ function DivStatus({ matchData, user, chatRooms, userName }) {
           onClick: () => {
             setChoice("yes");
           },
-        },
-      ],
-    });
-  }
-
-  // alert submit button when roommee trying to remove someone on his/her match status
-  function onChat() {
-    confirmAlert({
-      title: "Chat Not Ready",
-      message: "The chat functionality is not ready yet",
-      buttons: [
-        {
-          label: "Ok",
-          onClick: () => {},
         },
       ],
     });

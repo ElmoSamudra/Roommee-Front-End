@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 const BASE_URL = "https://roommee.herokuapp.com";
 // const BASE_URL ='http://localhost:3000'
+
+// get the user questionaire from backend
 function getQuestionaire() {
   const endpoint = BASE_URL + `/user-questionaire`;
   const token = localStorage.token;
@@ -18,6 +20,7 @@ function getQuestionaire() {
   });
 }
 
+// update the user questionaire to backend
 export function updateQuestionaire(questionaire) {
   const {
     sameNationalityPref,
@@ -65,6 +68,7 @@ export function updateQuestionaire(questionaire) {
   }).then((res) => window.location.reload());
 }
 
+// create the use effect to get the user questionaire
 export function useQuestionaire() {
   const [loading, setLoading] = useState(true);
   const [userQuestionaire, setUserQuestionaire] = useState([]);

@@ -22,9 +22,11 @@ export default function ShowMatch() {
   const { loadingProfile, userProfile, errorProfile } = useProfile();
   const { loadingStatus, statusMatch, errorStatus } = useStatusMatch();
 
+  // load the data first
   if (loadingMatch || loadingProfile || loadingStatus) {
     return <p>Loading...</p>;
   }
+  // if failed to fetch the data
   if (errorMatch || errorProfile || errorStatus) {
     return <p>Something went wrong: {errorMatch.message}</p>;
   }
@@ -41,12 +43,9 @@ export default function ShowMatch() {
     return newMatches;
   }
 
-  // use this to make sure you are getting the right data
-  console.log(userMatch);
-
+  // if there is no matching status
   if (statusMatch.length !== 0) {
     var newMatch = filterMatch(userMatch, statusMatch.pendingStatus);
-    console.log(newMatch.length);
     // Display a list of the authors
     return (
       <div>
@@ -63,8 +62,6 @@ export default function ShowMatch() {
   }
 }
 
-// const vector = "./../images/Artboard1.png";
-
 const vector = process.env.PUBLIC_URL + "/images/Artboard1.png";
 const useStyles = makeStyles((theme) => ({
   poster: {
@@ -75,12 +72,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundAttachment: "fixed",
     backgroundPosition: "center",
     objectFit: "cover",
-    // width: "100%",
     borderRadius: 15,
   },
   profileMatch: {
     height: "100%",
-    flexGrow: 1
+    flexGrow: 1,
   },
   profForm: {
     backgroundColor: "#F3DFB3",
@@ -152,11 +148,13 @@ function Match(matches) {
     setCheck(fadeIndex[index - 1]);
   }
 
+  // this is for the fade in the ring roommee
   const handleChange = async (index) => {
     fadeIndex[index] = !fadeIndex[index];
     setCheck(fadeIndex[index]);
     setFadeIndex(fadeIndex);
   };
+
   // choice is the yes or no button
   async function likedProfileChoice(choice) {
     if (!choice) {
@@ -266,15 +264,12 @@ function Match(matches) {
                   <Grid xs={12} container item>
                     <Hidden smDown>
                       <Grid xs={4} item>
-                        {/* <SimpleFade func={likedProfileChoice} check={fade} /> */}
-
                         <div className={classes.root}>
                           <FormControlLabel
                             control={
                               <Switch
                                 checked={check}
                                 onChange={async () => {
-                                  // await handleChange();
                                   await handleChange(index);
                                   console.log(fadeIndex);
                                   await likedProfileChoice(check);
@@ -291,9 +286,6 @@ function Match(matches) {
                           />
                           <div className={classes.container}>
                             <Fade in={check}>
-                              {/* <Typography>
-                                You have rang this roommie!
-                              </Typography> */}
                               <Button
                                 className={classes.statusButton}
                                 href="matching-status"
@@ -330,15 +322,12 @@ function Match(matches) {
                     </Hidden>
                     <Hidden mdUp>
                       <Grid xs={6} item>
-                        {/* <SimpleFade func={likedProfileChoice} check={fade} /> */}
-
                         <div className={classes.root}>
                           <FormControlLabel
                             control={
                               <Switch
                                 checked={check}
                                 onChange={async () => {
-                                  // await handleChange();
                                   await handleChange(index);
                                   console.log(fadeIndex);
                                   await likedProfileChoice(check);
@@ -355,9 +344,6 @@ function Match(matches) {
                           />
                           <div className={classes.container}>
                             <Fade in={check}>
-                              {/* <Typography>
-                                You have rang this roommie!
-                              </Typography> */}
                               <Button href="matching-status">
                                 See you Match Status
                               </Button>

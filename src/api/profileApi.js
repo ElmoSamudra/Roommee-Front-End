@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 const BASE_URL = "https://roommee.herokuapp.com";
 // const BASE_URL = "http://localhost:3000";
+
+// get the user profile from backend
 function getProfile() {
   const endpoint = BASE_URL + `/user-profile`;
   const token = localStorage.token;
@@ -17,43 +19,7 @@ function getProfile() {
   });
 }
 
-// export function validateEmail(emailInput) {
-//   const endpoint = BASE_URL + "/user-profile/change-cred";
-//   const token = localStorage.token;
-//   return fetch(endpoint, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json",
-//       Authorization: `Bearer ${token}`,
-//     },
-//     body: JSON.stringify({
-//       emailInput,
-//     }),
-//   }).then((res) => {
-//     return res.json();
-//   });
-// }
-
-// export function updateEmailInProf(inputEmail) {
-//   const email = inputEmail;
-//   const endpoint = BASE_URL + "/user-profile/change-email";
-//   const token = localStorage.token;
-//   return fetch(endpoint, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json",
-//       Authorization: `Bearer ${token}`,
-//     },
-//     body: JSON.stringify({
-//       email,
-//     }),
-//   }).then((res) => {
-//     return window.location.reload(window.location.reload);
-//   });
-// }
-
+// update the user password to backend
 export function updatePass(input) {
   const password = input;
   const endpoint = BASE_URL + "/account-management/accounts/me";
@@ -73,6 +39,7 @@ export function updatePass(input) {
   });
 }
 
+// update the user email to backend
 export function updateEmail(input) {
   const email = input;
   const endpoint = BASE_URL + "/account-management/accounts/me";
@@ -92,6 +59,7 @@ export function updateEmail(input) {
   });
 }
 
+// update the user profile to backend
 export function updateProfile(profile) {
   const {
     firstName,
@@ -104,6 +72,7 @@ export function updateProfile(profile) {
     preferStay,
   } = profile;
   const endpoint = BASE_URL + "/user-profile/update";
+
   // return fetch query to update an author
   const token = localStorage.token;
 
@@ -129,6 +98,7 @@ export function updateProfile(profile) {
   });
 }
 
+// create the use effect to get the profile
 export function useProfile() {
   const [loading, setLoading] = useState(true);
   const [userProfile, setUserProfile] = useState([]);
@@ -141,7 +111,6 @@ export function useProfile() {
         setLoading(false);
       })
       .catch((e) => {
-        // console.log(e);
         setError(e);
         setLoading(false);
       });
