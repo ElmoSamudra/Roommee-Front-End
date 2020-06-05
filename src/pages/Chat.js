@@ -1,17 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import queryString from 'query-string'
 import io from 'socket.io-client'
 import ScrollToBottom from 'react-scroll-to-bottom'
 import Message from '../components/Message'
+import { Button, Input, Typography, makeStyles, Paper } from "@material-ui/core";
 
 let socket;
+
+const useStyles = makeStyles((theme) => ({
+    outerContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+    },
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "spaceBetween",
+        borderRadius: "8px",
+        height: "60%",
+        width: "40%",
+    },
+    messages: {
+        padding: "5% 0",
+        overflow: "auto",
+        flex: "auto",
+    },
+}));
+
 function Chat({ location }) {
 
-    
+    const classes = useStyles();
+
     const [name, setName] = useState("");
     const [room, setRoom] = useState("");
     const [message, setMessage] = useState("")
-    const [messages, setMessages] = useState([])
+    const messages = useRef([])
+    const [initMessage, setInitMessage] = useState(false);
     const ENDPOINT = 'localhost:3000'
 
     useEffect(() => {
@@ -33,10 +59,10 @@ function Chat({ location }) {
     }, [ENDPOINT, location.search])
 
     useEffect(() => {
-        socket.on('message', (message) => {
-            setMessages([...messages, message])
+        socket.on('message', function (message) {
+            messages.current.push(message);
         })
-    }, [messages])
+    }, [messages,])
 
     const sendMessage = (event) => {
         event.preventDefault();
@@ -48,21 +74,21 @@ function Chat({ location }) {
     console.log(message, messages);
 
   return (
-    <div>
-        <div>
-            Logs
+    <div className={classes.outerContainer}>
+        <div className={classes.container}>
+            <Typography variant="h3">Logs</Typography>
         </div>
         <div>
-            <ScrollToBottom>
-                {messages.map((message, i) => <div key={i}><Message message={message} name={name}/></div>)}
-            </ScrollToBottom>
-        </div>
-        <div>
-            <input value={message} placeholder="message here" 
+            <Paper style={{height: '400px', overflow: 'auto'}}>
+                <ScrollToBottom className={classes.messages}>
+                    {messages.current.map((message, i) => <div key={i}><Message message={message} name={name}/></div>)}
+                </ScrollToBottom>
+            </Paper>
+            <Input value={message} placeholder="message here" 
                 onChange={(event) => {setMessage(event.target.value)}} 
                 onKeyPress={event => event.key === "Enter" ? sendMessage(event) : null}
             />
-            <button onClick={(event) => sendMessage(event)}>Enter</button>
+            <Button onClick={(event) => sendMessage(event)}>Enter</Button>
         </div>
     </div>
   );
