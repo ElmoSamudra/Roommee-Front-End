@@ -35,9 +35,7 @@ export default function ShowProfile() {
 }
 
 // const bannerPic = "../../images/katarzyna-grabowska-oA1-rirIJ2E-unsplash.jpg";
-const bannerPic =
-  process.env.PUBLIC_URL +
-  "/images/katarzyna-grabowska-oA1-rirIJ2E-unsplash.jpg";
+const bannerPic = process.env.PUBLIC_URL + "/images/nathan_profile.jpg";
 const useStyles = makeStyles((theme) => ({
   profile: {
     paddingLeft: "10%",

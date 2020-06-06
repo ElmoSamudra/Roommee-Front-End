@@ -97,10 +97,15 @@ export default function ButtonAppBar() {
           {userProfile.matchBuffer.length > 0 && (
             <Typography variant="h6" className="nav-bar">
               <NavLink to="/matching-status" className={classes.link}>
-                Matching Status
+                Status
               </NavLink>
             </Typography>
           )}
+          <Typography variant="h6" className="nav-bar">
+            <NavLink to="/chatlist" className={classes.link}>
+              Chat
+            </NavLink>
+          </Typography>
           <Box display="flex" justifyContent="flex-end" width={"100%"}>
             <Button color="inherit" onClick={() => logOut()}>
               Logout

@@ -25,7 +25,7 @@ function Chatlist() {
       <Box>
         {chatRooms.length === 0 ? (
           <Box>
-            <Typography>You don't have any chat :(</Typography>
+            <Typography>You don't have any chat</Typography>
           </Box>
         ) : (
           chatRooms.map((room) => (
