@@ -97,13 +97,13 @@ export default function ButtonAppBar() {
           {userProfile.matchBuffer.length > 0 && (
             <Typography variant="h6" className="nav-bar">
               <NavLink to="/matching-status" className={classes.link}>
-                Status
+              <Button>Status</Button>
               </NavLink>
             </Typography>
           )}
           <Typography variant="h6" className="nav-bar">
             <NavLink to="/chatlist" className={classes.link}>
-              Chat
+            <Button>Chat</Button>
             </NavLink>
           </Typography>
           <Box display="flex" justifyContent="flex-end" width={"100%"}>
