@@ -12,8 +12,6 @@ import {
 } from "@material-ui/core";
 import { useGetChatHisto } from "../api/chatApi";
 
-let socket;
-
 const useStyles = makeStyles((theme) => ({
   outerContainer: {
     display: "flex",
@@ -58,20 +56,28 @@ function Chat({ location }) {
   );
 }
 
+const ENDPOINT = "https://roommee.herokuapp.com";
+
 function ChatDiv({ location, history, names }) {
   const classes = useStyles();
 
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [message, setMessage] = useState("");
-  const messages = useRef([]);
-  const [initMessage, setInitMessage] = useState(false);
-  const ENDPOINT = "https://roommee.herokuapp.com";
+  const [messages, setMessages] = useState([]);
+  const messagesRef = useRef(messages);
+
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+      messagesRef.current = messages;
+  })
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
-    socket = io(ENDPOINT);
+    let socket = io(ENDPOINT);
+    setSocket(socket);
 
     setName(name);
     setRoom(room);
@@ -79,18 +85,17 @@ function ChatDiv({ location, history, names }) {
 
     socket.emit("join", { name: name, room: room }, () => {});
 
+    socket.on("message", function (message) {
+    console.log('here');
+    console.log(messagesRef.current);
+      setMessages([...messagesRef.current, message]);
+    });
+
     return () => {
       socket.emit("disconnect");
-
       socket.off();
     };
-  }, [ENDPOINT, location.search]);
-
-  useEffect(() => {
-    socket.on("message", function (message) {
-      messages.current.push(message);
-    });
-  }, [messages]);
+  }, [location.search]);
 
   const sendMessage = (event) => {
     event.preventDefault();
@@ -113,12 +118,12 @@ function ChatDiv({ location, history, names }) {
       <div>
         <Paper style={{ height: "400px", overflow: "auto" }}>
           <ScrollToBottom className={classes.messages}>
-          {history.map((histo, i) => (
+            {history.map((histo, i) => (
               <div key={i}>
                 <Message message={histo} name={name} />
               </div>
             ))}
-            {messages.current.map((message, i) => (
+            {messages.map((message, i) => (
               <div key={i}>
                 <Message message={message} name={name} />
               </div>
