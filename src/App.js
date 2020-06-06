@@ -18,13 +18,12 @@ import ButtonAppBar from "./components/appbar";
 import Divider from "@material-ui/core/Divider";
 import theme from "./theme/muiTheme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import "./styles.css"
+import "./styles.css";
 
 //app
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-
       <Router>
         <Switch>
           <Route exact path="/">
@@ -135,10 +134,10 @@ function App() {
             <ShowStatusMatch />
           </Route>
           <Route exact path="/chatlist">
+            <ButtonAppBar />
             <ChatList />
           </Route>
-          <Route path="/chat" component={Chat}>
-          </Route>
+          <Route path="/chat" component={Chat}></Route>
           <Route path="/404">
             <div>
               <h1>
