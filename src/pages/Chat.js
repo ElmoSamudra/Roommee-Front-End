@@ -3,7 +3,7 @@ import queryString from "query-string";
 import io from "socket.io-client";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Message from "../components/Message";
-import AppBar from "../components/appbar"
+import AppBar from "../components/appbar";
 
 import {
   Button,
@@ -72,8 +72,8 @@ function ChatDiv({ location, history, names }) {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-      messagesRef.current = messages;
-  })
+    messagesRef.current = messages;
+  });
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -88,8 +88,8 @@ function ChatDiv({ location, history, names }) {
     socket.emit("join", { name: name, room: room }, () => {});
 
     socket.on("message", function (message) {
-    console.log('here');
-    console.log(messagesRef.current);
+      console.log("here");
+      console.log(messagesRef.current);
       setMessages([...messagesRef.current, message]);
     });
 
@@ -112,9 +112,8 @@ function ChatDiv({ location, history, names }) {
 
   return (
     <div>
-      <AppBar/>
+      <AppBar />
       <div className={classes.outerContainer}>
-        
         <div className={classes.container}>
           <Typography variant="h2">
             <p>{names[0] + " & " + names[1]}</p>
