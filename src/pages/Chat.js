@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
     flex: "auto",
   },
+  body: {
+    flexGrow: 1,
+  },
 }));
 
 function Chat({ location }) {
@@ -111,7 +114,7 @@ function ChatDiv({ location, history, names }) {
   console.log(message, messages);
 
   return (
-    <div>
+    <div className={classes.body}>
       <AppBar />
       <div className={classes.outerContainer}>
         <div className={classes.container}>

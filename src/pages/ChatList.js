@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useProfile } from "../api/profileApi";
-import Box from "@material-ui/core/Box";
-import Typography from "material-ui/styles/typography";
-import { Button } from "@material-ui/core";
+import { Typography, makeStyles, Box } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  body: {
+    flexGrow: 1,
+  },
+}));
 
 function Chatlist() {
+
+  const classes = useStyles();
+
   const { loadingProfile, userProfile, errorProfile } = useProfile();
 
   if (loadingProfile) {
@@ -18,23 +25,23 @@ function Chatlist() {
   const name = userProfile.firstName;
   const chatRooms = userProfile.roomList;
   console.log(chatRooms);
+  // const [room, setRoom] = useState("");
 
   return (
-    <div>
-      <Typography variant="h2">Chat List</Typography>
+    <div className={classes.body}>
+      {/* <Typography variant="h3">Chat List</Typography> */}
       <Box>
         {chatRooms.length === 0 ? (
           <Box>
-            <Typography variant="h3">You don't have any chat :(</Typography>
+            <Typography>You don't have any chat</Typography>
           </Box>
         ) : (
           chatRooms.map((room) => (
             <Box>
-              <Typography variant="h3">
                 <p>{room.nameUsers[0]}</p>
-              </Typography>
+              
               <Link to={`/chat?name=${name}&room=${room.roomName}`}>
-                <Button type="submit">Go Chat!</Button>
+                <button type="submit">Go Chat!</button>
               </Link>
             </Box>
           ))
