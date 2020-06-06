@@ -3,6 +3,8 @@ import queryString from "query-string";
 import io from "socket.io-client";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Message from "../components/Message";
+import AppBar from "../components/appbar"
+
 import {
   Button,
   Input,
@@ -109,38 +111,42 @@ function ChatDiv({ location, history, names }) {
   console.log(message, messages);
 
   return (
-    <div className={classes.outerContainer}>
-      <div className={classes.container}>
-        <Typography variant="h2">
-          <p>{names[0] + " & " + names[1]}</p>
-        </Typography>
-      </div>
-      <div>
-        <Paper style={{ height: "400px", overflow: "auto" }}>
-          <ScrollToBottom className={classes.messages}>
-            {history.map((histo, i) => (
-              <div key={i}>
-                <Message message={histo} name={name} />
-              </div>
-            ))}
-            {messages.map((message, i) => (
-              <div key={i}>
-                <Message message={message} name={name} />
-              </div>
-            ))}
-          </ScrollToBottom>
-        </Paper>
-        <Input
-          value={message}
-          placeholder="message here"
-          onChange={(event) => {
-            setMessage(event.target.value);
-          }}
-          onKeyPress={(event) =>
-            event.key === "Enter" ? sendMessage(event) : null
-          }
-        />
-        <Button onClick={(event) => sendMessage(event)}>Enter</Button>
+    <div>
+      <AppBar/>
+      <div className={classes.outerContainer}>
+        
+        <div className={classes.container}>
+          <Typography variant="h2">
+            <p>{names[0] + " & " + names[1]}</p>
+          </Typography>
+        </div>
+        <div>
+          <Paper style={{ height: "400px", overflow: "auto" }}>
+            <ScrollToBottom className={classes.messages}>
+              {history.map((histo, i) => (
+                <div key={i}>
+                  <Message message={histo} name={name} />
+                </div>
+              ))}
+              {messages.map((message, i) => (
+                <div key={i}>
+                  <Message message={message} name={name} />
+                </div>
+              ))}
+            </ScrollToBottom>
+          </Paper>
+          <Input
+            value={message}
+            placeholder="message here"
+            onChange={(event) => {
+              setMessage(event.target.value);
+            }}
+            onKeyPress={(event) =>
+              event.key === "Enter" ? sendMessage(event) : null
+            }
+          />
+          <Button onClick={(event) => sendMessage(event)}>Enter</Button>
+        </div>
       </div>
     </div>
   );

@@ -135,6 +135,7 @@ function App() {
             <ShowStatusMatch />
           </Route>
           <Route exact path="/chatlist">
+            <ButtonAppBar />
             <ChatList />
           </Route>
           <Route path="/chat" component={Chat}>
